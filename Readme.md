@@ -1,0 +1,2 @@
+# ZooArcadia
+Zoo Arcadia est une application de gestion de zoo développée en PHP. Elle permet de gérer les animaux, les habitats, les services, les utilisateurs, les horaires d'ouverture, les avis, et plus encore.

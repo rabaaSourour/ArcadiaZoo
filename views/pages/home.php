@@ -405,14 +405,30 @@ require_once __DIR__ . '/../../vendor/autoload.php';
                     <div class="row">
                         <div class="col-md-12">
                             <table class="table table-bordered table-striped mt-4">
-                                <thead class="thead-dark">
+                                <a href="/opening_hours/create">Ajouter des horaires d'ouverture</a>
+                                <thead>
                                     <tr>
-                                        <th class="text-bg-primary">Jour</th>
-                                        <th class="text-bg-primary">Horaires</th>
+                                        <th>Jour</th>
+                                        <th>Heure d'ouverture</th>
+                                        <th>Heure de fermeture</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php include '../back/load_hours.php'; ?>
+                                    <?php foreach ($opening_hours as $opening_hour): ?>
+                                        <tr>
+                                            <td><?php echo htmlspecialchars($opening_hour['day']); ?></td>
+                                            <td><?php echo htmlspecialchars($opening_hour['open_time']); ?></td>
+                                            <td><?php echo htmlspecialchars($opening_hour['close_time']); ?></td>
+                                            <td>
+                                                <a href="/opening_hours/edit?id=<?php echo $opening_hour['id']; ?>">Modifier</a>
+                                                <form method="POST" action="/delete_opening_hour" style="display:inline;">
+                                                    <input type="hidden" name="id" value="<?php echo $opening_hour['id']; ?>">
+                                                    <button type="submit">Supprimer</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                             <a href="../back/edit_hours.php" class="btn btn-primary mt-3" data-show="employé">Modifier les horaires</a>

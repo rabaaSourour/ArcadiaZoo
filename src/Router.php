@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Routing;
-use App\Controllers\PagesController;
+namespace App;
 
 class Router
 {
@@ -13,7 +12,7 @@ class Router
     {
         // Redirection vers la page d'accueil si l'URI est vide
         if ('/' === $uri) {
-            $uri = '/views/pages/home';
+            $uri = 'pages/home';
         }
 
         // Séparation de l'URI en parties individuelles
@@ -57,7 +56,7 @@ class Router
     if (!class_exists($this->controllerName)) {
         if ($this->controllerName === 'App\\Controller\\Pages') {
             // Si le contrôleur est PagesController, alors redirige vers la méthode `view`
-            $controller = new \App\Controllers\PagesController();
+            $controller = new \App\Controller\PagesController();
             return $controller->view($this->method); // Ici `$this->method` est le nom de la page
         }
         throw new \Exception("Controller not found: {$this->controllerName}");

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="/public/styles/main.scss">
+        <link rel="stylesheet" href="/public/styles/main.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -118,8 +118,7 @@ if (isset($page) && file_exists($page)) {
         </footer>
 
         
-    <script  src =" https://code.jquery.com/jquery-3.7.1.min.js " > </script>
-    <script src=""></script>
+    <script src ="https://code.jquery.com/jquery-3.7.1.min.js "></script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 

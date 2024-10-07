@@ -1,6 +1,7 @@
 <?php
 
-namespace App;
+namespace App\Routing;
+use App\Controllers\PagesController;
 
 class Router
 {
@@ -12,7 +13,7 @@ class Router
     {
         // Redirection vers la page d'accueil si l'URI est vide
         if ('/' === $uri) {
-            $uri = '/homepage/home';
+            $uri = '/views/pages/home';
         }
 
         // Séparation de l'URI en parties individuelles
@@ -50,7 +51,7 @@ class Router
     }
 
 
-    public function doAction(): array
+    public function doAction(): string
 {
     // Vérifie si le contrôleur existe
     if (!class_exists($this->controllerName)) {
@@ -87,6 +88,7 @@ class Router
             $result = $controller->{$this->method}();
         }
     }
+
 
     return $result;
 }

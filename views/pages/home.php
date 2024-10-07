@@ -1,11 +1,8 @@
 <?php
-
-
 require_once __DIR__ . '/../../vendor/autoload.php';
 ?>
 <!-- video presentation du zoo -->
-
-<div class="ratio  rounded ratio-16x9">
+<div class="ratio rounded ratio-16x9">
     <video class="embed-responsive-item" autoplay muted loop preload="auto">
         <source src="/public/assets/présentation zoo.mp4" type="video/mp4">
     </video>

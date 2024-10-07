@@ -1,1 +1,23 @@
-/*# sourceMappingURL=main.css.map */
+/* Error: There is no module with the namespace "color".
+ *     ,
+ * 185 | "r": color.channel($color, "red"),
+ *     |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *     '
+ *   node_modules\bootstrap\scss\_functions.scss 185:6   luminance()
+ *   node_modules\bootstrap\scss\_functions.scss 174:8   contrast-ratio()
+ *   node_modules\bootstrap\scss\_functions.scss 159:22  color-contrast()
+ *   node_modules\bootstrap\scss\_variables.scss 846:42  @import
+ *   node_modules\bootstrap\scss\bootstrap.scss 8:9      @import
+ *   public\styles\_custom.scss 12:9                     @import
+ *   public\styles\main.scss 2:9                         root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: 'Error: There is no module with the namespace "color".\a     \2577 \a 185 \2502  "r": color.channel($color, "red"),\a     \2502       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a     \2575 \a   node_modules\\bootstrap\\scss\\_functions.scss 185:6   luminance()\a   node_modules\\bootstrap\\scss\\_functions.scss 174:8   contrast-ratio()\a   node_modules\\bootstrap\\scss\\_functions.scss 159:22  color-contrast()\a   node_modules\\bootstrap\\scss\\_variables.scss 846:42  @import\a   node_modules\\bootstrap\\scss\\bootstrap.scss 8:9      @import\a   public\\styles\\_custom.scss 12:9                     @import\a   public\\styles\\main.scss 2:9                         root stylesheet';
+}

@@ -5,7 +5,7 @@ namespace App;
 class Router
 {
     private string $controllerName = "App\\Controller\\";
-    private string $method;
+    private string $page;
     private ?string $parameter = null;
 
     public function __construct(private string $requestMethod, string $uri)
@@ -27,7 +27,7 @@ class Router
         }
 
         // Détermination de la méthode à appeler
-        $this->method = array_pop($uriExplode);
+        $this->page = array_pop($uriExplode);
         $uriLength = count($uriExplode);
         $counter = 1;
 
@@ -57,17 +57,18 @@ class Router
         if ($this->controllerName === 'App\\Controller\\Pages') {
             // Si le contrôleur est PagesController, alors redirige vers la méthode `view`
             $controller = new \App\Controller\PagesController();
-            return $controller->view($this->method); // Ici `$this->method` est le nom de la page
+            return $controller->view($this->page); // Ici `$this->page` est le nom de la page
         }
         throw new \Exception("Controller not found: {$this->controllerName}");
     }
 
     // Création d'une instance du contrôleur
-    $controller = new $this->controllerName();
+    $controllerName = $this->controllerName;
+    $controller = new $controllerName();
 
     // Vérifie si la méthode existe dans le contrôleur
-    if (!method_exists($controller, $this->method)) {
-        throw new \Exception("Method not found: {$this->method} in controller {$this->controllerName}");
+    if (!method_exists($controller, $this->page)) {
+        throw new \Exception("Method not found: {$this->page} in controller {$this->controllerName}");
     }
 
     // Gestion des requêtes POST avec validation des données
@@ -75,16 +76,16 @@ class Router
         $postData = $this->sanitizeInput($_POST); // Assainir les données POST
 
         if (null !== $this->parameter) {
-            $result = $controller->{$this->method}($this->parameter, $postData);
+            $result = $controller->{$this->page}($this->parameter, $postData);
         } else {
-            $result = $controller->{$this->method}($postData);
+            $result = $controller->{$this->page}($postData);
         }
     } else {
         // Gestion des requêtes GET
         if (null !== $this->parameter) {
-            $result = $controller->{$this->method}($this->parameter);
+            $result = $controller->{$this->page}($this->parameter);
         } else {
-            $result = $controller->{$this->method}();
+            $result = $controller->{$this->page}();
         }
     }
 

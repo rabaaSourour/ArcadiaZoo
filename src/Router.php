@@ -63,7 +63,7 @@ class Router
     }
 
     // Création d'une instance du contrôleur
-    $controllerName = $this->controllerName;
+    $controllerName = $this->controllerName.'Controller';
     $controller = new $controllerName();
 
     // Vérifie si la méthode existe dans le contrôleur

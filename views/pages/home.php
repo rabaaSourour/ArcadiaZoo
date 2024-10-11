@@ -1,4 +1,5 @@
 <?php
+include_once __DIR__ .'/../base_view.php';
 require_once __DIR__ . '/../../vendor/autoload.php';
 ?>
 <!-- video presentation du zoo -->

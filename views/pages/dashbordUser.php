@@ -1,6 +1,15 @@
 <?php
 include_once __DIR__ . '/../base_view.php';
 require_once __DIR__ . '/../../vendor/autoload.php';
+include 'C:/xampp/htdocs/ArcadiaZoo/src/Database/DbConnection.php'; // Inclure le fichier de connexion à la base de données
+use App\Model\Horaires;
+use App\Controller\HorairesController;
+//session_start();
+//if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
+  //  header('Location: login.php');
+    //exit();
+//}
+
 ?>
 <div class="container text-bg-secondary rounded mt-4">
     <div class="row">
@@ -54,7 +63,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
                 <div class="card-body">
                     <h5 class="card-title">Gestion des Horaires</h5>
                     <p class="card-text">Configurer les horaires d'ouverture et de fermeture du zoo.</p>
-                    <a href="#" class="btn btn-primary">Accéder</a>
+                    <a href="OpeningHours.php" class="btn btn-primary">Accéder</a>
                 </div>
             </div>
         </div>

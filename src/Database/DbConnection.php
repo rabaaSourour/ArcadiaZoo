@@ -15,7 +15,7 @@ class DbConnection
         }
 
         // Charger la configuration
-        $config = require 'Config.php';
+        $config = require 'C:/xampp/htdocs/ArcadiaZoo/Config.php';
 
         try {
             // Créer la connexion PDO avec les valeurs du fichier de configuration

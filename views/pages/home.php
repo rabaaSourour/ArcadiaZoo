@@ -1,6 +1,11 @@
 <?php
-include_once __DIR__ .'/../base_view.php';
+include_once __DIR__ . '/../base_view.php';
 require_once __DIR__ . '/../../vendor/autoload.php';
+require_once 'C:/xampp/htdocs/ArcadiaZoo/src/Database/DbConnection.php';
+
+use App\Model\Horaires;
+use App\Controller\HorairesController;
+
 ?>
 <!-- video presentation du zoo -->
 <div class="ratio rounded ratio-16x9">
@@ -405,34 +410,32 @@ require_once __DIR__ . '/../../vendor/autoload.php';
                 <div class="container mt-5">
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-bordered table-striped mt-4">
-                                <a href="/opening_hours/create">Ajouter des horaires d'ouverture</a>
+                            <?php
+                            // Récupérer la connexion PDO
+                            $pdo = DbConnection::getPdo();
+
+                            $horairesModel = new Horaires($pdo);
+                            $horairesController = new HorairesController($horairesModel);
+                            $horaires = $horairesController->showHoraires();
+                            ?>
+                            <table>
                                 <thead>
                                     <tr>
                                         <th>Jour</th>
-                                        <th>Heure d'ouverture</th>
-                                        <th>Heure de fermeture</th>
-                                        <th>Actions</th>
+                                        <th>Heures d'ouverture</th>
+                                        <th>Heures de fermeture</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($opening_hours as $opening_hour): ?>
+                                    <?php foreach ($horaires as $horaire): ?>
                                         <tr>
-                                            <td><?php echo htmlspecialchars($opening_hour['day']); ?></td>
-                                            <td><?php echo htmlspecialchars($opening_hour['open_time']); ?></td>
-                                            <td><?php echo htmlspecialchars($opening_hour['close_time']); ?></td>
-                                            <td>
-                                                <a href="/opening_hours/edit?id=<?php echo $opening_hour['id']; ?>">Modifier</a>
-                                                <form method="POST" action="/delete_opening_hour" style="display:inline;">
-                                                    <input type="hidden" name="id" value="<?php echo $opening_hour['id']; ?>">
-                                                    <button type="submit">Supprimer</button>
-                                                </form>
-                                            </td>
+                                            <td><?= htmlspecialchars($horaire['day']) ?></td>
+                                            <td><?= htmlspecialchars($horaire['openingTime']) ?></td>
+                                            <td><?= htmlspecialchars($horaire['closingTime']) ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
-                            <a href="../back/edit_hours.php" class="btn btn-primary mt-3" data-show="employé">Modifier les horaires</a>
                         </div>
                     </div>
                 </div>

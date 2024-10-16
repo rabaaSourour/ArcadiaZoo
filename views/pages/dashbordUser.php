@@ -77,5 +77,15 @@ use App\Controller\HorairesController;
                 </div>
             </div>
         </div>
+        <!-- Card views -->
+        <div class="col-lg-4 mb-4">
+            <div class="card ">
+                <div class="card-body">
+                    <h5 class="card-title">Gestion des views</h5>
+                    <p class="card-text">Valider les avis </p>
+                    <a href="isValidateReview.php" class="btn btn-primary">Accéder</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

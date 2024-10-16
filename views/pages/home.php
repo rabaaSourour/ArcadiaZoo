@@ -5,12 +5,28 @@ require_once 'C:/xampp/htdocs/ArcadiaZoo/src/Database/DbConnection.php';
 
 use App\Model\Horaires;
 use App\Controller\HorairesController;
+use App\Controller\ReviewController;
+use App\Model\Review;
+use App\Database\DbConnection;
+
+// Obtenez une instance de PDO
+$pdo = DbConnection::getPdo();
+
+// Créez une instance du modèle Review en lui passant l'instance de PDO
+$reviewModel = new Review($pdo);
+
+// Créez une instance du contrôleur ReviewController en lui passant le modèle Review
+$reviewController = new ReviewController($reviewModel);
+
+// Récupération des avis approuvés pour les afficher sur la page d'accueil
+
+$getPendingReviews = $reviewController->getValidReviews();
 
 ?>
 <!-- video presentation du zoo -->
 <div class="ratio rounded ratio-16x9">
     <video class="embed-responsive-item" autoplay muted loop preload="auto">
-        <source src="/ArcadiaZoo/public/asset/images/présentation zoo.mp4" type="video/mp4">
+        <source src="/public/asset/images/présentation zoo.mp4" type="video/mp4">
     </video>
 </div>
 
@@ -452,112 +468,36 @@ use App\Controller\HorairesController;
 <article>
     <!--commentaire-->
     <div class="container text-bg-secondary rounded mt-5">
-        <h3 class="text-center pt-3 mb-3">Voici quelques avis sur le ZOO</h3>
-        <div id="carouselExampleCaptions" class="carousel slide">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
-            </div>
-            <!-- premiere page de carousel -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row">
-                        <!-- commentaire N°1-->
-                        <div class="col-md-4 mb-5">
-                            <div class="card text-bg-primary text-center">
-                                <img class="card_img_top" src="/assets/Jungle.png" alt="">
-                                <h4> Rone Galle</h4>
-                                <p class="card-text"> fhvblsievblqbf</p>
-                            </div>
-                        </div>
-                        <!-- commentaire N°2-->
-                        <div class="col-md-4 mb-5">
-                            <div class="card text-bg-primary text-center">
-                                <img class="card_img_top" src="/assets/Jungle.png" alt="">
-                                <h4> Rone Galle</h4>
-                                <p class="card-text"> fhvblsievblqbf</p>
-                            </div>
-                        </div>
-                        <!-- commentaire N°3-->
-                        <div class="col-md-4 mb-5">
-                            <div class="card text-bg-primary text-center">
-                                <img class="card_img_top" src="/assets/Jungle.png" alt="">
-                                <h4> Rone Galle</h4>
-                                <p class="card-text"> fhvblsievblqbf</p>
+    <h3 class="text-center pt-3 mb-3">Voici quelques avis sur le ZOO</h3>
+    <div id="carouselExampleCaptions" class="carousel slide">
+        <div class="carousel-inner">
+        <?php
+if (!empty($getPendingReviews)) {
+    // Diviser les avis en groupes de 3 pour chaque slide
+    $chunkedReviews = array_chunk($getPendingReviews, 3);
+    foreach ($chunkedReviews as $index => $reviewsChunk): ?>
+        <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+            <div class="row">
+                <?php foreach ($reviewsChunk as $review): ?>
+                    <div class="col-md-4 mb-5">
+                        <div class="card text-bg-primary text-center">
+                            <div class="card-body">
+                                <h4 class="card-title"><?= htmlspecialchars($review['pseudo'].' :') ?></h4>
+                                <p class="card-text"><?= htmlspecialchars($review['review']) ?></p>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                </div>
-                <!-- Deuxiéme page du carrousel-->
-                <div class="carousel-item">
-                    <div class="row">
-                        <!-- commentaire N°1-->
-                        <div class="col-md-4 mb-5">
-                            <div class="card text-bg-primary text-center">
-                                <img class="card_img_top" src="/assets/Jungle.png" alt="">
-                                <h4> Rone Galle</h4>
-                                <p class="card-text"> fhvblsievblqbf</p>
-                            </div>
-                        </div>
-                        <!-- commentaire N°2-->
-                        <div class="col-md-4 mb-5">
-                            <div class="card text-bg-primary text-center">
-                                <img class="card_img_top" src="/assets/Jungle.png" alt="">
-                                <h4> Rone Galle</h4>
-                                <p class="card-text"> fhvblsievblqbf</p>
-                            </div>
-                        </div>
-                        <!-- commentaire N°3-->
-                        <div class="col-md-4 mb-5">
-                            <div class="card text-bg-primary text-center">
-                                <img class="card_img_top" src="/assets/Jungle.png" alt="">
-                                <h4> Rone Galle</h4>
-                                <p class="card-text"> fhvblsievblqbf</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                </div>
-                <!-- troisiéme page de carrousel-->
-                <div class="carousel-item">
-                    <div class="row">
-                        <!-- commentaire N°1-->
-                        <div class="col-md-4 mb-5">
-                            <div class="card text-bg-primary text-center">
-                                <img class="card_img_top" src="/assets/Jungle.png" alt="">
-                                <h4> Rone Galle</h4>
-                                <p class="card-text"> fhvblsievblqbf</p>
-                            </div>
-                        </div>
-                        <!-- commentaire N°2-->
-                        <div class="col-md-4 mb-5">
-                            <div class="card text-bg-primary text-center">
-                                <img class="card_img_top" src="/assets/Jungle.png">
-                                <h4> Rone Galle</h4>
-                                <p class="card-text"> fhvblsievblqbf</p>
-                            </div>
-                        </div>
-                        <!-- commentaire N°3-->
-                        <div class="col-md-4 mb-5">
-                            <div class="card text-bg-primary text-center">
-                                <a href="/Pages/reviews.html"><img class="card_img_top" src="/assets/ajouter.png"></a>
-                                <p class="card-text"> ajoutrz-votre avis</p>
-                            </div>
-                        </div>
-                        <!--fin des commentaires-->
-                    </div>
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
+    <?php endforeach;
+} else { ?>
+    <div class="alert alert-info text-center">
+        Aucun avis pour le moment. Soyez le premier à laisser votre avis !
+    </div>
+<?php } ?>
+
+        <!-- Navigation du carrousel -->
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
@@ -567,6 +507,12 @@ use App\Controller\HorairesController;
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <!-- fin de carrousel-->
+
+    <!-- Bouton pour ajouter un nouvel avis -->
+    <div class="text-center mt-4">
+        <a href="/views/pages/reviews.php" class="btn btn-primary">Ajouter votre avis</a>
+    </div>
+</div>
+
 
 </article>

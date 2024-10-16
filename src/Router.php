@@ -50,7 +50,7 @@ class Router
     }
 
 
-    public function doAction(): string
+    public function doAction(): array
 {
     // Vérifie si le contrôleur existe
     if (!class_exists($this->controllerName)) {

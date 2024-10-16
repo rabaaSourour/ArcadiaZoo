@@ -51,8 +51,8 @@ use App\Controller\HorairesController;
             <div class="card ">
                 <div class="card-body">
                     <h5 class="card-title">Gestion des Services</h5>
-                    <p class="card-text">Ajouter, modifier ou supprimer les services du zoo.</p>
-                    <a href="#" class="btn btn-primary">Accéder</a>
+                    <p class="card-text">Ajouter un nouveau service au zoo</p>
+                    <a href="/views/pages/addService.php" class="btn btn-primary">Accéder</a>
                 </div>
             </div>
         </div>

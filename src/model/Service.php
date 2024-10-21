@@ -13,31 +13,47 @@ class Service
         $this->pdo = $pdo;
     }
 
-    // Méthode pour récupérer tous les services
+    // Récupérer tous les services
     public function getAllServices()
+    {
+        $stmt = $this->pdo->query("SELECT * FROM services");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Récupérer un service par son ID
+    public function getServiceById($id)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM services WHERE id = :id");
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+   // Mettre à jour un service
+public function updateService($id, $name, $description, $imagePath)
 {
-    $query = $this->pdo->query('SELECT * FROM services');
-    return $query->fetchAll(PDO::FETCH_ASSOC);
+    $query = $this->pdo->prepare('UPDATE services SET name = :name, description = :description, image_path = :imagePath WHERE id = :id');
+    $query->bindParam(':name', $name);
+    $query->bindParam(':description', $description);
+    $query->bindParam(':imagePath', $imagePath);
+    $query->bindParam(':id', $id, PDO::PARAM_INT);
+    
+    return $query->execute();
 }
 
-    // Méthode pour créer un nouveau service
-    public function createService($name, $description, $imageLink)
-    {
-        $query = $this->pdo->prepare('INSERT INTO services (name, description, image_link) VALUES (?, ?, ?)');
-        $query->execute([$name, $description, $imageLink]);
-    }
+    
 
-    // Méthode pour mettre à jour un service existant
-    public function updateService($id, $name, $description, $imageLink)
-    {
-        $query = $this->pdo->prepare('UPDATE services SET name = ?, description = ?, image_link = ? WHERE id = ?');
-        $query->execute([$name, $description, $imageLink, $id]);
-    }
-
-    // Méthode pour supprimer un service
+    // Supprimer un service
     public function deleteService($id)
     {
-        $query = $this->pdo->prepare('DELETE FROM services WHERE id = ?');
-        $query->execute([$id]);
+        $stmt = $this->pdo->prepare("DELETE FROM services WHERE id = :id");
+        return $stmt->execute(['id' => $id]);
     }
+
+    // Ajouter un service
+    public function addService($name, $description, $imagePath)
+    {
+        $stmt = $this->pdo->prepare("INSERT INTO services (name, description, image_path) VALUES (:name, :description, :imagePath)");
+        return $stmt->execute(['name' => $name, 'description' => $description, 'image_path' => $imagePath]);
+    }
+
 }

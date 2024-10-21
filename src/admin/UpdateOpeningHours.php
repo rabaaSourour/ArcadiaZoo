@@ -1,33 +1,37 @@
 <?php
-require_once 'C:/xampp/htdocs/ArcadiaZoo/src/Database/DbConnection.php';
+require_once '../Database/DbConnection.php';
+require_once '../model/Horaires.php';
+require_once '../Controller/HorairesController.php';
 
 use App\Controller\HorairesController;
 use App\Model\Horaires;
+use App\Database\DbConnection;
 
 // Connexion à la base de données
 $pdo = DbConnection::getPdo();
 $horairesModel = new Horaires($pdo);
 $horairesController = new HorairesController($horairesModel);
 
-// Récupération des données du formulaire
-$id = $_POST['id'];
-$openingTime = $_POST['openingTime'];
-$closingTime = $_POST['closingTime'];
+// Vérifier la méthode de requête
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['horaires']) && is_array($_POST['horaires'])) {
+        foreach ($_POST['horaires'] as $data) {
+            if (isset($data['id'], $data['openingTime'], $data['closingTime'])) {
+                $horairesController->updateHoraires([
+                    'id' => $data['id'],
+                    'openingTime' => $data['openingTime'],
+                    'closingTime' => $data['closingTime']
+                ]);
+            }
+        }
 
-if (isset($_POST['id'], $_POST['openingTime'], $_POST['closingTime'])) {
-    $id = $_POST['id'];
-    $openingTime = $_POST['openingTime'];
-    $closingTime = $_POST['closingTime'];
-
-    // Debug: afficher les valeurs
-    var_dump($id, $openingTime, $closingTime);
-
-    // Mise à jour des horaires
-    $horairesController->updateHoraires($id, $openingTime, $closingTime);
-
-    // Redirection vers la page d'administration
-    header('Location: /ArcadiaZoo/views/pages/home.php');
-    exit();
+        // Redirection vers la page d'administration après la mise à jour
+        header('Location: /pages/home');
+        exit();
+    } else {
+        echo "Données du formulaire manquantes.";
+    }
 } else {
-    echo "Données du formulaire manquantes.";
+    echo "Méthode de requête non autorisée.";
 }
+

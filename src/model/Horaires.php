@@ -20,17 +20,16 @@ class Horaires
     }
 
     public function updateHoraire(string $id, string $openingTime, string $closingTime): void
-{
-    var_dump($id, $openingTime, $closingTime); // Debug
-
-    $stmt = $this->pdo->prepare('UPDATE openinghours SET openingTime = ?, closingTime = ? WHERE id = ?');
-    $stmt->execute([$openingTime, $closingTime, $id]);
-
-    // Vérifier si la requête a bien fonctionné
-    if ($stmt->rowCount() > 0) {
-        echo "Mise à jour réussie.";
-    } else {
-        echo "Aucune mise à jour effectuée.";
+    {
+        $stmt = $this->pdo->prepare('UPDATE openinghours SET openingTime = ?, closingTime = ? WHERE id = ?');
+        $stmt->execute([$openingTime, $closingTime, $id]);
+    
+        // Vérifier si la requête a bien fonctionné
+        if ($stmt->rowCount() > 0) {
+            echo "Mise à jour réussie.";
+        } else {
+            echo "Aucune mise à jour effectuée.";
+        }
     }
-}
+    
 }

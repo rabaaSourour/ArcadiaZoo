@@ -446,8 +446,8 @@ $getPendingReviews = $reviewController->getValidReviews();
                                     <?php foreach ($horaires as $horaire): ?>
                                         <tr>
                                             <td><?= htmlspecialchars($horaire['day']) ?></td>
-                                            <td><?= htmlspecialchars($horaire['openingTime']) ?></td>
-                                            <td><?= htmlspecialchars($horaire['closingTime']) ?></td>
+                                            <td><?= date('H:i', strtotime($horaire['openingTime'])) ?></td>
+                                            <td><?= date('H:i', strtotime($horaire['closingTime'])) ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

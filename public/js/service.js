@@ -1,11 +1,11 @@
 function editService(id) {
-    // Rediriger vers une page ou ouvrir un modal pour modifier le service
     window.location.href = `/src/admin/editService.php?id=${id}`;
 }
 
 function deleteService(id) {
     if (confirm('Voulez-vous vraiment supprimer ce service ?')) {
-        fetch(`/src/admin/deleteService.php?id=${id}`, {
+        fetch(`/src/admin/deleteService.php?id=${id}`,
+            {
                 method: 'POST',
             })
             .then(response => response.json())

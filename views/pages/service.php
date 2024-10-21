@@ -1,8 +1,7 @@
 <?php
 include_once __DIR__ . '/../base_view.php';
 require_once __DIR__ . '/../../vendor/autoload.php';
-require_once __DIR__ . '/../../src/Database/DbConnection.php';
-require_once __DIR__ . '/../../src/model/Service.php';
+
 
 use App\Model\Service;
 use App\Database\DbConnection;
@@ -32,15 +31,21 @@ $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
                                 <p class="card-text"><?= htmlspecialchars($service['description']) ?></p>
 
                                 <?php if ($isAdmin): ?>
-                                    <button class="btn btn-warning" onclick="editService(<?= $service['id'] ?>)">Modifier</button>
+                                    <button class="btn btn-warning" onclick="window.location.href='/pages/editServiceForm.php?id=<?= $service['id'] ?>'">Modifier</button>
                                     <button class="btn btn-danger" onclick="deleteService(<?= $service['id'] ?>)">Supprimer</button>
                                 <?php endif; ?>
                             </div>
                         </div>
+                        <button class="btn btn-warning" onclick="window.location.href='/pages/editServiceForm.php?id=<?= $service['id'] ?>'">
+                            Modifier
+                        </button>
+
                     </div>
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>
+
+
     </div>
 </section>
 
@@ -63,7 +68,7 @@ $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
                                             <h5 class="card-title text-dark"><?= htmlspecialchars($service['name']) ?></h5>
                                             <p class="card-text"><?= htmlspecialchars($service['description']) ?></p>
                                             <?php if ($isAdmin): ?>
-                                                <button class="btn btn-warning" onclick="editService(<?= $service['id'] ?>)">Modifier</button>
+                                                <button class="btn btn-warning" onclick="window.location.href='/pages/editServiceForm.php?id=<?= $service['id'] ?>'">Modifier</button>
                                                 <button class="btn btn-danger" onclick="deleteService(<?= $service['id'] ?>)">Supprimer</button>
                                             <?php endif; ?>
                                         </div>
@@ -74,7 +79,7 @@ $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
                                             <h5 class="card-title text-dark"><?= htmlspecialchars($service['name']) ?></h5>
                                             <p class="card-text"><?= htmlspecialchars($service['description']) ?></p>
                                             <?php if ($isAdmin): ?>
-                                                <button class="btn btn-warning" onclick="editService(<?= $service['id'] ?>)">Modifier</button>
+                                                <button class="btn btn-warning" onclick="window.location.href='/pages/editServiceForm.php?id=<?= $service['id'] ?>'">Modifier</button>
                                                 <button class="btn btn-danger" onclick="deleteService(<?= $service['id'] ?>)">Supprimer</button>
                                             <?php endif; ?>
                                         </div>
@@ -85,13 +90,18 @@ $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
                                 <?php endif; ?>
                             </div>
                         </div>
+                        <button class="btn btn-warning" onclick="window.location.href='/pages/editServiceForm.php?id=<?= $service['id'] ?>'">
+                            Modifier
+                        </button>
+
                     </div>
+
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>
+
+
     </div>
 </section>
 
-
-<!-- Scripts pour la gestion des actions d'admin -->
 <script src="/public/js/service.js"></script>

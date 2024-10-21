@@ -21,8 +21,9 @@ class HorairesController
 
     public function updateHoraires(array $data): void
     {
-        if (isset($data['day'], $data['openingTime'], $data['closingTime'])) {
-            $this->horairesModel->updateHoraire($data['day'], $data['openingTime'], $data['closingTime']);
+        if (isset($data['id'], $data['openingTime'], $data['closingTime'])) {
+            $this->horairesModel->updateHoraire($data['id'], $data['openingTime'], $data['closingTime']);
         }
     }
+    
 }

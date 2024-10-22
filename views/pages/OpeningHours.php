@@ -20,7 +20,7 @@ $horaires = $horairesController->showHoraires();
 ?>
 <div class="container text-bg-secondary rounded mt-5">
     <h1 class="text-center text-bg-primary rounded">Modifier les horaires d'ouverture</h1>
-    <form method="POST" action="/src/admin/UpdateOpeningHours.php">
+    <form method="POST" action="/src/Admin/UpdateOpeningHours.php">
         <?php foreach ($horaires as $horaire): ?>
             <input type="hidden" name="horaires[<?= $horaire['id'] ?>][id]" value="<?= htmlspecialchars($horaire['id']) ?>">
             <label class="card-title">Jour: <?= htmlspecialchars($horaire['day']) ?></label><br>

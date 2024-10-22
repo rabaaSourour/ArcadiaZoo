@@ -1,6 +1,6 @@
 <?php
 require_once '../Database/DbConnection.php'; // Chemin d'accès correct
-require_once '../model/Service.php';
+require_once '../Model/Service.php';
 
 use App\Model\Service;
 use App\Database\DbConnection;

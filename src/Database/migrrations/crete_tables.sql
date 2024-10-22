@@ -13,7 +13,7 @@ CREATE TABLE habitats (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     description TEXT,
-    image LONGBLOB
+    image_path VARCHAR(255)
 );
 
 -- Table animals
@@ -21,7 +21,7 @@ CREATE TABLE animals (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     breed TEXT ,
-    image BLOB,
+    image_path VARCHAR(255),
     habitat_id INT,
     FOREIGN KEY (habitat_id) REFERENCES habitats(id)
 );
@@ -31,7 +31,7 @@ CREATE TABLE services (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     description TEXT,
-    image BLOB
+    image_path VARCHAR(255)
 );
 
 -- Table reviews

@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../../src/Database/DbConnection.php';
-require_once __DIR__ . '/../../src/model/Service.php';
+require_once __DIR__ . '/../../src/Model/Service.php';
 
 use App\Model\Service;
 use App\Database\DbConnection;

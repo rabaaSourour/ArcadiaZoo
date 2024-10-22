@@ -15,6 +15,10 @@ class Router
             $uri = 'pages/home';
         }
 
+
+        // Supprime les paramètres GET de l'URI (après le ?)
+        $uri = explode('?', $uri)[0];
+
         // Séparation de l'URI en parties individuelles
         $uriExplode = explode('/', $uri);
         array_shift($uriExplode); // Supprime la première partie vide de l'URI

@@ -1,6 +1,6 @@
 <?php
 require_once '../Database/DbConnection.php';
-require_once '../model/Horaires.php';
+require_once '../Model/Horaires.php';
 require_once '../Controller/HorairesController.php';
 
 use App\Controller\HorairesController;

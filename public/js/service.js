@@ -1,10 +1,10 @@
 function editService(id) {
-    window.location.href = `/src/admin/editService.php?id=${id}`;
+    window.location.href = `/src/Admin/editService.php?id=${id}`;
 }
 
 function deleteService(id) {
     if (confirm('Voulez-vous vraiment supprimer ce service ?')) {
-        fetch(`/src/admin/deleteService.php?id=${id}`,
+        fetch(`/src/Admin/deleteService.php?id=${id}`,
             {
                 method: 'POST',
             })

@@ -2,7 +2,7 @@
 include_once __DIR__ . '/../base_view.php';
 require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../../src/Database/DbConnection.php';
-require_once __DIR__ . '/../../src/model/Service.php';
+require_once __DIR__ . '/../../src/Model/Service.php';
 
 use App\Model\Service;
 use App\Database\DbConnection;
@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
         exit();
     }
 }
-    // Connexion à la base de données et récupération du servic
+    // Connexion à la base de données et récupération du service
 //session_start();
 //if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
 //   header('Location: /views/pages/home.php'); // Redirige vers la page d'accueil si l'utilisateur n'est pas administrateur
@@ -30,28 +30,26 @@ if (isset($_GET['id'])) {
 ?>
 <div class="container rounded mt-5">
     <h1 class="text-center text-bg-primary rounded">Modifier le Service</h1>
-    <?php if (isset($service) && !empty($service)): ?>
+    <?php if (isset($service)) : ?>
+        <form action="/src/admin/updateService.php" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?php echo htmlspecialchars($service['id']); ?>">
 
-        <form action="/src/admin/updateService.php?id=<?= htmlspecialchars($service['id']) ?>" method="POST" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label for="name" class="form-label">Modifier le nom:</label>
-                <input type="text" id="name" name="name" value="<?= htmlspecialchars($service['name']) ?>" required>
-            </div>
-            <div class="mb-3">
-                <label for="description" class="form-label">Description:</label>
-                <textarea id="description" name="description" rows="4" required><?= htmlspecialchars($service['description']) ?></textarea>
-            </div>
-            <div class="mb-3">
-            <label for="image_path" class="form-label">Modifier l'image:</label>
-        <input type="file" id="image_path" name="image_path" accept="image/*">
-        <!-- Champ caché pour conserver l'image existante si aucune nouvelle image n'est téléchargée -->
-        <input type="hidden" name="existing_image_path" value="<?= htmlspecialchars($service['image_path']) ?>">
-            </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary">Mettre à jour</button>
-            </div>
+            <label for="name">Nom du service :</label>
+            <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($service['name']); ?>" required>
+
+            <label for="description">Description :</label>
+            <textarea name="description" id="description" required><?php echo htmlspecialchars($service['description']); ?></textarea>
+
+            <label for="image_path">Image actuelle :</label>
+            <img src="/asset/uploaded_images/<?php echo htmlspecialchars($service['image_path']); ?>" alt="Image du service" style="width: 150px;">
+            <input type="hidden" name="existing_image_path" value="<?php echo htmlspecialchars($service['image_path']); ?>">
+
+            <label for="image_path">Nouvelle image (facultatif) :</label>
+            <input type="file" name="image_path" id="image_path">
+
+            <button type="submit">Enregistrer les modifications</button>
         </form>
-<?php else: ?>
-    <p>Aucun service trouvé pour cet ID.</p>
-<?php endif; ?>
+    <?php else : ?>
+        <p>Aucun service trouvé pour modification.</p>
+    <?php endif; ?>
 </div>

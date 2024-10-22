@@ -10,13 +10,12 @@ use App\Database\DbConnection;
 $pdo = DbConnection::getPdo();
 $service = new Service($pdo);
 
-
 // Récupération de l'ID à partir de l'URL
 if (isset($_GET['id'])) {
     $serviceId = (int)$_GET['id'];
-    $serviceData = $service->getServiceById($serviceId);
+    $service = $service->getServiceById($serviceId);
     
-    if (!$serviceData) {
+    if (!$service) {
         echo "Service non trouvé.";
         exit();
     }
@@ -40,12 +39,12 @@ if (isset($_GET['id'])) {
             <label for="description">Description :</label>
             <textarea name="description" id="description" required><?php echo htmlspecialchars($service['description']); ?></textarea>
 
-            <label for="image_path">Image actuelle :</label>
-            <img src="/asset/uploaded_images/<?php echo htmlspecialchars($service['image_path']); ?>" alt="Image du service" style="width: 150px;">
-            <input type="hidden" name="existing_image_path" value="<?php echo htmlspecialchars($service['image_path']); ?>">
+            <label for="image">Image actuelle :</label>
+            <img src="/asset/uploaded_images/<?php echo htmlspecialchars($service['image']); ?>" alt="Image du service" style="width: 150px;">
+            <input type="hidden" name="existing_image" value="<?php echo htmlspecialchars($service['image']); ?>">
 
-            <label for="image_path">Nouvelle image (facultatif) :</label>
-            <input type="file" name="image_path" id="image_path">
+            <label for="image">Nouvelle image (facultatif) :</label>
+            <input type="file" name="image" id="image">
 
             <button type="submit">Enregistrer les modifications</button>
         </form>

@@ -15,9 +15,8 @@ class Router
             $uri = 'pages/home';
         }
 
-
         // Supprime les paramètres GET de l'URI (après le ?)
-        $uri = explode('?', $uri)[0];
+        // $uri = explode('?', $uri)[0];
 
         // Séparation de l'URI en parties individuelles
         $uriExplode = explode('/', $uri);
@@ -35,6 +34,9 @@ class Router
         $uriLength = count($uriExplode);
         $counter = 1;
 
+        $pathParts = explode('/', parse_url($uri, PHP_URL_PATH));
+        $this->page = str_replace('.php', '', end($pathParts));
+
         // Construction du nom complet du contrôleur
         foreach ($uriExplode as $uriPart) {
             if (!$uriPart) {
@@ -51,65 +53,66 @@ class Router
 
             $counter++;
         }
+
     }
 
 
     public function doAction(): array
-{
-    // Vérifie si le contrôleur existe
-    if (!class_exists($this->controllerName)) {
-        if ($this->controllerName === 'App\\Controller\\Pages') {
-            // Si le contrôleur est PagesController, alors redirige vers la méthode `view`
-            $controller = new \App\Controller\PagesController();
-            return $controller->view($this->page); // Ici `$this->page` est le nom de la page
+    {
+        // Vérifie si le contrôleur existe
+        if (!class_exists($this->controllerName)) {
+            if ($this->controllerName === 'App\\Controller\\Pages') {
+                // Si le contrôleur est PagesController, alors redirige vers la méthode `view`
+                $controller = new \App\Controller\PagesController();
+                return $controller->view($this->page); // Ici `$this->page` est le nom de la page
+            }
+            throw new \Exception("Controller not found: {$this->controllerName}");
         }
-        throw new \Exception("Controller not found: {$this->controllerName}");
-    }
 
-    // Création d'une instance du contrôleur
-    $controllerName = $this->controllerName.'Controller';
-    $controller = new $controllerName();
+        // Création d'une instance du contrôleur
+        $controllerName = $this->controllerName.'Controller';
+        $controller = new $controllerName();
 
-    // Vérifie si la méthode existe dans le contrôleur
-    if (!method_exists($controller, $this->page)) {
-        throw new \Exception("Method not found: {$this->page} in controller {$this->controllerName}");
-    }
+        // Vérifie si la méthode existe dans le contrôleur
+        if (!method_exists($controller, $this->page)) {
+            throw new \Exception("Method not found: {$this->page} in controller {$this->controllerName}");
+        }
 
-    // Gestion des requêtes POST avec validation des données
-    if ($this->requestMethod == 'POST') {
-        $postData = $this->sanitizeInput($_POST); // Assainir les données POST
+        // Gestion des requêtes POST avec validation des données
+        if ($this->requestMethod == 'POST') {
+            $postData = $this->sanitizeInput($_POST); // Assainir les données POST
 
-        if (null !== $this->parameter) {
-            $result = $controller->{$this->page}($this->parameter, $postData);
+            if (null !== $this->parameter) {
+                $result = $controller->{$this->page}($this->parameter, $postData);
+            } else {
+                $result = $controller->{$this->page}($postData);
+            }
         } else {
-            $result = $controller->{$this->page}($postData);
+            // Gestion des requêtes GET
+            if (null !== $this->parameter) {
+                $result = $controller->{$this->page}($this->parameter);
+            } else {
+                $result = $controller->{$this->page}();
+            }
         }
-    } else {
-        // Gestion des requêtes GET
-        if (null !== $this->parameter) {
-            $result = $controller->{$this->page}($this->parameter);
-        } else {
-            $result = $controller->{$this->page}();
-        }
+
+
+        return $result;
     }
 
+    /**
+     * Assainit les données d'entrée pour éviter les injections
+     * 
+     * @param array $input Données à assainir
+     * @return array Données assainies
+     */
 
-    return $result;
-}
-
-/**
- * Assainit les données d'entrée pour éviter les injections
- * 
- * @param array $input Données à assainir
- * @return array Données assainies
- */
-
-private function sanitizeInput(array $input): array
-{
-    // Utilisation de htmlspecialchars pour nettoyer chaque valeur de l'entrée
-    foreach ($input as $key => $value) {
-        $input[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
-    }
-    return $input;
-} 
+    private function sanitizeInput(array $input): array
+    {
+        // Utilisation de htmlspecialchars pour nettoyer chaque valeur de l'entrée
+        foreach ($input as $key => $value) {
+            $input[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+        }
+        return $input;
+    } 
 } 

@@ -25,16 +25,18 @@ class Service
     public function getServiceById($id)
     {
         $stmt = $this->pdo->prepare("SELECT * FROM services WHERE id = :id");
-        $stmt->execute(['id' => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+        $service = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $service;
     }
 
     // Trouver un service par ID
-    public static function find(int $id)
+    public function find(int $id)
     {
         // Utilisation de la connexion existante
-        global $pdo; 
-        $query = $pdo->prepare("SELECT * FROM services WHERE id = :id");
+        $query = $this->pdo->prepare("SELECT * FROM services WHERE id = :id");
         $query->execute(['id' => $id]);
         return $query->fetch();
     }
@@ -43,7 +45,7 @@ class Service
     public function updateService($id, $name, $description, $imagePath)
     {
         try {
-            $query = $this->pdo->prepare('UPDATE services SET name = :name, description = :description, image_path = :imagePath WHERE id = :id');
+            $query = $this->pdo->prepare('UPDATE services SET name = :name, description = :description, image = :imagePath WHERE id = :id');
             $query->bindParam(':name', $name);
             $query->bindParam(':description', $description);
             $query->bindParam(':imagePath', $imagePath);
@@ -73,8 +75,8 @@ class Service
     public function addService($name, $description, $imagePath)
     {
         try {
-            $stmt = $this->pdo->prepare("INSERT INTO services (name, description, image_path) VALUES (:name, :description, :imagePath)");
-            return $stmt->execute(['name' => $name, 'description' => $description, 'image_path' => $imagePath]);
+            $stmt = $this->pdo->prepare("INSERT INTO services (name, description, image) VALUES (:name, :description, :imagePath)");
+            return $stmt->execute(['name' => $name, 'description' => $description, 'image' => $imagePath]);
         } catch (Exception $e) {
             // Gérer l'erreur ici
             echo "Erreur lors de l'ajout du service : " . $e->getMessage();

@@ -8,7 +8,6 @@ class ServiceController
 {
     private $serviceModel;
 
-
     public function __construct(Service $serviceModel)
     {
 
@@ -17,7 +16,7 @@ class ServiceController
     // Afficher tous les services
     public function index()
     {
-        $services = $this->serviceModel->getAllServices(); // Récupérer tous les services
+        $service = $this->serviceModel->getAllServices(); // Récupérer tous les services
         include __DIR__ . '/../pages/service'; // Inclure la vue
     }
 
@@ -32,17 +31,19 @@ class ServiceController
             exit();
         }
 
-        include __DIR__ . '/..//pages/editServiceForm'; // Inclure le formulaire d'édition
+        include __DIR__ . '/../pages/editServiceForm'; // Inclure le formulaire d'édition
     }
 
     public function editServiceForm(int $id)
     {
-        // Récupérer le service avec l'ID fourni
-        $service = Service::find($id);
+          // Récupérer les détails du service à partir de son ID
+        $service = $this->serviceModel->getServiceById($id);
 
+    // Vérifier si le service existe
         if (!$service) {
             throw new \Exception("Service not found with ID: {$id}");
         }
+
 
         // Retourne la vue avec les détails du service pour l'afficher dans le formulaire d'édition
         return [
@@ -53,8 +54,14 @@ class ServiceController
         ];
     }
 
+    public function addService() : array
+    {
+        die('Bonjour ttout le monde !');
+        return [];
+    }
+
     // Mettre à jour un service
-    public function update(int $id, array $postData)
+    public function update(int $id) 
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Valider les données ici
@@ -69,13 +76,13 @@ class ServiceController
             }
 
             // Gestion de l'upload de l'image
-            $imagePath = $_POST['existing_image_path'] ?? ''; // Utiliser l'image existante par défaut
-            if (isset($_FILES['image_path']) && $_FILES['image_path']['error'] === UPLOAD_ERR_OK) {
+            $imagePath = $_POST['existing_image'] ?? ''; // Utiliser l'image existante par défaut
+            if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
                 $targetDir = __DIR__ . '/../../public/asset/uploaded_images/';
-                $imagePath = $targetDir . basename($_FILES['image_path']['name']);
+                $imagePath = $targetDir . basename($_FILES['image']['name']);
                 $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-                if (in_array($_FILES['image_path']['type'], $allowedTypes)) {
-                    if (!move_uploaded_file($_FILES['image_path']['tmp_name'], $imagePath)) {
+                if (in_array($_FILES['image']['type'], $allowedTypes)) {
+                    if (!move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
                         echo "Erreur lors du téléchargement de l'image.";
                         exit();
                     }

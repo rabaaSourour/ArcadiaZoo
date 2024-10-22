@@ -22,7 +22,7 @@ if (isset($_GET['id']) && !empty($_POST)) {
     $id = (int)$_GET['id'];
     $name = $_POST['name'];
     $description = $_POST['description'];
-    $imagePath = $_POST['image_path'];
+    $imagePath = $_POST['image'];
 
     // Mise à jour du service
     $updated = $service->updateService($id, $name, $description, $imagePath);

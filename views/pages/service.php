@@ -24,7 +24,7 @@ $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
                 <?php if ($service['category'] === 'restauration'): ?>
                     <div class="col">
                         <div class="card text-bg-secondary">
-                            <img src="<?= htmlspecialchars($service['image_path']) ?>" class="card-img rounded p-4 " alt="image du service">
+                            <img src="<?= htmlspecialchars($service['image']) ?>" class="card-img rounded p-4 " alt="image du service">
 
                             <div class="card-body">
                                 <h5 class="card-title text-dark"><?= htmlspecialchars($service['name']) ?></h5>
@@ -61,7 +61,7 @@ $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
                             <div class="row g-0">
                                 <?php if ($index % 2 === 0): ?>
                                     <div class="col-md-4 rounded">
-                                        <img src="<?= htmlspecialchars($service['image_path']) ?>" class="img-fluid rounded mt-3 mb-3" alt="image du service">
+                                        <img src="<?= htmlspecialchars($service['image']) ?>" class="img-fluid rounded mt-3 mb-3" alt="image du service">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
@@ -85,7 +85,7 @@ $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <img src="<?= htmlspecialchars($service['image_path']) ?>" class="img-fluid rounded mt-3" alt="image du service">
+                                        <img src="<?= htmlspecialchars($service['image']) ?>" class="img-fluid rounded mt-3" alt="image du service">
                                     </div>
                                 <?php endif; ?>
                             </div>

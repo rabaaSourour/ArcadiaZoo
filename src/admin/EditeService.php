@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Récupérer les données du formulaire
     $name = $_POST['name'];
     $description = $_POST['description'];
-    $imageLink = $_POST['image_path'];
+    $imageLink = $_POST['image'];
     $service->updateService($serviceId, $name, $description, $imagePath); // Mise à jour du service
 
     header('Location: /pages/service'); // Redirection après la mise à jour

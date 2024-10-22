@@ -80,6 +80,7 @@
     <main id="main-page">
         <?php
         // Vérifiez que le fichier de vue existe avant de le charger
+        //echo $page;
         if (isset($page) && file_exists($page)) {
             include $page;
         } else {

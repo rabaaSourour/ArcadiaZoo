@@ -16,7 +16,7 @@ class Router
         }
 
         // Supprime les paramètres GET de l'URI (après le ?)
-        // $uri = explode('?', $uri)[0];
+        $uri = explode('?', $uri)[0];
 
         // Séparation de l'URI en parties individuelles
         $uriExplode = explode('/', $uri);
@@ -34,8 +34,8 @@ class Router
         $uriLength = count($uriExplode);
         $counter = 1;
 
-        $pathParts = explode('/', parse_url($uri, PHP_URL_PATH));
-        $this->page = str_replace('.php', '', end($pathParts));
+        //$pathParts = explode('/', parse_url($uri, PHP_URL_PATH));
+        //$this->page = str_replace('.php', '', end($pathParts));
 
         // Construction du nom complet du contrôleur
         foreach ($uriExplode as $uriPart) {

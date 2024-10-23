@@ -30,7 +30,7 @@ class ReviewController
                 $this->reviewModel->createReview($pseudo, $review);
 
                 // Redirection après ajout de l'avis
-                header('Location: /views/pages/home.php');
+                header('Location: /pages/home');
                 exit();
             } else {
                 // Afficher un message d'erreur si les champs sont vides

@@ -6,14 +6,16 @@ require_once __DIR__ . '/../../src/Model/Service.php';
 
 use App\Model\Service;
 use App\Database\DbConnection;
+use App\Controller\ServiceController;
 
 $pdo = DbConnection::getPdo();
 $service = new Service($pdo);
+$ServiceController = new ServiceController($serviceModel);
 
 // Récupération de l'ID à partir de l'URL
 if (isset($_GET['id'])) {
-    $serviceId = (int)$_GET['id'];
-    $service = $service->getServiceById($serviceId);
+    $id = (int)$_GET['id'];
+    $service = $service->getServiceById($id);
     
     if (!$service) {
         echo "Service non trouvé.";
@@ -30,7 +32,8 @@ if (isset($_GET['id'])) {
 <div class="container rounded mt-5">
     <h1 class="text-center text-bg-primary rounded">Modifier le Service</h1>
     <?php if (isset($service)) : ?>
-        <form action="/src/admin/updateService.php" method="POST" enctype="multipart/form-data">
+
+        <form action="/src/admin/EditeService.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo htmlspecialchars($service['id']); ?>">
 
             <label for="name">Nom du service :</label>

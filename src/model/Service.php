@@ -32,31 +32,35 @@ class Service
         return $service;
     }
 
-    // Trouver un service par ID
-    public function find(int $id)
-    {
-        // Utilisation de la connexion existante
-        $query = $this->pdo->prepare("SELECT * FROM services WHERE id = :id");
-        $query->execute(['id' => $id]);
-        return $query->fetch();
-    }
-
     // Mettre à jour un service
     public function updateService($id, $name, $description, $imagePath)
     {
         try {
-            $query = $this->pdo->prepare('UPDATE services SET name = :name, description = :description, image = :imagePath WHERE id = :id');
-            $query->bindParam(':name', $name);
-            $query->bindParam(':description', $description);
-            $query->bindParam(':imagePath', $imagePath);
-            $query->bindParam(':id', $id, PDO::PARAM_INT);
-            return $query->execute();
+            $stmt = $this->pdo->prepare('UPDATE services SET name = :name, description = :description, image = :imagePath WHERE id = :id');
+            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':description', $description);
+            $stmt->bindParam(':imagePath', $imagePath);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            return $stmt->execute();
         } catch (Exception $e) {
             // Gérer l'erreur ici
             echo "Erreur lors de la mise à jour du service : " . $e->getMessage();
             return false;
         }
     }
+    // Ajouter un service
+    public function addService($name, $description, $imagePath)
+    {
+        try {
+            $stmt = $this->pdo->prepare("INSERT INTO services (name, description, image) VALUES (:name, :description, :imagePath)");
+            return $stmt->execute(['name' => $name, 'description' => $description, 'image' => $imagePath]);
+        } catch (Exception $e) {
+            // Gérer l'erreur ici
+            echo "Erreur lors de l'ajout du service : " . $e->getMessage();
+            return false;
+        }
+    }
+
 
     // Supprimer un service
     public function deleteService($id)
@@ -67,19 +71,6 @@ class Service
         } catch (Exception $e) {
             // Gérer l'erreur ici
             echo "Erreur lors de la suppression du service : " . $e->getMessage();
-            return false;
-        }
-    }
-
-    // Ajouter un service
-    public function addService($name, $description, $imagePath)
-    {
-        try {
-            $stmt = $this->pdo->prepare("INSERT INTO services (name, description, image) VALUES (:name, :description, :imagePath)");
-            return $stmt->execute(['name' => $name, 'description' => $description, 'image' => $imagePath]);
-        } catch (Exception $e) {
-            // Gérer l'erreur ici
-            echo "Erreur lors de l'ajout du service : " . $e->getMessage();
             return false;
         }
     }

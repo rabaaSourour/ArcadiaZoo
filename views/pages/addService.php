@@ -11,7 +11,7 @@ require_once __DIR__ . '/../../src/Database/DbConnection.php';
 <?php endif; ?>
 
 
-<form action="/pages/service/addService" method="POST" enctype="multipart/form-data">
+<form action="/src/Admin/updateService.php" method="POST" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="title" class="form-label">Titre du Service</label>
         <input type="text" class="form-control" id="title" name="service_name" required>

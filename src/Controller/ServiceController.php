@@ -13,13 +13,6 @@ class ServiceController
 
         $this->serviceModel = $serviceModel;
     }
-    // Afficher tous les services
-    public function index()
-    {
-        $service = $this->serviceModel->getAllServices(); // Récupérer tous les services
-        include __DIR__ . '/../pages/service'; // Inclure la vue
-    }
-
     // Afficher un service spécifique
     public function show($id)
     {
@@ -54,11 +47,25 @@ class ServiceController
         ];
     }
 
-    public function addService() : array
+    public function addService()
     {
-        die('Bonjour ttout le monde !');
-        return [];
-    }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $name = $_POST['name'];
+            $description = $_POST['description'];
+            $imagePath = $_POST['image'];
+
+                // Appeler la méthode du modèle pour créer le service
+                $this->serviceModel->addService($name, $description, $imagePath);
+
+                // Redirection après ajout de le service
+                header('Location: /pages/service');
+                exit();
+            } else {
+                // Afficher un message d'erreur si les champs sont vides
+                echo "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";
+            }
+        }
+    
 
     // Mettre à jour un service
     public function update(int $id) 

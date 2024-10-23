@@ -3,14 +3,15 @@
 namespace App\Controller;
 
 use App\Model\Service;
+use PDO;
 
 class ServiceController
 {
     private $serviceModel;
 
-    public function __construct(Service $serviceModel)
+    public function __construct(PDO $pdo)
     {
-        $this->serviceModel = $serviceModel;
+        $this->serviceModel = new Service($pdo);
     }
     
     // Afficher un service spécifique
@@ -42,7 +43,7 @@ class ServiceController
         return [
             'view' => 'pages/editServiceForm', // Spécifie la vue à charger
             'data' => [
-                'service' => $service // Passe les détails du service à la vue
+            'service' => $service // Passe les détails du service à la vue
             ]
         ];
     }

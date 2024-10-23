@@ -1,29 +1,3 @@
-<?php
-include_once __DIR__ . '/../base_view.php';
-require_once __DIR__ . '/../../vendor/autoload.php';
-require_once 'C:/xampp/htdocs/ArcadiaZoo/src/Database/DbConnection.php';
-
-use App\Model\Horaires;
-use App\Controller\HorairesController;
-use App\Controller\ReviewController;
-use App\Model\Review;
-use App\Database\DbConnection;
-
-// Obtenez une instance de PDO
-$pdo = DbConnection::getPdo();
-
-// Créez une instance du modèle Review en lui passant l'instance de PDO
-$reviewModel = new Review($pdo);
-
-// Créez une instance du contrôleur ReviewController en lui passant le modèle Review
-$reviewController = new ReviewController($reviewModel);
-
-// Récupération des avis approuvés pour les afficher sur la page d'accueil
-
-$getPendingReviews = $reviewController->getValidReviews();
-
-?>
->>>>>>> dev
 <!-- video presentation du zoo -->
 <div class="ratio rounded ratio-16x9">
     <video class="embed-responsive-item" autoplay muted loop preload="auto">
@@ -427,14 +401,6 @@ $getPendingReviews = $reviewController->getValidReviews();
                 <div class="container mt-5">
                     <div class="row">
                         <div class="col-md-12">
-                            <?php
-                            // Récupérer la connexion PDO
-                            $pdo = DbConnection::getPdo();
-
-                            $horairesModel = new Horaires($pdo);
-                            $horairesController = new HorairesController($horairesModel);
-                            $horaires = $horairesController->showHoraires();
-                            ?>
                             <table>
                                 <thead>
                                     <tr>
@@ -511,7 +477,7 @@ if (!empty($getPendingReviews)) {
 
     <!-- Bouton pour ajouter un nouvel avis -->
     <div class="text-center mt-4">
-        <a href="/views/pages/reviews.php" class="btn btn-primary">Ajouter votre avis</a>
+        <a href="/review/addReview" class="btn btn-primary">Ajouter votre avis</a>
     </div>
 </div>
 

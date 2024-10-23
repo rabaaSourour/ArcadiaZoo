@@ -3,14 +3,13 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/ArcadiaZoo/public/styles/main.css">
+        <link rel="stylesheet" href="/public/styles/main.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-
-            <title> Bienvenue à Arcadia</title>
+        <title> Bienvenue à Arcadia</title>
     </head>
     <body>
 
@@ -76,17 +75,10 @@
         </header>
 
 
+        <!-- partie main de la page-->
         <main id="main-page">
-        <?php
-// Vérifiez que le fichier de vue existe avant de le charger
-if (isset($page) && file_exists($page)) {
-    include $page;
-} else {
-    echo "Page not found!";
-}
-?>
-        <!--partie main de la page-->
-</main>
+            <?php include $page; ?>
+        </main>
 
         <!-- debut de footer-->
 
@@ -111,12 +103,8 @@ if (isset($page) && file_exists($page)) {
             </div>
             <!--fin du footer-->
         </footer>
-
         
-    <script src ="https://code.jquery.com/jquery-3.7.1.min.js "></script>
-    <script src="/ArcadiaZoo/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-
+        <script src ="https://code.jquery.com/jquery-3.7.1.min.js "></script>
+        <script src="/ArcadiaZoo/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     </body>
-    
 </html>

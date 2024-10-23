@@ -1,5 +1,10 @@
 <?php
 
+namespace App\Database;
+
+use PDO;
+use PDOException;
+
 class DbConnection
 {
     // définition de notre variable qui stockera notre PDO

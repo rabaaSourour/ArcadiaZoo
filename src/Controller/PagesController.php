@@ -4,7 +4,7 @@ namespace App\Controller;
 
 class PagesController
 {
-    public function view(string $page)
+    public function view(string $page) 
     {
         $file = __DIR__ . "/../../views/pages/{$page}.php";
         if (file_exists($file)) {

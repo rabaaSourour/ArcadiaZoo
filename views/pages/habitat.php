@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../base_view.php';
+include_once __DIR__ . '/base_view.php';
 require_once __DIR__ . '/../../vendor/autoload.php';
 ?>
 <section class="content mt-3 rounded">

@@ -15,4 +15,5 @@ class PagesController
             throw new \Exception("Page not found: {$page}");
         }
     }
+    
 }

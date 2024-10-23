@@ -10,7 +10,6 @@ class Router
     private ?string $method = null;
 
     public function __construct(private string $requestMethod, string $uri)
-
     {
         // Analyse l'URI pour déterminer le contrôleur et la méthode à appeler.
         $this->parseUri($uri);
@@ -47,6 +46,7 @@ class Router
             $this->controller = new $controllerName($pdo);
             $this->method = $method;
         }
+
     }
 
     public function getController() : ?object

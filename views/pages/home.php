@@ -1,4 +1,29 @@
+<?php
+include_once __DIR__ . '/../base_view.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once 'C:/xampp/htdocs/ArcadiaZoo/src/Database/DbConnection.php';
 
+use App\Model\Horaires;
+use App\Controller\HorairesController;
+use App\Controller\ReviewController;
+use App\Model\Review;
+use App\Database\DbConnection;
+
+// Obtenez une instance de PDO
+$pdo = DbConnection::getPdo();
+
+// Créez une instance du modèle Review en lui passant l'instance de PDO
+$reviewModel = new Review($pdo);
+
+// Créez une instance du contrôleur ReviewController en lui passant le modèle Review
+$reviewController = new ReviewController($reviewModel);
+
+// Récupération des avis approuvés pour les afficher sur la page d'accueil
+
+$getPendingReviews = $reviewController->getValidReviews();
+
+?>
+>>>>>>> dev
 <!-- video presentation du zoo -->
 <div class="ratio rounded ratio-16x9">
     <video class="embed-responsive-item" autoplay muted loop preload="auto">
@@ -44,7 +69,7 @@
                     <!-- Premiére habitat : Jungle -->
                     <div class="col-md-4">
                         <div class="card text-bg-primary mb-3">
-                            <img src="/ArcadiaZoo/public/asset/images/Jungle.png" class="card-im-top p-4" alt="Image du junagle">
+                            <img src="/public/asset/images/Jungle.png" class="card-im-top p-4" alt="Image du junagle">
                             <div class="card-body text-bg-primary">
                                 <h5 class="card-title text-dark">Jungle</h5>
                                 <p class="card-text text-clear">Entrez dans la jungle luxuriante d'Arcadia, un sanctuaire verdoyant et
@@ -66,7 +91,7 @@
                     <!-- Deuxiéme habitat : Savane-->
                     <div class="col-md-4">
                         <div class="card text-bg-primary mb-3">
-                            <img src="/ArcadiaZoo/public/asset/images/Savane.png" class="card-im-top p-4" alt="Image du savane">
+                            <img src="/public/asset/images/Savane.png" class="card-im-top p-4" alt="Image du savane">
                             <div class="card-body text-bg-primary">
                                 <h5 class="card-title text-dark">Savane</h5>
                                 <p class="card-text text-clear">Plongez au cœur de la vaste savane d'Arcadia, un espace ouvert et
@@ -87,7 +112,7 @@
                     <!--Trousiéme habitat : Marias-->
                     <div class="col-md-4">
                         <div class="card text-bg-primary mb-3">
-                            <img src="/ArcadiaZoo/public/asset/images/marais.png" class="card-im-top p-4" alt="Image du marais">
+                            <img src="/public/asset/images/marais.png" class="card-im-top p-4" alt="Image du marais">
                             <div class="card-body text-bg-primary">
                                 <h5 class="card-title text-dark">Marais</h5>
                                 <p class="card-text text-clear">Découvrez l'écosystème fascinant des marais d'Arcadia,
@@ -122,7 +147,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/ArcadiaZoo/public/asset/images/jaguar.png" class="card-im-top p-4" alt="image de jaguar">
+                                <img src="/public/asset/images/jaguar.png" class="card-im-top p-4" alt="image de jaguar">
                                 <div class="card-body ">
                                     <h5 class="card-title text-dark">Panthera onca</h5>
                                     <p class="card-text text-clear">Le plus grand félin des Amériques, le jaguar est un prédateur solitaire
@@ -136,7 +161,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/ArcadiaZoo/public/asset/images/singe.png" class="card-im-top p-4" alt="image du singe">
+                                <img src="/public/asset/images/singe.png" class="card-im-top p-4" alt="image du singe">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Alouatta</h5>
                                     <p class="card-text text-clear"> Connu pour ses cris puissants qui peuvent être entendus à plusieurs
@@ -149,7 +174,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/ArcadiaZoo/public/asset/images/toucan.png" class="card-im-top p-4" alt="image de toucan">
+                                <img src="/public/asset/images/toucan.png" class="card-im-top p-4" alt="image de toucan">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Ramphastos</h5>
                                     <p class="card-text text-clear">Reconnaissable à son grand bec coloré, le toucan est un oiseau sociable
@@ -162,7 +187,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/ArcadiaZoo/public/asset/images/paresseux.png" class="card-im-top p-4" alt="image de paresseux">
+                                <img src="/public/asset/images/paresseux.png" class="card-im-top p-4" alt="image de paresseux">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Bradypus</h5>
                                     <p class="card-text text-clear">Cet animal lent passe la plupart de son temps accroché aux branches des
@@ -186,7 +211,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/ArcadiaZoo/public/asset/images/lion.png" class="card-im-top p-4" alt="image d'un lion">
+                                <img src="/public/asset/images/lion.png" class="card-im-top p-4" alt="image d'un lion">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Panthera leo</h5>
                                     <p class="card-text text-clear">le roi de la savane le lion est un grand félin social qui vit en groupes
@@ -199,7 +224,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/ArcadiaZoo/public/asset/images/elephant.png" class="card-im-top p-4" alt="image d'un élégant">
+                                <img src="/public/asset/images/elephant.png" class="card-im-top p-4" alt="image d'un élégant">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Loxodonta</h5>
                                     <p class="card-text text-clear">Le plus grand animal terrestre, les éléphants sont connus pour leur
@@ -212,7 +237,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/ArcadiaZoo/public/asset/images/guepard.png" class="card-im-top p-4" alt="image d'un guepard">
+                                <img src="/public/asset/images/guepard.png" class="card-im-top p-4" alt="image d'un guepard">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Acinonyx jubatus</h5>
                                     <p class="card-text text-clear">Le mammifère terrestre le plus rapide, capable d'atteindre des vitesses
@@ -225,7 +250,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/ArcadiaZoo/public/asset/images/zebre.png" class="card-im-top p-4" alt="image du zébre">
+                                <img src="/public/asset/images/zebre.png" class="card-im-top p-4" alt="image du zébre">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Equus quagga</h5>
                                     <p class="card-text text-clear"> Connu pour ses rayures distinctives, chaque zèbre a un motif unique.
@@ -248,7 +273,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/ArcadiaZoo/public/asset/images/alligator.png" class="card-im-top p-4" alt="image d'un alligator">
+                                <img src="/public/asset/images/alligator.png" class="card-im-top p-4" alt="image d'un alligator">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Alligator mississippiensis</h5>
                                     <p class="card-text text-clear"> Reptile imposant, l'alligator est un prédateur apex des marais
@@ -261,7 +286,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary mb-3">
-                                <img src="/ArcadiaZoo/public/asset/images/heron.png" class="card-im-top p-4" alt="image d'un heron bleu">
+                                <img src="/public/asset/images/heron.png" class="card-im-top p-4" alt="image d'un heron bleu">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Ardea herodias</h5>
                                     <p class="card-text text-clear"> Grand oiseau échassier, le héron bleu est connu pour sa silhouette
@@ -274,7 +299,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/ArcadiaZoo/public/asset/images/tortue.png" class="card-im-top p-4" alt="image de tortue">
+                                <img src="/public/asset/images/tortue.png" class="card-im-top p-4" alt="image de tortue">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Apalone spinifera</h5>
                                     <p class="card-text text-clear">Une tortue d'eau douce avec une carapace souple et un long cou, adaptée
@@ -287,7 +312,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/ArcadiaZoo/public/asset/images/grenouille.png" class="card-im-top p-4" alt="image d'une grenouille">
+                                <img src="/public/asset/images/grenouille.png" class="card-im-top p-4" alt="image d'une grenouille">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Lithobates catesbeianus</h5>
                                     <p class="card-text text-clear"> Une des plus grandes grenouilles d'Amérique du Nord, connue pour son
@@ -402,34 +427,32 @@
                 <div class="container mt-5">
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-bordered table-striped mt-4">
-                                <a href="/opening_hours/create">Ajouter des horaires d'ouverture</a>
+                            <?php
+                            // Récupérer la connexion PDO
+                            $pdo = DbConnection::getPdo();
+
+                            $horairesModel = new Horaires($pdo);
+                            $horairesController = new HorairesController($horairesModel);
+                            $horaires = $horairesController->showHoraires();
+                            ?>
+                            <table>
                                 <thead>
                                     <tr>
                                         <th>Jour</th>
-                                        <th>Heure d'ouverture</th>
-                                        <th>Heure de fermeture</th>
-                                        <th>Actions</th>
+                                        <th>Heures d'ouverture</th>
+                                        <th>Heures de fermeture</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($opening_hours as $opening_hour): ?>
+                                    <?php foreach ($horaires as $horaire): ?>
                                         <tr>
-                                            <td><?php echo htmlspecialchars($opening_hour['day']); ?></td>
-                                            <td><?php echo htmlspecialchars($opening_hour['open_time']); ?></td>
-                                            <td><?php echo htmlspecialchars($opening_hour['close_time']); ?></td>
-                                            <td>
-                                                <a href="/opening_hours/edit?id=<?php echo $opening_hour['id']; ?>">Modifier</a>
-                                                <form method="POST" action="/delete_opening_hour" style="display:inline;">
-                                                    <input type="hidden" name="id" value="<?php echo $opening_hour['id']; ?>">
-                                                    <button type="submit">Supprimer</button>
-                                                </form>
-                                            </td>
+                                            <td><?= htmlspecialchars($horaire['day']) ?></td>
+                                            <td><?= date('H:i', strtotime($horaire['openingTime'])) ?></td>
+                                            <td><?= date('H:i', strtotime($horaire['closingTime'])) ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
-                            <a href="../back/edit_hours.php" class="btn btn-primary mt-3" data-show="employé">Modifier les horaires</a>
                         </div>
                     </div>
                 </div>
@@ -446,112 +469,36 @@
 <article>
     <!--commentaire-->
     <div class="container text-bg-secondary rounded mt-5">
-        <h3 class="text-center pt-3 mb-3">Voici quelques avis sur le ZOO</h3>
-        <div id="carouselExampleCaptions" class="carousel slide">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
-            </div>
-            <!-- premiere page de carousel -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row">
-                        <!-- commentaire N°1-->
-                        <div class="col-md-4 mb-5">
-                            <div class="card text-bg-primary text-center">
-                                <img class="card_img_top" src="/assets/Jungle.png" alt="">
-                                <h4> Rone Galle</h4>
-                                <p class="card-text"> fhvblsievblqbf</p>
-                            </div>
-                        </div>
-                        <!-- commentaire N°2-->
-                        <div class="col-md-4 mb-5">
-                            <div class="card text-bg-primary text-center">
-                                <img class="card_img_top" src="/assets/Jungle.png" alt="">
-                                <h4> Rone Galle</h4>
-                                <p class="card-text"> fhvblsievblqbf</p>
-                            </div>
-                        </div>
-                        <!-- commentaire N°3-->
-                        <div class="col-md-4 mb-5">
-                            <div class="card text-bg-primary text-center">
-                                <img class="card_img_top" src="/assets/Jungle.png" alt="">
-                                <h4> Rone Galle</h4>
-                                <p class="card-text"> fhvblsievblqbf</p>
+    <h3 class="text-center pt-3 mb-3">Voici quelques avis sur le ZOO</h3>
+    <div id="carouselExampleCaptions" class="carousel slide">
+        <div class="carousel-inner">
+        <?php
+if (!empty($getPendingReviews)) {
+    // Diviser les avis en groupes de 3 pour chaque slide
+    $chunkedReviews = array_chunk($getPendingReviews, 3);
+    foreach ($chunkedReviews as $index => $reviewsChunk): ?>
+        <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+            <div class="row">
+                <?php foreach ($reviewsChunk as $review): ?>
+                    <div class="col-md-4 mb-5">
+                        <div class="card text-bg-primary text-center">
+                            <div class="card-body">
+                                <h4 class="card-title"><?= htmlspecialchars($review['pseudo'].' :') ?></h4>
+                                <p class="card-text"><?= htmlspecialchars($review['review']) ?></p>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                </div>
-                <!-- Deuxiéme page du carrousel-->
-                <div class="carousel-item">
-                    <div class="row">
-                        <!-- commentaire N°1-->
-                        <div class="col-md-4 mb-5">
-                            <div class="card text-bg-primary text-center">
-                                <img class="card_img_top" src="/assets/Jungle.png" alt="">
-                                <h4> Rone Galle</h4>
-                                <p class="card-text"> fhvblsievblqbf</p>
-                            </div>
-                        </div>
-                        <!-- commentaire N°2-->
-                        <div class="col-md-4 mb-5">
-                            <div class="card text-bg-primary text-center">
-                                <img class="card_img_top" src="/assets/Jungle.png" alt="">
-                                <h4> Rone Galle</h4>
-                                <p class="card-text"> fhvblsievblqbf</p>
-                            </div>
-                        </div>
-                        <!-- commentaire N°3-->
-                        <div class="col-md-4 mb-5">
-                            <div class="card text-bg-primary text-center">
-                                <img class="card_img_top" src="/assets/Jungle.png" alt="">
-                                <h4> Rone Galle</h4>
-                                <p class="card-text"> fhvblsievblqbf</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                </div>
-                <!-- troisiéme page de carrousel-->
-                <div class="carousel-item">
-                    <div class="row">
-                        <!-- commentaire N°1-->
-                        <div class="col-md-4 mb-5">
-                            <div class="card text-bg-primary text-center">
-                                <img class="card_img_top" src="/assets/Jungle.png" alt="">
-                                <h4> Rone Galle</h4>
-                                <p class="card-text"> fhvblsievblqbf</p>
-                            </div>
-                        </div>
-                        <!-- commentaire N°2-->
-                        <div class="col-md-4 mb-5">
-                            <div class="card text-bg-primary text-center">
-                                <img class="card_img_top" src="/assets/Jungle.png">
-                                <h4> Rone Galle</h4>
-                                <p class="card-text"> fhvblsievblqbf</p>
-                            </div>
-                        </div>
-                        <!-- commentaire N°3-->
-                        <div class="col-md-4 mb-5">
-                            <div class="card text-bg-primary text-center">
-                                <a href="/Pages/reviews.html"><img class="card_img_top" src="/assets/ajouter.png"></a>
-                                <p class="card-text"> ajoutrz-votre avis</p>
-                            </div>
-                        </div>
-                        <!--fin des commentaires-->
-                    </div>
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
+    <?php endforeach;
+} else { ?>
+    <div class="alert alert-info text-center">
+        Aucun avis pour le moment. Soyez le premier à laisser votre avis !
+    </div>
+<?php } ?>
+
+        <!-- Navigation du carrousel -->
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
@@ -561,6 +508,12 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <!-- fin de carrousel-->
+
+    <!-- Bouton pour ajouter un nouvel avis -->
+    <div class="text-center mt-4">
+        <a href="/views/pages/reviews.php" class="btn btn-primary">Ajouter votre avis</a>
+    </div>
+</div>
+
 
 </article>

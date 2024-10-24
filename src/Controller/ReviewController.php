@@ -4,18 +4,26 @@ namespace App\Controller;
 
 use App\Model\Review;
 use App\Database\DbConnection;
+use PDO;
 
 class ReviewController
 {
     private $reviewModel;
 
-    public function __construct(Review $reviewModel)
+    public function __construct(PDO $pdo)
     {
-        $db = DbConnection::getPdo();
-        $this->reviewModel = $reviewModel;
+        $this->reviewModel = new Review($pdo);
     }
 
-    public function addReview()
+    public function view() : array
+    {
+        return [
+            'page' => 'reviews',
+            'variables' => []
+        ];
+    }
+
+    public function addReview() : array
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pseudo = $_POST['pseudo'];
@@ -30,13 +38,15 @@ class ReviewController
                 $this->reviewModel->createReview($pseudo, $review);
 
                 // Redirection après ajout de l'avis
-                header('Location: /pages/home');
+                header('Location: /home/view');
                 exit();
             } else {
                 // Afficher un message d'erreur si les champs sont vides
                 echo "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";
             }
         }
+
+        return $this->view();
     }
 
 

@@ -1,24 +1,3 @@
-<?php
-include_once __DIR__ . '/../base_view.php';
-require_once __DIR__ . '/../../vendor/autoload.php';
-
-use App\Controller\ReviewController;
-use App\Model\Review;
-use App\Database\DbConnection;
-
-// Obtenez une instance de PDO
-$pdo = DbConnection::getPdo();
-
-// Créez une instance du modèle Review en lui passant l'instance de PDO
-$reviewModel = new Review($pdo);
-
-// Créez une instance du contrôleur ReviewController en lui passant le modèle Review
-$reviewController = new ReviewController($reviewModel);
-
-// Récupération des avis à valider
-$pendingReviews = $reviewController->getPendingReviews();
-?>
-
 <div class="container rounded mt-5">
     <h2 class="text-center text-bg-primary rounded mb-5">Avis en attente de validation</h2>
     <div id="message" style="display:none;"></div> <!-- Ajout du conteneur pour le message -->

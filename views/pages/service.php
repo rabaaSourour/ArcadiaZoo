@@ -1,19 +1,3 @@
-<?php
-include_once __DIR__ . '/../base_view.php';
-require_once __DIR__ . '/../../vendor/autoload.php';
-
-
-use App\Model\Service;
-use App\Database\DbConnection;
-
-// Récupérez la connexion à la base de données
-$pdo = DbConnection::getPdo();
-$service = new Service($pdo);
-$services = $service->getAllServices();
-$isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
-?>
-
->>>>>>> dev
 <section>
     <!-- Section Restauration -->
     <div class=" p-4">
@@ -32,12 +16,12 @@ $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
                                 <p class="card-text"><?= htmlspecialchars($service['description']) ?></p>
 
                                 <?php if ($isAdmin): ?>
-                                    <button class="btn btn-warning" onclick="window.location.href='/pages/editServiceForm.php?id=<?= $service['id'] ?>'">Modifier</button>
+                                    <button class="btn btn-warning" onclick="window.location.href='/service/update?id=<?= $service['id'] ?>'">Modifier</button>
                                     <button class="btn btn-danger" onclick="deleteService(<?= $service['id'] ?>)">Supprimer</button>
                                 <?php endif; ?>
                             </div>
                         </div>
-                        <button class="btn btn-warning" onclick="window.location.href='/pages/editServiceForm.php?id=<?= $service['id'] ?>'">
+                        <button class="btn btn-warning" onclick="window.location.href='/service/update?id=<?= $service['id'] ?>'">
                             Modifier
                         </button>
 

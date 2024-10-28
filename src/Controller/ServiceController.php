@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\Service;
+use App\Services\FileUploader;
 use PDO;
 
 class ServiceController
@@ -15,112 +16,102 @@ class ServiceController
     }
     
     // Afficher un service spécifique
-    public function show($id)
+    // URI : '/service/show'
+    public function show(): array
     {
-        $service = $this->serviceModel->getServiceById($id); // Récupérer le service par ID
+        $service = $this->serviceModel->getAllServices();
 
-        if (!$service) {
-            // Gestion de l'erreur si le service n'est pas trouvé
-            echo "Service non trouvé.";
-            exit();
-        }
+        $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
 
-        include __DIR__ . '/../pages/editServiceForm'; // Inclure le formulaire d'édition
-    }
-
-    public function editServiceForm(int $id)
-    {
-          // Récupérer les détails du service à partir de son ID
-        $service = $this->serviceModel->getServiceById($id);
-
-    // Vérifier si le service existe
-        if (!$service) {
-            throw new \Exception("Service not found with ID: {$id}");
-        }
-
-
-        // Retourne la vue avec les détails du service pour l'afficher dans le formulaire d'édition
         return [
-            'view' => 'pages/editServiceForm', // Spécifie la vue à charger
-            'data' => [
-            'service' => $service // Passe les détails du service à la vue
+            'page' => 'service',
+            'variables' => [
+                'services' => $service,
+                'isAdmin' => $isAdmin,
             ]
         ];
     }
 
-    public function addService()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $name = $_POST['name'];
-            $description = $_POST['description'];
-            $imagePath = $_POST['image'];
-
-                // Appeler la méthode du modèle pour créer le service
-                $this->serviceModel->addService($name, $description, $imagePath);
-
-                // Redirection après ajout de le service
-                header('Location: /pages/service');
-                exit();
-            } else {
-                // Afficher un message d'erreur si les champs sont vides
-                echo "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";
-            }
-        }
-    
-
-    // Mettre à jour un service
-    public function update(int $id) 
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Valider les données ici
-            $name = $_POST['name'] ?? '';
-            $description = $_POST['description'] ?? '';
-
-            // Récupérer le service par ID
-            $service = $this->serviceModel->getServiceById($id);
-
-            if (!$service) {
-                throw new \Exception("Service non trouvé avec l'ID : {$id}");
-            }
-
-            // Gestion de l'upload de l'image
-            $imagePath = $_POST['existing_image'] ?? ''; // Utiliser l'image existante par défaut
-            if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-                $targetDir = __DIR__ . '/../../public/asset/uploaded_images/';
-                $imagePath = $targetDir . basename($_FILES['image']['name']);
-                $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-                if (in_array($_FILES['image']['type'], $allowedTypes)) {
-                    if (!move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
-                        echo "Erreur lors du téléchargement de l'image.";
-                        exit();
-                    }
-                } else {
-                    echo "Type de fichier non autorisé.";
-                    exit();
-                }
-            }
-
-            if (!$this->serviceModel->updateService($id, $name, $description, $imagePath)) {
-                echo "Erreur lors de la mise à jour du service.";
-                exit();
-            }
-
-            header('Location: /pages/service'); // Redirection après la mise à jour
-            exit();
-        } else {
-            // Si ce n'est pas une requête POST, récupérer les données du service pour pré-remplir le formulaire
-            $this->show($id); // Appelle la méthode show pour afficher le formulaire avec les données
-        }
-    }
-
-
-    // Supprimer un service
-    public function delete($id)
+    // URI : '/service/delete'
+    public function delete($id): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->serviceModel->deleteService($id); // Supprimer le service
-            header('Location: pages/service'); // Redirection après la suppression
+            header('Location: service/view'); // Redirection après la suppression
             exit();
         }
+    }
+
+    // URI : '/service/new'
+    public function new()
+    {
+        $message = '';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Valider les données ici
+            $name = htmlspecialchars($_POST['name']);
+            $description = htmlspecialchars($_POST['description']);
+            $category = htmlspecialchars($_POST['category']);
+
+            // Gestion de l'upload de l'image
+            if (file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])) {
+                FileUploader::upload($_FILES['image']);
+                $imagePath = FileUploader::getUploadedFilePath();
+
+                $this->serviceModel->addService($name, $description, $category, $imagePath);
+            } else {
+                $message = 'L\'image du service est obligatoire';
+            }
+        }
+
+        return [
+            'page' => 'addService',
+            'variables' => [
+                'message' => $message,
+            ]
+        ];
+    }
+
+    // URI : '/service/update'
+    public function update(): array
+    {
+        $id = (int)($_GET['id'] ?? 0); // Récupération de l'ID du service
+
+        $service = $this->serviceModel->getServiceById($id); // Récupération des données du service
+
+        if (!$service) {
+            echo "Service non trouvé.";
+            exit();
+        }
+
+        // Traitement du formulaire d'édition
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Récupérer les données du formulaire
+            $name = $_POST['name'] ?? '';
+            $description = $_POST['description'] ?? '';
+            $imagePath = null;
+
+            if(file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])) {
+                // Upload l'image sur le serveur
+                FileUploader::upload($_FILES['image']);
+                $imagePath = FileUploader::getUploadedFilePath();
+            }
+
+            if (!empty($name) && !empty($description)) {
+                $this->serviceModel->updateService($id, $name, $description, $imagePath); // Mise à jour du service
+
+                header('Location: /service/show'); // Redirection après la mise à jour
+                exit();
+            } else {
+                echo "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";
+            }
+        }
+
+        return [
+            'page' => 'editServiceForm',
+            'variables' => [
+                'service' => $service
+            ]
+        ];
     }
 }

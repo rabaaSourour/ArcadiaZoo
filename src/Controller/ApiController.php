@@ -3,15 +3,18 @@
 namespace App\Controller;
 
 use App\Model\Review;
+use App\Model\Service;
 use PDO;
 
 class ApiController
 {
-    private Review $reviewModel;
+    private readonly Review $reviewModel;
+    private readonly Service $serviceModel;
 
     public function __construct(PDO $pdo)
     {
         $this->reviewModel = new Review($pdo);
+        $this->serviceModel = new Service($pdo);
     }
 
     // URI : '/api/validateReview'
@@ -47,5 +50,19 @@ class ApiController
 
         echo json_encode($status);
         die();
+    }
+
+    // URI : '/api/deleteService'
+    public function deleteService(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
+            $id = (int)$_GET['id'];
+            $success = $this->serviceModel->deleteService($id);
+
+            // Répondre avec un format JSON
+            header('Content-Type: application/json');
+            echo json_encode(['success' => $success]);
+            exit();
+        }
     }
 }

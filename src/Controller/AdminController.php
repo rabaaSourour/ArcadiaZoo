@@ -4,21 +4,24 @@ namespace App\Controller;
 
 use App\Model\Review;
 use App\Model\Horaires;
+use App\Model\Service;
 use PDO;
 
 class AdminController
 {
     private readonly Review $reviewModel;
     private readonly Horaires $horairesModel;
+    private readonly service $serviceModel;
 
     public function __construct(PDO $pdo)
     {
         $this->reviewModel = new Review($pdo);
         $this->horairesModel = new Horaires($pdo);
+        $this->serviceModel = new Service($pdo);
     }
 
     // URI : '/admin/pendingReviews'
-    public function pendingReviews() : array
+    public function pendingReviews(): array
     {
         $pendingReviews = $this->reviewModel->getPendingReviews();
 
@@ -31,7 +34,7 @@ class AdminController
     }
 
     // URI : '/admin/viewOpeningHours'
-    public function viewOpeningHours() : array
+    public function viewOpeningHours(): array
     {
         $horaires = $this->horairesModel->getHoraires();
 
@@ -44,7 +47,7 @@ class AdminController
     }
 
     // URI : '/admin/updateOpeningHours'
-    public function updateOpeningHours() : array
+    public function updateOpeningHours(): array
     {
         // Vérifier la méthode de requête
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -61,8 +64,6 @@ class AdminController
             } else {
                 echo "Données du formulaire manquantes.";
             }
-        } else {
-            echo "Méthode de requête non autorisée.";
         }
 
         $horaires = $this->horairesModel->getHoraires();

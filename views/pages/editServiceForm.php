@@ -1,39 +1,8 @@
-<?php
-include_once __DIR__ . '/../base_view.php';
-require_once __DIR__ . '/../../vendor/autoload.php';
-require_once __DIR__ . '/../../src/Database/DbConnection.php';
-require_once __DIR__ . '/../../src/Model/Service.php';
-
-use App\Model\Service;
-use App\Database\DbConnection;
-use App\Controller\ServiceController;
-
-$pdo = DbConnection::getPdo();
-$service = new Service($pdo);
-$ServiceController = new ServiceController($serviceModel);
-
-// Récupération de l'ID à partir de l'URL
-if (isset($_GET['id'])) {
-    $id = (int)$_GET['id'];
-    $service = $service->getServiceById($id);
-    
-    if (!$service) {
-        echo "Service non trouvé.";
-        exit();
-    }
-}
-    // Connexion à la base de données et récupération du service
-//session_start();
-//if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-//   header('Location: /views/pages/home.php'); // Redirige vers la page d'accueil si l'utilisateur n'est pas administrateur
-//  exit();
-//}
-?>
 <div class="container rounded mt-5">
     <h1 class="text-center text-bg-primary rounded">Modifier le Service</h1>
     <?php if (isset($service)) : ?>
 
-        <form action="/src/admin/EditeService.php" method="POST" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo htmlspecialchars($service['id']); ?>">
 
             <label for="name">Nom du service :</label>

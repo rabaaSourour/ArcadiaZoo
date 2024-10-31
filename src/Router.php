@@ -46,7 +46,6 @@ class Router
             $this->controller = new $controllerName($pdo);
             $this->method = $method;
         }
-
     }
 
     public function getController() : ?object

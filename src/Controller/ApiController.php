@@ -4,17 +4,20 @@ namespace App\Controller;
 
 use App\Model\Review;
 use App\Model\Service;
+use App\Model\Habitat;
 use PDO;
 
 class ApiController
 {
     private readonly Review $reviewModel;
     private readonly Service $serviceModel;
+    private readonly habitat $habitatModel;
 
     public function __construct(PDO $pdo)
     {
         $this->reviewModel = new Review($pdo);
         $this->serviceModel = new Service($pdo);
+        $this->habitatModel = new Habitat($pdo);
     }
 
     // URI : '/api/validateReview'
@@ -58,6 +61,20 @@ class ApiController
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
             $id = (int)$_GET['id'];
             $success = $this->serviceModel->deleteService($id);
+
+            // Répondre avec un format JSON
+            header('Content-Type: application/json');
+            echo json_encode(['success' => $success]);
+            exit();
+        }
+    }
+
+    // URI : '/api/deleteHabitat'
+    public function deleteHabitat(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
+            $id = (int)$_GET['id'];
+            $success = $this->habitatModel->deleteHabitat($id);
 
             // Répondre avec un format JSON
             header('Content-Type: application/json');

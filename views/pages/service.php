@@ -15,15 +15,12 @@
                                 <h5 class="card-title text-dark"><?= htmlspecialchars($service['name']) ?></h5>
                                 <p class="card-text"><?= htmlspecialchars($service['description']) ?></p>
 
-                                <?php if ($isAdmin): ?>
+                    <?php //if ($isAdmin): ?>
                                     <button class="btn btn-warning" onclick="window.location.href='/service/update?id=<?= $service['id'] ?>'">Modifier</button>
                                     <button class="btn btn-danger" onclick="deleteService(<?= $service['id'] ?>)">Supprimer</button>
-                                <?php endif; ?>
+                                <?php //endif; ?>
                             </div>
                         </div>
-                        <button class="btn btn-warning" onclick="window.location.href='/service/update?id=<?= $service['id'] ?>'">
-                            Modifier
-                        </button>
 
                     </div>
                 <?php endif; ?>

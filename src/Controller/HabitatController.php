@@ -2,46 +2,46 @@
 
 namespace App\Controller;
 
-use App\Model\Service;
+use App\Model\habitat;
 use App\Services\FileUploader;
 use PDO;
 
-class ServiceController
+class habitatController
 {
-    private $serviceModel;
+    private $habitatModel;
 
     public function __construct(PDO $pdo)
     {
-        $this->serviceModel = new Service($pdo);
+        $this->habitatModel = new habitat($pdo);
     }
-    
-    // URI : '/service/show'
+
+    // URI : '/habitat/show'
     public function show(): array
     {
-        $service = $this->serviceModel->getAllServices();
+        $habitat = $this->habitatModel->getAllHabitats();
 
         $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
 
         return [
-            'page' => 'service',
+            'page' => 'habitat',
             'variables' => [
-                'services' => $service,
+                'habitats' => $habitat,
                 'isAdmin' => $isAdmin,
             ]
         ];
     }
 
-    // URI : '/service/delete'
+    // URI : '/habitat/delete'
     public function delete($id): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->serviceModel->deleteService($id); // Supprimer le service
-            header('Location: service/show'); // Redirection après la suppression
+            $this->habitatModel->deleteHabitat($id); // Supprimer le habitat
+            header('Location: /habitat/show'); // Redirection après la suppression
             exit();
         }
     }
 
-    // URI : '/service/new'
+    // URI : '/habitat/new'
     public function new()
     {
         $message = '';
@@ -50,36 +50,36 @@ class ServiceController
             // Valider les données ici
             $name = htmlspecialchars($_POST['name']);
             $description = htmlspecialchars($_POST['description']);
-            $category = htmlspecialchars($_POST['category']);
+
 
             // Gestion de l'upload de l'image
             if (file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])) {
                 FileUploader::upload($_FILES['image']);
                 $imagePath = FileUploader::getUploadedFilePath();
 
-                $this->serviceModel->addService($name, $description, $category, $imagePath);
+                $this->habitatModel->addHabitat($name, $description, $imagePath);
             } else {
-                $message = 'L\'image du service est obligatoire';
+                $message = 'L\'image du habitat est obligatoire';
             }
         }
 
         return [
-            'page' => 'addService',
+            'page' => 'addhabitat',
             'variables' => [
                 'message' => $message,
             ]
         ];
     }
 
-    // URI : '/service/update'
+    // URI : '/habitat/update'
     public function update(): array
     {
-        $id = (int)($_GET['id'] ?? 0); // Récupération de l'ID du service
+        $id = (int)($_GET['id'] ?? 0); // Récupération de l'ID du habitat
 
-        $service = $this->serviceModel->getServiceById($id); // Récupération des données du service
+        $habitat = $this->habitatModel->getHabitatById($id); // Récupération des données du habitat
 
-        if (!$service) {
-            echo "Service non trouvé.";
+        if (!$habitat) {
+            echo "habitat non trouvé.";
             exit();
         }
 
@@ -90,16 +90,16 @@ class ServiceController
             $description = $_POST['description'] ?? '';
             $imagePath = null;
 
-            if(file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])) {
+            if (file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])) {
                 // Upload l'image sur le serveur
                 FileUploader::upload($_FILES['image']);
                 $imagePath = FileUploader::getUploadedFilePath();
             }
 
             if (!empty($name) && !empty($description)) {
-                $this->serviceModel->updateService($id, $name, $description, $imagePath); // Mise à jour du service
+                $this->habitatModel->updateHabitat($id, $name, $description, $imagePath); // Mise à jour du habitat
 
-                header('Location: /service/show'); // Redirection après la mise à jour
+                header('Location: /habitat/show'); // Redirection après la mise à jour
                 exit();
             } else {
                 echo "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";
@@ -107,9 +107,9 @@ class ServiceController
         }
 
         return [
-            'page' => 'editServiceForm',
+            'page' => 'editHabitatForm',
             'variables' => [
-                'service' => $service
+                'habitat' => $habitat
             ]
         ];
     }

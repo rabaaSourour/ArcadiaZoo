@@ -55,8 +55,16 @@ class ReviewController
         return $this->reviewModel->getApprovedReviews();
     }
 
-    public function getPendingReviews()
-    {
+        public function pendingReviews(): array
+        {
+            $pendingReviews = $this->reviewModel->getPendingReviews();
+    
+            return [
+                'page' => 'isValidateReview',
+                'variables' => [
+                    'pendingReviews' => $pendingReviews,
+                ]
+            ];
         return $this->reviewModel->getPendingReviews();
     }
 

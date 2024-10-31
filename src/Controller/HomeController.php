@@ -17,7 +17,7 @@ class HomeController
         $this->horairesModel = new Horaires($pdo);
     }
 
-    public function view() : array
+    public function show() : array
     {
         $getPendingReviews = $this->reviewModel->getApprovedReviews();
         $horaires = $this->horairesModel->getHoraires();;

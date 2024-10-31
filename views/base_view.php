@@ -33,22 +33,22 @@
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item p-4">
 
-                            <a class="nav-link active" aria-current="pages" href="/home/view">Acceuil</a>
+                            <a class="nav-link active" aria-current="pages" href="/home/show">Acceuil</a>
 
                         </li>
                         <li class="nav-item p-4">
 
-                            <a class="nav-link" href="/habitat/view">Habitats</a>
+                            <a class="nav-link" href="/habitat/show">Habitats</a>
 
                         </li>
                         <li class="nav-item p-4">
 
-                            <a class="nav-link" href="/contact/view">Contacts</a>
+                            <a class="nav-link" href="/contact/show">Contacts</a>
 
                         </li>
                         <li class="nav-item p-4">
 
-                            <a class="nav-link" href="/service/view">Services</a>
+                            <a class="nav-link" href="/service/show">Services</a>
 
                         </li>
 
@@ -94,7 +94,7 @@
                 </p>
             </div>
             <div class="col-md-4">
-                <h3><a href="/mentionsLegals/view">Mentions légals</a></h3>
+                <h3><a href="/mentionsLegals/show">Mentions légals</a></h3>
 
             </div>
             <div class="col-md-4 ">

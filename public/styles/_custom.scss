@@ -2,13 +2,15 @@
 // Option A: Include all of Bootstrap
 
 // Include any default variable overrides here (though functions won't be available)
-$primary: #588157;
-$secondary: #A3B18A;
-$clear: #EBDDB1;
-$dark : #1F451A;
-$font-family-sans-serif: "Montserrat", sans-serif !default;
-$font-family-serif: "Time New Roman", serif !default;
+:root {
+    --font-family-serif: 'Georgia', serif;
+    --font-family-sans-serif: "Montserrat", sans-serif;
+    --secondary: #E5E5E5;
+    --clear: #EBDDB1;
+    --dark : #1F451A;
+    --primary-color: #588157;
+    --card-bg-color: #A3B18A;
+    --card-hover-shadow: rgba(0, 0, 0, 0.2);
+}
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
-
-// Then add additional custom code here

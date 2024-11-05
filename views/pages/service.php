@@ -12,7 +12,7 @@
                             <img src="<?= htmlspecialchars($service['image']) ?>" class="card-img rounded p-4 " alt="image du service">
 
                             <div class="card-body">
-                                <h5 class="card-title text-dark"><?= htmlspecialchars($service['name']) ?></h5>
+                                <h5 class="card-title"><?= htmlspecialchars($service['name']) ?></h5>
                                 <p class="card-text"><?= htmlspecialchars($service['description']) ?></p>
 
                     <?php //if ($isAdmin): ?>
@@ -47,23 +47,23 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h5 class="card-title text-dark"><?= htmlspecialchars($service['name']) ?></h5>
+                                            <h5 class="card-title"><?= htmlspecialchars($service['name']) ?></h5>
                                             <p class="card-text"><?= htmlspecialchars($service['description']) ?></p>
-                                            <?php if ($isAdmin): ?>
+                                            <?php //if ($isAdmin): ?>
                                                 <button class="btn btn-warning" onclick="window.location.href='/pages/editServiceForm.php?id=<?= $service['id'] ?>'">Modifier</button>
                                                 <button class="btn btn-danger" onclick="deleteService(<?= $service['id'] ?>)">Supprimer</button>
-                                            <?php endif; ?>
+                                            <?php //endif; ?>
                                         </div>
                                     </div>
                                 <?php else: ?>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h5 class="card-title text-dark"><?= htmlspecialchars($service['name']) ?></h5>
+                                            <h5 class="card-title"><?= htmlspecialchars($service['name']) ?></h5>
                                             <p class="card-text"><?= htmlspecialchars($service['description']) ?></p>
-                                            <?php if ($isAdmin): ?>
+                                            <?php // if ($isAdmin): ?>
                                                 <button class="btn btn-warning" onclick="window.location.href='/pages/editServiceForm.php?id=<?= $service['id'] ?>'">Modifier</button>
                                                 <button class="btn btn-danger" onclick="deleteService(<?= $service['id'] ?>)">Supprimer</button>
-                                            <?php endif; ?>
+                                            <?php //endif; ?>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -72,9 +72,6 @@
                                 <?php endif; ?>
                             </div>
                         </div>
-                        <button class="btn btn-warning" onclick="window.location.href='/pages/editServiceForm.php?id=<?= $service['id'] ?>'">
-                            Modifier
-                        </button>
 
                     </div>
 

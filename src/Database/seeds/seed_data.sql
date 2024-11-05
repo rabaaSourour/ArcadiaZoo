@@ -56,14 +56,80 @@ VALUES
 
 -- Insertion des animaux
 INSERT INTO
-    animals (name, species, image, habitat_id)
+    animals (name, breed, image, habitat_id)
 VALUES
-    ('Lion', 'Panthera leo', 'lion.jpg', 1);
-
-INSERT INTO
-    animals (name, species, image, habitat_id)
-VALUES
-    ('Tiger', 'Panthera tigris', 'tiger.jpg', 2);
+    (
+        'Panthera onca',
+        'Le plus grand félin des Amériques, le jaguar est un prédateur solitaire puissant. Il est reconnaissable à son pelage tacheté.',
+        '/public/asset/images/jaguar.png',
+        1
+    ),
+    (
+        'Alouatta',
+        'Connu pour ses cris puissants qui peuvent être entendus à plusieurs kilomètres, ces singes vivent en groupes sociaux.',
+        '/public/asset/images/singe.png',
+        1
+    ),
+    (
+        'Ramphastos',
+        'Reconnaissable à son grand bec coloré, le toucan est un oiseau sociable qui vit en petits groupes.',
+        '/public/asset/images/toucan.png',
+        1
+    ),
+    (
+        'Bradypus',
+        'Cet animal lent passe la plupart de son temps accroché aux branches des arbres, où il se nourrit et dort.',
+        '/public/asset/images/paresseux.png',
+        1
+    ),
+    (
+        'Panthera leo',
+        'Le roi de la savane, le lion est un grand félin social qui vit en groupes appelés hardes.',
+        '/public/asset/images/lion.png',
+        2
+    ),
+    (
+        'Loxodonta',
+        'Le plus grand animal terrestre, les éléphants sont connus pour leur intelligence, leur mémoire exceptionnelle et leurs structures sociales complexes.',
+        '/public/asset/images/elephant.png',
+        2
+    ),
+    (
+        'Acinonyx jubatus',
+        'Le mammifère terrestre le plus rapide, capable d\'atteindre des vitesses allant jusqu\'à 100 km/h en courtes rafales.',
+        '/public/asset/images/guepard.png',
+        2
+    ),
+    (
+        'Equus quagga',
+        'Connu pour ses rayures distinctives, chaque zèbre a un motif unique. Ils vivent en groupes et migrent sur de longues distances pour trouver de l\'eau et des pâturages.',
+        '/public/asset/images/zebre.png',
+        2
+    ),
+    (
+        'Alligator mississippiensis',
+        'Reptile imposant, l\'alligator est un prédateur apex des marais d\'Amérique du Nord.',
+        '/public/asset/images/alligator.png',
+        3
+    ),
+    (
+        'Ardea herodias',
+        'Grand oiseau échassier, le héron bleu est connu pour sa silhouette élancée et son vol majestueux.',
+        '/public/asset/images/heron.png',
+        3
+    ),
+    (
+        'Apalone spinifera',
+        'Une tortue d\'eau douce avec une carapace souple et un long cou, adaptée à la vie aquatique.',
+        '/public/asset/images/tortue.png',
+        3
+    ),
+    (
+        'Lithobates catesbeianus',
+        'Une des plus grandes grenouilles d\'Amérique du Nord, connue pour son croassement puissant.',
+        '/public/asset/images/grenouille.png',
+        3
+    );
 
 -- Insertion des services
 INSERT INTO
@@ -147,7 +213,277 @@ VALUES
         '1'
     );
 
--- Insertion des horaires d'ouverture
+-- Insertion de raport veterinaire 
+INSERT INTO
+    `veterinary_reports` (
+        `status`,
+        `food`,
+        `food_quantity`,
+        `details`,
+        `last_check`,
+        `animals_id`,
+        `users_id`
+    )
+VALUES
+    (
+        'En bonne santé générale, léger surpoids observé',
+        'viande de boeuf, poisson, supplément en taurine.',
+        '4kg par jour.',
+        'Léger surplus de poids, recommandé d\'augmenter l\'activité physique et ajuster la ration alimentaire. Pas de blessures ou signes de maladie. Examen sanguin : Paramètres normaux, fonction rénale et hépatique en bon état.',
+        '2024-06-15',
+        1,
+        2
+    );
+
+INSERT INTO
+    `veterinary_reports` (
+        `status`,
+        `food`,
+        `food_quantity`,
+        `details`,
+        `last_check`,
+        `animals_id`,
+        `users_id`
+    )
+VALUES
+    (
+        'En bonne santé générale, comportement alerte et actif',
+        'fruits variés (bananes, pommes, oranges), légumes (carottes, poivrons), supplément en calcium',
+        '500g par jour.',
+        'Aucune blessure apparente, membres en bonne condition. Bien hydraté, pas de signe de stress ou d\'anxiété apparents.',
+        '2024-06-15',
+        2,
+        2
+    );
+
+INSERT INTO
+    `veterinary_reports` (
+        `status`,
+        `food`,
+        `food_quantity`,
+        `details`,
+        `last_check`,
+        `animals_id`,
+        `users_id`
+    )
+VALUES
+    (
+        'En bonne santé générale, plumage vif et intact.',
+        'fruits variés (papaye, mangue, banane), insectes (grillons, vers de farine), granulés spécialisés pour oiseaux',
+        '200g par jour.',
+        'Excellente condition physique générale, recommandé de maintenir la diversité alimentaire pour assurer l\'apport nutritionnel complet. Bonne musculature, pas de signes de blessures ou d\'infections.',
+        '2024-06-15',
+        3,
+        2
+    );
+
+INSERT INTO
+    `veterinary_reports` (
+        `status`,
+        `food`,
+        `food_quantity`,
+        `details`,
+        `last_check`,
+        `animals_id`,
+        `users_id`
+    )
+VALUES
+    (
+        'En bonne santé générale, léger ralentissement de la motricité observé',
+        'feuilles variées (cécropia, figuier), fruits (pomme, poire), légumes (carottes, patates douces)',
+        '300g par jour.',
+        'Digestif en bon état, bon appétit. Hydratation adéquate. Recommandé de surveiller régulièrement pour éviter la déshydratation et les problèmes digestifs.',
+        '2024-06-15',
+        4,
+        2
+    );
+
+INSERT INTO
+    `veterinary_reports` (
+        `status`,
+        `food`,
+        `food_quantity`,
+        `details`,
+        `last_check`,
+        `animals_id`,
+        `users_id`
+    )
+VALUES
+    (
+        'En bonne santé générale, léger vieillissement observé.',
+        'Viande de bœuf, poulet, lapin, supplément en taurine',
+        '7 kg par jour.',
+        'Léger vieillissement observé dans la démarche, recommandé de surveiller les articulations et la mobilité. Musculature bien développée, pas de blessures apparentes.',
+        '2024-06-15',
+        5,
+        2
+    );
+
+INSERT INTO
+    `veterinary_reports` (
+        `status`,
+        `food`,
+        `food_quantity`,
+        `details`,
+        `last_check`,
+        `animals_id`,
+        `users_id`
+    )
+VALUES
+    (
+        'Bon. Aucune maladie grave signalée.',
+        'Herbe, feuilles, écorce, fruits, et parfois des racines',
+        '150 kg par jour.',
+        'La peau est épaisse et résistante, sans lésions visibles. Les plis profonds sont caractéristiques mais ne montrent aucun signe d\'infection.',
+        '2024-06-15',
+        6,
+        2
+    );
+
+INSERT INTO
+    `veterinary_reports` (
+        `status`,
+        `food`,
+        `food_quantity`,
+        `details`,
+        `last_check`,
+        `animals_id`,
+        `users_id`
+    )
+VALUES
+    (
+        'Bon. Aucune blessure majeure ou maladie détectée.',
+        'Principalement viande fraîche de proies comme les gazelles, les antilopes.',
+        '3 kg par jour.',
+        'Pelage brillant et en bon état. Aucune anomalie détectée lors de l\'examen physique.',
+        '2024-06-15',
+        7,
+        2
+    );
+
+INSERT INTO
+    `veterinary_reports` (
+        `status`,
+        `food`,
+        `food_quantity`,
+        `details`,
+        `last_check`,
+        `animals_id`,
+        `users_id`
+    )
+VALUES
+    (
+        'Bon. Aucune blessure grave ou maladie rapportée.',
+        'Herbes, feuilles, écorce et parfois des fruits et des racines.',
+        '10 kg par jour.',
+        'Pelage rayé bien entretenu, dents en bon état.',
+        '2024-06-15',
+        8,
+        2
+    );
+
+INSERT INTO
+    `veterinary_reports` (
+        `status`,
+        `food`,
+        `food_quantity`,
+        `details`,
+        `last_check`,
+        `animals_id`,
+        `users_id`
+    )
+VALUES
+    (
+        'Bon. Aucun signe d\'infection, de blessure ou de déshydratation.',
+        'Poissons, oiseaux, mammifères aquatiques et parfois des petits mammifères terrestres.',
+        '3 kg par jour.',
+        'Peau en bon état, écailles lisses et bien conservées, bonne vitalité et activité.',
+        '2024-06-15',
+        9,
+        2
+    );
+
+INSERT INTO
+    `veterinary_reports` (
+        `status`,
+        `food`,
+        `food_quantity`,
+        `details`,
+        `last_check`,
+        `animals_id`,
+        `users_id`
+    )
+VALUES
+    (
+        'Bon. Aucune blessure ou signe d\'infection détecté.',
+        'poissons, insectes aquatiques',
+        '200 g par jour.',
+        'Carapace plate et souple, pas de signes de fissures ni d\'abrasions.',
+        '2024-06-15',
+        10,
+        2
+    );
+
+INSERT INTO
+    `veterinary_reports` (
+        `status`,
+        `food`,
+        `food_quantity`,
+        `details`,
+        `last_check`,
+        `animals_id`,
+        `users_id`
+    )
+VALUES
+    (
+        'Bon. Pas de signes de blessures ou d\'infections. Plumes en bon état.',
+        'Poissons, amphibiens, petits mammifères et insectes.',
+        '300g par jour.',
+        'Aucune blessure ni infection détectée lors de l\'examen physique. Plumes en excellent état.',
+        '2024-06-15',
+        11,
+        2
+    );
+
+INSERT INTO
+    `veterinary_reports` (
+        `status`,
+        `food`,
+        `food_quantity`,
+        `details`,
+        `last_check`,
+        `animals_id`,
+        `users_id`
+    )
+VALUES
+    (
+        'Bon. Pas de signes d\'infection ou de blessures. La peau est saine sans anomalies.',
+        'Herbes, feuilles, écorce et parfois des racines.',
+        '10 insectes par jour.',
+        'Réagit bien aux stimuli et montre un comportement normal. Bonne santé générale.',
+        '2024-06-15',
+        12,
+        2
+    );
+
+-- Insertion food des animaux 
+INSERT INTO
+    animal_foods (users_id, animal_id, food, quantity, last_check)
+VALUES
+    (3, 1, 'Viande', '5kg', '2024-11-04 08:30:00'),
+    (3, 2, 'Légume', '500g', '2024-11-04 09:00:00'),
+    (3, 3, 'Fruits', '200g', '2024-11-04 10:00:00'),
+    (3, 4, 'Feuilles', '200g', '2024-11-04 08:00:00'),
+    (3, 5, 'Poulet', '4kg', '2024-11-04 09:30:00'),
+    (3, 6, 'Fruits', '250g', '2024-11-04 11:00:00'),
+    (3, 7, 'Boeuf', '3kg', '2024-11-04 12:30:00'),
+    (3, 8, 'Herbes', '9kg', '2024-11-04 14:00:00'),
+    (3, 9, 'Poissons', '3kg', '2024-11-04 07:30:00'),
+    (3, 10, 'Insectes', '200g', '2024-11-04 16:00:00'),
+    (3,11,'Petits poissons','300g','2024-11-04 15:00:00'),
+    (3, 12, 'écorce', '150g', '2024-11-04 13:00:00')
+    
+    -- Insertion des horaires d\'ouverture
 INSERT INTO
     openinghours (day, openingTime, closingTime)
 VALUES

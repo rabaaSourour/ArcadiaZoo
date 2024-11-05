@@ -5,7 +5,7 @@ namespace App\Model;
 use PDO;
 use Exception;
 
-class habitat
+class Habitat
 {
     private $pdo;
 

@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Model\Review;
 use App\Model\Service;
 use App\Model\Habitat;
+use App\Model\Animal;
+use App\Model\Report;
 use PDO;
 
 class ApiController
@@ -12,12 +14,16 @@ class ApiController
     private readonly Review $reviewModel;
     private readonly Service $serviceModel;
     private readonly habitat $habitatModel;
+    private readonly Animal $animalModel;
+    private readonly Report $reportModel;
 
     public function __construct(PDO $pdo)
     {
         $this->reviewModel = new Review($pdo);
         $this->serviceModel = new Service($pdo);
         $this->habitatModel = new Habitat($pdo);
+        $this->animalModel = new Animal($pdo);
+        $this->reportModel = new report($pdo);
     }
 
     // URI : '/api/validateReview'
@@ -75,6 +81,33 @@ class ApiController
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
             $id = (int)$_GET['id'];
             $success = $this->habitatModel->deleteHabitat($id);
+
+            // Répondre avec un format JSON
+            header('Content-Type: application/json');
+            echo json_encode(['success' => $success]);
+            exit();
+        }
+    }
+
+    // URI : '/api/deleteAnimal'
+    public function deleteAnimal(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
+            $id = (int)$_GET['id'];
+            $success = $this->animalModel->deleteAnimal($id);
+
+            // Répondre avec un format JSON
+            header('Content-Type: application/json');
+            echo json_encode(['success' => $success]);
+            exit();
+        }
+    }
+
+    public function deleteReport(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
+            $id = (int)$_GET['id'];
+            $success = $this->reportModel->deleteReport($id);
 
             // Répondre avec un format JSON
             header('Content-Type: application/json');

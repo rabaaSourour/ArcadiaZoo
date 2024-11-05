@@ -7,7 +7,7 @@ function deleteHabitat(id) {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert('Service supprimé avec succès.');
+                    alert('Habitat supprimé avec succès.');
                     location.reload();
                 } else {
                     alert('Erreur lors de la suppression de l\'habitat.');

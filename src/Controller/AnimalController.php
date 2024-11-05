@@ -2,46 +2,46 @@
 
 namespace App\Controller;
 
-use App\Model\Service;
+use App\Model\Animal;
 use App\Services\FileUploader;
 use PDO;
 
-class ServiceController
+class animalController
 {
-    private $serviceModel;
+    private $animalModel;
 
     public function __construct(PDO $pdo)
     {
-        $this->serviceModel = new Service($pdo);
+        $this->animalModel = new Animal($pdo);
     }
-    
-    // URI : '/service/show'
+
+    // URI : '/animal/show'
     public function show(): array
     {
-        $service = $this->serviceModel->getAllServices();
+        $animal = $this->animalModel->getAllAnimals();
 
         $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
 
         return [
-            'page' => 'service',
+            'page' => 'habitat',
             'variables' => [
-                'services' => $service,
+                'animals' => $animal,
                 'isAdmin' => $isAdmin,
             ]
         ];
     }
 
-    // URI : '/service/delete'
+    // URI : '/animal/delete'
     public function delete($id): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->serviceModel->deleteService($id); // Supprimer le service
-            header('Location: service/show'); // Redirection après la suppression
+            $this->animalModel->deleteAnimal($id); // Supprimer le animal
+            header('Location: /habitat/show'); // Redirection après la suppression
             exit();
         }
     }
 
-    // URI : '/service/new'
+    // URI : '/animal/new'
     public function new() : array
     {
         $message = '';
@@ -49,37 +49,38 @@ class ServiceController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Valider les données ici
             $name = htmlspecialchars($_POST['name']);
-            $description = htmlspecialchars($_POST['description']);
-            $category = htmlspecialchars($_POST['category']);
+            $breed = htmlspecialchars($_POST['breed']);
+            $habitat_id = htmlspecialchars($_POST['habitat_id']);
+
 
             // Gestion de l'upload de l'image
             if (file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])) {
                 FileUploader::upload($_FILES['image']);
                 $imagePath = FileUploader::getUploadedFilePath();
 
-                $this->serviceModel->addService($name, $description, $category, $imagePath);
+                $this->animalModel->addAnimal($name, $breed, $imagePath, $habitat_id);
             } else {
-                $message = 'L\'image du service est obligatoire';
+                $message = 'L\'image du animal est obligatoire';
             }
         }
 
         return [
-            'page' => 'addService',
+            'page' => 'addAnimal',
             'variables' => [
                 'message' => $message,
             ]
         ];
     }
 
-    // URI : '/service/update'
+    // URI : '/animal/update'
     public function update(): array
     {
-        $id = (int)($_GET['id'] ?? 0); // Récupération de l'ID du service
+        $id = (int)($_GET['id'] ?? 0); // Récupération de l'ID du animal
 
-        $service = $this->serviceModel->getServiceById($id); // Récupération des données du service
+        $animal = $this->animalModel->getAnimalById($id); // Récupération des données du animal
 
-        if (!$service) {
-            echo "Service non trouvé.";
+        if (!$animal) {
+            echo "animal non trouvé.";
             exit();
         }
 
@@ -87,19 +88,19 @@ class ServiceController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Récupérer les données du formulaire
             $name = $_POST['name'] ?? '';
-            $description = $_POST['description'] ?? '';
+            $breed = $_POST['breed'] ?? '';
             $imagePath = null;
 
-            if(file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])) {
+            if (file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])) {
                 // Upload l'image sur le serveur
                 FileUploader::upload($_FILES['image']);
                 $imagePath = FileUploader::getUploadedFilePath();
             }
 
-            if (!empty($name) && !empty($description)) {
-                $this->serviceModel->updateService($id, $name, $description, $imagePath); // Mise à jour du service
+            if (!empty($name) && !empty($breed)) {
+                $this->animalModel->updateAnimal($id, $name, $breed, $imagePath); // Mise à jour du animal
 
-                header('Location: /service/show'); // Redirection après la mise à jour
+                header('Location: /habitat/show'); // Redirection après la mise à jour
                 exit();
             } else {
                 echo "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";
@@ -107,9 +108,9 @@ class ServiceController
         }
 
         return [
-            'page' => 'editServiceForm',
+            'page' => 'editAnimalForm',
             'variables' => [
-                'service' => $service
+                'animal' => $animal
             ]
         ];
     }

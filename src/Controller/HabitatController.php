@@ -2,23 +2,32 @@
 
 namespace App\Controller;
 
-use App\Model\habitat;
+use App\Model\Habitat;
+use App\Model\Animal;
+use App\Model\Report;
 use App\Services\FileUploader;
 use PDO;
 
 class habitatController
 {
     private $habitatModel;
+    private $animalModel;
+    private $reportModel;
 
     public function __construct(PDO $pdo)
     {
-        $this->habitatModel = new habitat($pdo);
+        $this->habitatModel = new Habitat($pdo);
+        $this->animalModel = new Animal($pdo);
+        $this->reportModel = new Report($pdo);
+
     }
 
     // URI : '/habitat/show'
     public function show(): array
     {
         $habitat = $this->habitatModel->getAllHabitats();
+        $animal = $this->animalModel->getAllAnimals();
+        $report = $this->reportModel->getAllReports();
 
         $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
 
@@ -26,6 +35,8 @@ class habitatController
             'page' => 'habitat',
             'variables' => [
                 'habitats' => $habitat,
+                'animals' => $animal,
+                'reports' => $report,
                 'isAdmin' => $isAdmin,
             ]
         ];
@@ -42,7 +53,7 @@ class habitatController
     }
 
     // URI : '/habitat/new'
-    public function new()
+    public function new(): array
     {
         $message = '';
 

@@ -20,10 +20,10 @@ CREATE TABLE habitats (
 CREATE TABLE animals (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    breed TEXT ,
+    breed TEXT,
     image VARCHAR(255),
-    habitat_id INT,
-    FOREIGN KEY (habitat_id) REFERENCES habitats(id)
+    habitat_id INT Not Null,
+    FOREIGN KEY (habitat_id) REFERENCES habitats(id) ON DELETE CASCADE
 );
 
 -- Table services
@@ -40,33 +40,33 @@ CREATE TABLE reviews (
     pseudo VARCHAR(100) NOT NULL,
     review TEXT NOT NULL,
     isValid BOOLEAN,
-    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    date DATETime DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Table animal_foods
 CREATE TABLE animal_foods (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
-    users_id INT(11),
-    animal_id INT(11),
+    users_id INT(11) NOT NULL,
+    animal_id INT(11) NOT NULL,
     food VARCHAR(255),
     quantity VARCHAR(255),
     last_check DATETime DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (users_id) REFERENCES users(id),
-    FOREIGN KEY (animal_id) REFERENCES animals(id)
+    FOREIGN KEY (users_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE
 );
 
 -- Table report_veterinaries
 CREATE TABLE veterinary_reports (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
-    users_id INT(11),
-    animal_id INT(11),
-    status TEXT,
+    users_id INT(11) NOT NULL,
+    animal_id INT(11) NOT NULL,
+    status TEXT, 
     food VARCHAR(255),
     food_quantity VARCHAR(255),
     details TEXT,
-    last_check DATE,
-    FOREIGN KEY (users_id) REFERENCES users(id),
-    FOREIGN KEY (animal_id) REFERENCES animals(id)
+    last_check DATETime DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (users_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE
 );
 
 -- Table opening_hours

@@ -15,15 +15,6 @@ class Router
         $this->parseUri($uri);
     }
 
-    // BUT :
-    // Quand l'URI est '/service/addService' -> ServiceController->addService();
-    // Quand l'URI est '/home/view' -> HomeController->view();
-    // Quand l'URI est '/review/addReview' -> ReviewController->addReview();
-
-    // Router appelle un controller
-    // Controller utiliser le Modèle (Service.php par exemple) pour récupérer des données
-    // Controller fait un include '../pages/addService.php';
-
     private function parseUri(string $uri): void
     {
         // Redirection vers la page d'accueil si l'URI est vide

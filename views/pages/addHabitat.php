@@ -22,3 +22,4 @@
             <button type="submit" class="btn btn-primary">Ajouter le habitat</button>
         </div>
     </form>
+</div>

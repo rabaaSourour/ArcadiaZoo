@@ -29,3 +29,4 @@
             <button type="submit" class="btn btn-primary">Ajouter le Service</button>
         </div>
     </form>
+</div>

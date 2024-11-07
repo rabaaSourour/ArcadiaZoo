@@ -18,7 +18,7 @@ class ReviewController
     public function view() : array
     {
         return [
-            'page' => 'reviews',
+            'page' => 'review',
             'variables' => []
         ];
     }

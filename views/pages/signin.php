@@ -1,7 +1,3 @@
-<?php
-include_once __DIR__ . '/../base_view.php';
-require_once __DIR__ . '/../../vendor/autoload.php';
-?>
 <div class="container text-bg-secondary rounded mt-5">
     <form>
         <div class="mb-3 pt-3">
@@ -41,6 +37,6 @@ require_once __DIR__ . '/../../vendor/autoload.php';
     </form>
 
     <div class="text-center pb-3">
-        <a href="/ArcadiaZoo/views/Pages/myAccount.php">Mot de passe oublié ? Changer le mot de passe par ici !</a>
+        <a href="/user/update">Mot de passe oublié ? Changer le mot de passe par ici !</a>
     </div>
 </div>

@@ -63,11 +63,11 @@ class Report
         }
     }
     // Ajouter un report
-    public function addReport(string $status, string $food, string $foodQuantity, string $details)
+    public function addReport(string $status, string $food, string $foodQuantity, string $details, int $animalId)
     {
         try {
-            $stmt = $this->pdo->prepare("INSERT INTO veterinary_reports (status, food, food_quantity, details) VALUES (:status, :food, :food_quantity, :details)");
-            return $stmt->execute(['status' => $status, 'food' => $food, 'food_quantity' => $foodQuantity, 'details' => $details]);
+            $stmt = $this->pdo->prepare("INSERT INTO veterinary_reports (status, food, food_quantity, details, animals_id) VALUES (:status, :food, :food_quantity, :details, :animals_id)");
+            return $stmt->execute(['status' => $status, 'food' => $food, 'food_quantity' => $foodQuantity, 'details' => $details, 'animals_id' =>$animalId]);
         } catch (Exception $e) {
             // Gérer l'erreur ici
             echo "Erreur lors de l'ajout du report : " . $e->getMessage();

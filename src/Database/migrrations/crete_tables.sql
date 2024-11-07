@@ -76,3 +76,17 @@ CREATE TABLE openinghours (
     opening_time TIME,
     closing_time TIME
 );
+
+
+--Jointure 
+SELECT * 
+FROM habitats
+LEFT JOIN animals ON habitats.id = animals.habitat_id;
+
+SELECT *
+FROM animals
+LEFT JOIN animal_foods ON animals.id = animal_foods.animals_id;
+
+SELECT *
+FROM animals
+LEFT JOIN veterinary_reports ON animals.id = veterinary_reports.animals_id;

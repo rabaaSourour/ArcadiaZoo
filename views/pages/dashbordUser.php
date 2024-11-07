@@ -1,9 +1,4 @@
-<?php
-include_once __DIR__ . '/../base_view.php';
-require_once __DIR__ . '/../../vendor/autoload.php';
-include 'C:/xampp/htdocs/ArcadiaZoo/src/Database/DbConnection.php'; // Inclure le fichier de connexion à la base de données
-use App\Model\Horaires;
-use App\Controller\HorairesController;
+
 //session_start();
 //if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
   //  header('Location: login.php');
@@ -52,7 +47,7 @@ use App\Controller\HorairesController;
                 <div class="card-body">
                     <h5 class="card-title">Gestion des Services</h5>
                     <p class="card-text">Ajouter un nouveau service au zoo</p>
-                    <a href="/views/pages/addService.php" class="btn btn-primary">Accéder</a>
+                    <a href="/service/show" class="btn btn-primary">Accéder</a>
                 </div>
             </div>
         </div>
@@ -63,7 +58,7 @@ use App\Controller\HorairesController;
                 <div class="card-body">
                     <h5 class="card-title">Gestion des Horaires</h5>
                     <p class="card-text">Configurer les horaires d'ouverture et de fermeture du zoo.</p>
-                    <a href="OpeningHours.php" class="btn btn-primary">Accéder</a>
+                    <a href="/OpeningHours/show" class="btn btn-primary">Accéder</a>
                 </div>
             </div>
         </div>
@@ -83,7 +78,7 @@ use App\Controller\HorairesController;
                 <div class="card-body">
                     <h5 class="card-title">Gestion des views</h5>
                     <p class="card-text">Valider les avis </p>
-                    <a href="isValidateReview.php" class="btn btn-primary">Accéder</a>
+                    <a href="/review/show" class="btn btn-primary">Accéder</a>
                 </div>
             </div>
         </div>

@@ -70,7 +70,9 @@ class Habitat
     {
         try {
             $stmt = $this->pdo->prepare("INSERT INTO habitats (habitats.name, habitats.description, habitats.image) VALUES (:name, :description,  :image)");
-            return $stmt->execute(['name' => $name, 'description' => $description, 'image' => $imagePath]);
+            $stmt->execute(['name' => $name, 'description' => $description, 'image' => $imagePath]);
+            $lastHabitatId = $this->pdo->lastInsertId();
+            return $lastHabitatId;
         } catch (Exception $e) {
             // Gérer l'erreur ici
             echo "Erreur lors de l'ajout du habitat : " . $e->getMessage();

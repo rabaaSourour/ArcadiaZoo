@@ -30,3 +30,4 @@
             <button type="submit" class="btn btn-primary">Ajouter l'animal</button>
         </div>
     </form>
+</div>

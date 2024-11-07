@@ -67,6 +67,9 @@
                 </div>
             </div>
         <?php endforeach; ?>
+        <?php //if ($isAdmin): ?>
+        <button class="btn btn-primary" href="/habitat/new">Ajouter un nouveau habitat</button>
+        <?php //endif; ?>
     </div>
 </section>
 

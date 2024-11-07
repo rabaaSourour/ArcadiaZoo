@@ -8,7 +8,7 @@ use App\Model\Report;
 use App\Services\FileUploader;
 use PDO;
 
-class habitatController
+class HabitatController
 {
     private $habitatModel;
     private $animalModel;

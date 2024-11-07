@@ -7,6 +7,8 @@ use App\Model\Service;
 use App\Model\Habitat;
 use App\Model\Animal;
 use App\Model\Report;
+use App\Model\Food;
+use App\Model\User;
 use PDO;
 
 class ApiController
@@ -16,6 +18,8 @@ class ApiController
     private readonly habitat $habitatModel;
     private readonly Animal $animalModel;
     private readonly Report $reportModel;
+    private readonly Food $foodModel;
+    private readonly User $userModel;
 
     public function __construct(PDO $pdo)
     {
@@ -23,7 +27,9 @@ class ApiController
         $this->serviceModel = new Service($pdo);
         $this->habitatModel = new Habitat($pdo);
         $this->animalModel = new Animal($pdo);
-        $this->reportModel = new report($pdo);
+        $this->reportModel = new Report($pdo);
+        $this->foodModel = new Food($pdo);
+        $this->userModel = new User($pdo);
     }
 
     // URI : '/api/validateReview'
@@ -108,6 +114,32 @@ class ApiController
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
             $id = (int)$_GET['id'];
             $success = $this->reportModel->deleteReport($id);
+
+            // Répondre avec un format JSON
+            header('Content-Type: application/json');
+            echo json_encode(['success' => $success]);
+            exit();
+        }
+    }
+
+    public function deleteFood(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
+            $id = (int)$_GET['id'];
+            $success = $this->foodModel->deleteFood($id);
+
+            // Répondre avec un format JSON
+            header('Content-Type: application/json');
+            echo json_encode(['success' => $success]);
+            exit();
+        }
+    }
+
+    public function deleteUser(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
+            $id = (int)$_GET['id'];
+            $success = $this->userModel->deleteUser($id);
 
             // Répondre avec un format JSON
             header('Content-Type: application/json');

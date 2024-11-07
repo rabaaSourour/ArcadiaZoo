@@ -6,7 +6,7 @@ use App\Model\Animal;
 use App\Services\FileUploader;
 use PDO;
 
-class animalController
+class AnimalController
 {
     private $animalModel;
 
@@ -50,7 +50,7 @@ class animalController
             // Valider les données ici
             $name = htmlspecialchars($_POST['name']);
             $breed = htmlspecialchars($_POST['breed']);
-            $habitat_id = htmlspecialchars($_POST['habitat_id']);
+            $habitatId = htmlspecialchars($_POST['habitat_id']);
 
 
             // Gestion de l'upload de l'image
@@ -58,7 +58,7 @@ class animalController
                 FileUploader::upload($_FILES['image']);
                 $imagePath = FileUploader::getUploadedFilePath();
 
-                $this->animalModel->addAnimal($name, $breed, $imagePath, $habitat_id);
+                $this->animalModel->addAnimal($name, $breed, $imagePath, $habitatId);
             } else {
                 $message = 'L\'image du animal est obligatoire';
             }

@@ -1,5 +1,5 @@
-<div class="container text-bg-secondary rounded p-4">
-    <h1 class="text-center text-dark p-4">Changer le mot de passe</h1>
+<div class="container text-bg-secondary rounded mt-5">
+    <h1 class="text-center bg-primary rounded p-3">Changer le mot de passe</h1>
     <?php if (isset($user)) : ?>
         <form action="" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo htmlspecialchars($user['id']); ?>">
@@ -45,7 +45,7 @@
         </form>
 
         <div class="text-center pt-3">
-            <a href="/">Retour à la connexion</a>
+            <a href="/signin">Retour à la connexion</a>
         </div>
     <?php else : ?>
         <p class="text-center text-danger">Utilisateur non trouvé.</p>

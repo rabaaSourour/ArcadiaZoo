@@ -3,22 +3,26 @@
 namespace App\Controller;
 
 use App\Model\Animal;
+use App\Model\Habitat;
 use App\Services\FileUploader;
 use PDO;
 
 class AnimalController
 {
     private $animalModel;
+    private Habitat $habitatModel;
 
     public function __construct(PDO $pdo)
     {
         $this->animalModel = new Animal($pdo);
+        $this->habitatModel = new Habitat($pdo);
     }
 
     // URI : '/animal/show'
     public function show(): array
     {
         $animal = $this->animalModel->getAllAnimals();
+        $habitats = $this->habitatModel->getAllHabitats();
 
         $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
 
@@ -26,6 +30,7 @@ class AnimalController
             'page' => 'habitat',
             'variables' => [
                 'animals' => $animal,
+                'habitats' => $habitats,
                 'isAdmin' => $isAdmin,
             ]
         ];
@@ -63,10 +68,11 @@ class AnimalController
                 $message = 'L\'image du animal est obligatoire';
             }
         }
-
+        $habitats = $this->habitatModel->getAllHabitats();
         return [
             'page' => 'addAnimal',
             'variables' => [
+                'habitats' => $habitats,
                 'message' => $message,
             ]
         ];

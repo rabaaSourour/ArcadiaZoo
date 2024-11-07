@@ -17,9 +17,9 @@
         <div class="mb-3">
             <label for="animalHabitat_id" class="form-label">Habitat</label>
             <select class="form-select" id="animalHabitat_id" name="habitat_id" required>
-                <option value="1">Jungle</option>
-                <option value="2">Savane</option>
-                <option value="3">Marais</option>
+            <?php foreach($habitats as $habitat) : ?>
+                    <option value="<?= $habitat['id'] ?>"><?= $habitat['name'] ?></option>
+                <?php endforeach ?>
             </select>
         </div>
         <div class="mb-3">

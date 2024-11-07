@@ -51,8 +51,8 @@ class UserController
             $passWord = htmlspecialchars($_POST['password']);
             $role = htmlspecialchars($_POST['role']);
 
-            if (!empty($email) && !empty($password) && !empty($role)) {
-                $this->userModel->addUser($email, $password, $role);
+            if (!empty($email) && !empty($passWord) && !empty($role)) {
+                $this->userModel->addUser($email, $passWord, $role);
                 $message = 'Utilisateur ajouté avec succès';
             } else {
                 $message = 'Tous les champs doivent être remplis';

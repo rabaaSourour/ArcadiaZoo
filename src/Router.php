@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Controller\UserController;
 use App\Database\DbConnection;
 
 class Router
@@ -18,8 +19,8 @@ class Router
     private function parseUri(string $uri): void
     {
         // Redirection vers la page d'accueil si l'URI est vide
-        if ('/' === $uri) {
-            $uri = 'pages/home';
+        if ('/' === $uri || '' === $uri) {
+            $uri = '/home/show';
         }
 
         $path = parse_url($uri, PHP_URL_PATH);

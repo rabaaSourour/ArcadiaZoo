@@ -39,7 +39,7 @@ class ReportController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->reportModel->deleteReport($id); // Supprimer le report
-            header('Location: /habitat/show'); // Redirection après la suppression
+            header('Location: /report/show'); // Redirection après la suppression
             exit();
         }
     }
@@ -60,7 +60,7 @@ class ReportController
 
             if (!empty($animal) && !empty($status) && !empty($food) && !empty($foodQuantity) && !empty($details) && $animalId > 0) {
                 $this->reportModel->addReport($status, $food, $foodQuantity, $details, $animalId);
-                header('Location: /habitat/show'); // Redirection après l'ajout
+                header('Location: /report/show'); // Redirection après l'ajout
                 exit();
             } else {
                 $message = 'Tous les champs doivent être remplis';
@@ -100,7 +100,7 @@ class ReportController
             if ($animalId > 0 && !empty($status) && !empty($food) && !empty($foodQuantity) && !empty($details)) {
                 $this->reportModel->updateReport($id, $status, $food, $foodQuantity, $details, $animalId); // Mise à jour du report
 
-                header('Location: /habitat/show'); // Redirection après la mise à jour
+                header('Location: /report/show'); // Redirection après la mise à jour
                 exit();
             } else {
                 echo "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";

@@ -4,7 +4,7 @@ INSERT INTO
 VALUES
     (
         'jose.zooarcadia@gmail.com',
-        'Jose/1960&',
+        '**********',
         'admin'
     );
 
@@ -13,7 +13,7 @@ INSERT INTO
 VALUES
     (
         'vetetinaire.zooarcadia@hotmail.com',
-        'Vete/zoo&',
+        '*********',
         'veterinaire'
     );
 
@@ -22,8 +22,8 @@ INSERT INTO
 VALUES
     (
         'employe.zooarcadia@hotmail.com',
-        'Empl/zoo&',
-        'employee'
+        '*********',
+        'employe'
     );
 
 -- Insertion des habitats

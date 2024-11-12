@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr-FR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,23 +52,26 @@
                             <a class="nav-link" href="/service/show">Services</a>
 
                         </li>
-
-                        <li class="nav-item ms-auto p-2" data-show="disconnected">
-
-                            <a class="nav-link" href="/connection/signin"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
-                                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
-                                    <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
-                                </svg>
-                            </a>
+                        <li class="nav-item ms-auto p-2">
+                            <?php if (!isset($_SESSION['user_id'])): ?>
+                                <a class="nav-link" href="/signin/login">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
+                                        <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+                                        <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
+                                    </svg>
+                                </a>
+                            <?php endif; ?>
                         </li>
-                        <li class="nav-item" data-show="connected">
-                            <button class="nav-link" id="signout-btn"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
-                                    <path d="M7.5 1v7h1V1z" />
-                                    <path d="M3 8.812a5 5 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812" />
-                                </svg>
 
-                            </button>
-
+                        <li class="nav-item">
+                            <?php if (isset($_SESSION['user_id'])): ?>
+                                <a class="nav-link" href="/signin/logout">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+                                        <path d="M7.5 1v7h1V1z" />
+                                        <path d="M3 8.812a5 5 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812" />
+                                    </svg>
+                                </a>
+                            <?php endif; ?>
                         </li>
                     </ul>
                 </div>
@@ -76,10 +80,10 @@
         <!--fin du navbar-->
 
     </header>
-        <!-- partie main de la page-->
-        <main id="main-page">
-            <?php include $page; ?>
-        </main>
+    <!-- partie main de la page-->
+    <main id="main-page">
+        <?php include $page; ?>
+    </main>
 
     <!-- debut de footer-->
 
@@ -102,13 +106,13 @@
             </div>
 
 
-            </div>
-            <!--fin du footer-->
-        </footer>
-        
-        <script src ="https://code.jquery.com/jquery-3.7.1.min.js "></script>
-        <script src="/ArcadiaZoo/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
+        </div>
+        <!--fin du footer-->
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js "></script>
+    <script src="/ArcadiaZoo/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 
 </html>

@@ -15,7 +15,7 @@
         <div class="form-group">
             <label for="role">Rôle</label>
             <select class="form-control" id="role" name="role" required>
-                <option value="employe">Employé</option>
+                <option value="employe">Employé(e)</option>
                 <option value="veterinaire">Vétérinaire</option>
             </select>
         </div>

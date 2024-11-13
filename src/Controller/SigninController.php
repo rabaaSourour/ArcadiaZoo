@@ -18,13 +18,13 @@ class SigninController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = $_POST['email'] ?? null;
-            $password = $_POST['password'] ?? null;
+            $passWord = $_POST['password'] ?? null;
             $role = $_POST['role'] ?? null;
 
 
             $user = $this->signinModel->login($email, $role);
-            var_dump($email, $role, $user); 
-            if ($user && password_verify($password, $user['password'])) {
+            var_dump($passWord);
+            if ($user && password_verify($passWord, $user['password'])) {
                 session_start();
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['role'] = $user['role'];

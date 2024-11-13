@@ -1,22 +1,19 @@
-<?php
-include_once __DIR__ . '/../base_view.php';
-require_once __DIR__ . '/../../vendor/autoload.php';
-?>
 <div class="container text-bg-secondary rounded mt-5">
-    <form id="contactForm">
-        <div class="mb-3 pt-3">
-            <label for="EmailInput" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+<h1 class="text-center bg-primary rounded pb-3 pt-3">Contactez le Zoo</h1>
+    <form action="/Contact/sendMail" method="POST">
+        <div class="form-group">
+        <label for="email">Votre e-mail :</label>
+        <input type="email" id="email" name="email" placeholder="name@example.com" required>
         </div>
 
-        <div class="mb-3">
-            <label for="TitreInput" class="form-label">Titre</label>
-            <input type="text" class="form-control" id="titre">
+        <div class="form-group mb-3">
+        <label for="title">Titre :</label>
+        <input type="text" id="title" name="title" required>
         </div>
 
-        <div class="mb-3">
-            <label for="DescriptionText" class="form-label">Déscription</label>
-            <textarea class="form-control" id="description" rows="3" style="height: 300px;"></textarea>
+        <div class="form-group mb-3">
+        <label for="description">Description :</label>
+        <textarea id="description" name="description" rows="3" style="height: 300px;"></textarea>
         </div>
 
         <div class="text-center pb-3">

@@ -48,7 +48,7 @@ class UserController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Valider les données ici
             $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-            $passWord = htmlspecialchars($_POST['password']);
+            $passWord = ($_POST['password']);
             $role = htmlspecialchars($_POST['role']);
 
             if (!empty($email) && !empty($passWord) && !empty($role)) {

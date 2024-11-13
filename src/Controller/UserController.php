@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Model\User;
+use App\Services\Mailer;
+
 use PDO;
 
 class UserController
@@ -44,27 +46,28 @@ class UserController
     public function new(): array
     {
         $message = '';
-
+    
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Valider les données ici
             $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-            $passWord = ($_POST['password']);
+            $passWord = $_POST['password'];
             $role = htmlspecialchars($_POST['role']);
-
+    
             if (!empty($email) && !empty($passWord) && !empty($role)) {
-                $this->userModel->addUser($email, $passWord, $role);
-                $message = 'Utilisateur ajouté avec succès';
+                $userId = $this->userModel->addUser($email, $passWord, $role);
+                if ($userId) {
+                    $message = 'Utilisateur ajouté avec succès';
+    
+                    $mailer = new Mailer();
+                    $mailer->sendUserCreationEmail($email, $role);
+                } else {
+                    $message = 'Erreur lors de l\'ajout de l\'utilisateur.';
+                }
             } else {
                 $message = 'Tous les champs doivent être remplis';
             }
-        } else {
-            $message = 'Tous les champs doivent être remplis';
         }
-        //session_start();
-        //if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-           // header('Location: /user/show');
-            //exit;
-        //}
+
         return [
             'page' => 'addUser',
             'variables' => [

@@ -1,6 +1,6 @@
 <div class="container text-bg-secondary rounded mt-5">
 <h1 class="text-center bg-primary rounded pb-3 pt-3">Contactez le Zoo</h1>
-    <form action="/Contact/sendMail" method="POST">
+    <form action="/Contact/sendContactMail" method="POST">
         <div class="form-group">
         <label for="email">Votre e-mail :</label>
         <input type="email" id="email" name="email" placeholder="name@example.com" required>

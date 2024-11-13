@@ -1,5 +1,5 @@
 <div class="container text-bg-secondary rounded mt-5">
-    <h1 class="text-center bg-primary pb-3 pt-3">Créer un compte utilisateur</h1>
+    <h1 class="text-center bg-primary rounded pb-3 pt-3">Créer un compte utilisateur</h1>
     <?php if (!empty($message)): ?>
         <p><?php echo $message; ?></p>
     <?php endif; ?>

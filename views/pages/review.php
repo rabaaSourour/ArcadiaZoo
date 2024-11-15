@@ -1,6 +1,7 @@
 <div class="container text-bg-secondary rounded mt-5">
     <h2 class="card-title text-center text-bg-primary rounded p-3">Laissez un avis</h2>
     <form method="post" action="/review/addReview">
+    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
         <div class="mb-3 pt-3">
             <label for="PseudoInput" class="form-label">Pseudo</label>
             <input type="text" name="pseudo" class="form-control" id="PseudoInput" required>

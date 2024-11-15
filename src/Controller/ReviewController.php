@@ -41,6 +41,17 @@ class ReviewController
                 echo "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";
             }
         }
+        session_start();
+
+        if (!isset($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                die('Erreur CSRF : jeton invalide.');
+            }
+        }
+
 
         return $this->show();
     }

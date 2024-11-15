@@ -1,5 +1,6 @@
 <div class="container text-bg-secondary rounded mt-5">
     <form action="" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
         <div class="mb-3 pt-3">
             <select class="form-select" id="role" name="role" required>
                 <option selected>Connectez-vous en tant que</option>

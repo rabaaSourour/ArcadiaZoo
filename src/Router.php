@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Controller\UserController;
 use App\Database\DbConnection;
 
 class Router
@@ -46,19 +45,5 @@ class Router
     {
         return $this->method;
     }
-
-    /**
-     * Assainit les données d'entrée pour éviter les injections
-     * 
-     * @param array $input Données à assainir
-     * @return array Données assainies
-     */
-
-    private function sanitizeInput(array $input): array
-    {
-        foreach ($input as $key => $value) {
-            $input[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
-        }
-        return $input;
-    }
+    
 }

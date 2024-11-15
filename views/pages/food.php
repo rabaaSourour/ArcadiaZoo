@@ -18,15 +18,15 @@
                                 <p class="card-text text-muted">L'animal n'a pas encore été nourri !</p>
                             <?php endif; ?>
 
-                        <?php break; endif; // Si l'animal correspondant est trouvé, on arrête la recherche ?>
+                        <?php break; endif; ?>
                     <?php } ?>
                 </div>
                 <div>
 
-                    <?php //if ($isAdmin): ?>
+                    <?php if ($role === 'employe'): ?>
                         <button class="btn btn-warning" onclick="window.location.href='/food/update?id=<?= $food['id'] ?>'">Modifier</button>
                         <button class="btn btn-danger" onclick="deleteFood(<?= $food['id'] ?>)">Supprimer</button>
-                    <?php //endif; ?>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endforeach; ?>

@@ -22,35 +22,28 @@
 
         <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
             <div class="container-fluid">
-
                 <a class="navbar-brand"><img width="100px" src="/public/asset/images/logo.png"></a>
-
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item p-4">
-
                             <a class="nav-link active" aria-current="pages" href="/home/show">Acceuil</a>
-
                         </li>
                         <li class="nav-item p-4">
-
                             <a class="nav-link" href="/habitat/show">Habitats</a>
-
                         </li>
                         <li class="nav-item p-4">
-
                             <a class="nav-link" href="/contact/show">Contacts</a>
-
                         </li>
                         <li class="nav-item p-4">
-
                             <a class="nav-link" href="/service/show">Services</a>
-
+                        </li>
+                        <li class="nav-item p-4">
+                            <?php if (isset($_SESSION['user_id'])): ?>
+                                <a class="nav-link" href="/Dashboard/show">Dashboard</a>
+                            <?php endif; ?>
                         </li>
                         <li class="nav-item ms-auto p-2">
                             <?php if (!isset($_SESSION['user_id'])): ?>
@@ -62,7 +55,6 @@
                                 </a>
                             <?php endif; ?>
                         </li>
-
                         <li class="nav-item">
                             <?php if (isset($_SESSION['user_id'])): ?>
                                 <a class="nav-link" href="/signin/logout">

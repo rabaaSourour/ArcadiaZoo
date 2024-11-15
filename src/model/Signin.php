@@ -39,7 +39,6 @@ class Signin
     public function logout(){
 
     session_start();
-    session_unset();  // Supprime toutes les variables de session
     session_destroy();
     return header('location: /home/show');
     exit();

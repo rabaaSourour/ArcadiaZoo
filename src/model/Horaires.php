@@ -31,5 +31,4 @@ class Horaires
             echo "Aucune mise à jour effectuée.";
         }
     }
-    
 }

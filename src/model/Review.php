@@ -14,7 +14,7 @@ class Review
     }
 
     // Ajouter un avis
-    public function createReview($pseudo, $review)
+    public function new($pseudo, $review)
     {
         $stmt = $this->pdo->prepare('INSERT INTO reviews (pseudo, review, isValid) VALUES (:pseudo, :review, 0)');
         $stmt->execute([

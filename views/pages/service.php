@@ -15,10 +15,10 @@
                                 <h5 class="card-title"><?= htmlspecialchars($service['name']) ?></h5>
                                 <p class="card-text"><?= htmlspecialchars($service['description']) ?></p>
 
-                    <?php //if ($isAdmin): ?>
+                    <?php if ($role === 'admin'): ?>
                                     <button class="btn btn-warning" onclick="window.location.href='/service/update?id=<?= $service['id'] ?>'">Modifier</button>
                                     <button class="btn btn-danger" onclick="deleteService(<?= $service['id'] ?>)">Supprimer</button>
-                                <?php //endif; ?>
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -49,10 +49,10 @@
                                         <div class="card-body">
                                             <h5 class="card-title"><?= htmlspecialchars($service['name']) ?></h5>
                                             <p class="card-text"><?= htmlspecialchars($service['description']) ?></p>
-                                            <?php //if ($isAdmin): ?>
+                                            <?php if ($role === 'admin'): ?>
                                                 <button class="btn btn-warning" onclick="window.location.href='/pages/editServiceForm.php?id=<?= $service['id'] ?>'">Modifier</button>
                                                 <button class="btn btn-danger" onclick="deleteService(<?= $service['id'] ?>)">Supprimer</button>
-                                            <?php //endif; ?>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 <?php else: ?>
@@ -60,10 +60,10 @@
                                         <div class="card-body">
                                             <h5 class="card-title"><?= htmlspecialchars($service['name']) ?></h5>
                                             <p class="card-text"><?= htmlspecialchars($service['description']) ?></p>
-                                            <?php // if ($isAdmin): ?>
+                                            <?php if (in_array($role, ['admin', 'employe'])): ?>
                                                 <button class="btn btn-warning" onclick="window.location.href='/pages/editServiceForm.php?id=<?= $service['id'] ?>'">Modifier</button>
                                                 <button class="btn btn-danger" onclick="deleteService(<?= $service['id'] ?>)">Supprimer</button>
-                                            <?php //endif; ?>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -74,7 +74,6 @@
                         </div>
 
                     </div>
-
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>

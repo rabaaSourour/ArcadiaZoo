@@ -36,7 +36,6 @@ class HorairesController
         if (isset($data['id'], $data['openingTime'], $data['closingTime'])) {
             $this->horairesModel->updateHoraire($data['id'], $data['openingTime'], $data['closingTime']);
 
-            // Vérifier la méthode de requête
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (isset($_POST['horaires']) && is_array($_POST['horaires'])) {
                     foreach ($_POST['horaires'] as $data) {
@@ -44,7 +43,7 @@ class HorairesController
                             $this->horairesModel->updateHoraire($data['id'], $data['openingTime'], $data['closingTime']);
                         }
                     }
-                    // Redirection vers la page d'administration après la mise à jour
+
                     header('Location: /home/view');
                     exit();
                 } else {

@@ -12,13 +12,11 @@ class Router
 
     public function __construct(private string $requestMethod, string $uri)
     {
-        // Analyse l'URI pour déterminer le contrôleur et la méthode à appeler.
         $this->parseUri($uri);
     }
 
     private function parseUri(string $uri): void
     {
-        // Redirection vers la page d'accueil si l'URI est vide
         if ('/' === $uri || '' === $uri) {
             $uri = '/home/show';
         }
@@ -31,7 +29,6 @@ class Router
 
         $pdo = DbConnection::getPdo();
 
-        // Création d'une instance du contrôleur
         $controllerName = 'App\\Controller\\' . ucfirst($controllerAlias) . 'Controller';
 
         if(class_exists($controllerName)) {
@@ -59,7 +56,6 @@ class Router
 
     private function sanitizeInput(array $input): array
     {
-        // Utilisation de htmlspecialchars pour nettoyer chaque valeur de l'entrée
         foreach ($input as $key => $value) {
             $input[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
         }

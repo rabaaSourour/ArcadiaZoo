@@ -65,14 +65,13 @@ class Animal
             return false;
         }
     }
-    // Ajouter un animal
-    public function addAnimal(string $name, string $breed, string $imagePath, int $habitatId)
+
+      // Ajouter un animal
+    public function addAnimal(string $name, string $breed, string $imagePath, int $habitat_id)
     {
         try {
             $stmt = $this->pdo->prepare("INSERT INTO animals (animals.name, animals.breed, animals.image, animals.habitat_id) VALUES (:name, :breed,  :image, :habitat_id)");
-            $stmt->execute(['name' => $name, 'breed' => $breed, 'image' => $imagePath, 'habitat_id'=> $habitatId]);
-            $lastAnimalId = $this->pdo->lastInsertId();
-            return $lastAnimalId;
+            return $stmt->execute(['name' => $name, 'breed' => $breed, 'image' => $imagePath, 'habitat_id'=> $habitat_id]);
         } catch (Exception $e) {
             // Gérer l'erreur ici
             echo "Erreur lors de l'ajout du animal : " . $e->getMessage();

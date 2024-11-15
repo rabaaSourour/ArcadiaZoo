@@ -14,19 +14,21 @@ class ServiceController
     {
         $this->serviceModel = new Service($pdo);
     }
-    
+
     // URI : '/service/show'
     public function show(): array
     {
         $service = $this->serviceModel->getAllServices();
 
-        $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
+        $role = isset($_SESSION['role']) && in_array($_SESSION['role'], ['admin', 'employe'])
+            ? $_SESSION['role']
+            : null;
 
         return [
             'page' => 'service',
             'variables' => [
                 'services' => $service,
-                'isAdmin' => $isAdmin,
+                'role' => $role,
             ]
         ];
     }
@@ -35,24 +37,22 @@ class ServiceController
     public function delete($id): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->serviceModel->deleteService($id); // Supprimer le service
-            header('Location: service/show'); // Redirection après la suppression
+            $this->serviceModel->deleteService($id);
+            header('Location: service/show');
             exit();
         }
     }
 
     // URI : '/service/new'
-    public function new() : array
+    public function new(): array
     {
         $message = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Valider les données ici
             $name = htmlspecialchars($_POST['name']);
             $description = htmlspecialchars($_POST['description']);
             $category = htmlspecialchars($_POST['category']);
 
-            // Gestion de l'upload de l'image
             if (file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])) {
                 FileUploader::upload($_FILES['image']);
                 $imagePath = FileUploader::getUploadedFilePath();
@@ -74,32 +74,29 @@ class ServiceController
     // URI : '/service/update'
     public function update(): array
     {
-        $id = (int)($_GET['id'] ?? 0); // Récupération de l'ID du service
+        $id = (int)($_GET['id'] ?? 0);
 
-        $service = $this->serviceModel->getServiceById($id); // Récupération des données du service
+        $service = $this->serviceModel->getServiceById($id);
 
         if (!$service) {
             echo "Service non trouvé.";
             exit();
         }
 
-        // Traitement du formulaire d'édition
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Récupérer les données du formulaire
             $name = $_POST['name'] ?? '';
             $description = $_POST['description'] ?? '';
             $imagePath = null;
 
-            if(file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])) {
-                // Upload l'image sur le serveur
+            if (file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])) {
                 FileUploader::upload($_FILES['image']);
                 $imagePath = FileUploader::getUploadedFilePath();
             }
 
             if (!empty($name) && !empty($description)) {
-                $this->serviceModel->updateService($id, $name, $description, $imagePath); // Mise à jour du service
+                $this->serviceModel->updateService($id, $name, $description, $imagePath);
 
-                header('Location: /service/show'); // Redirection après la mise à jour
+                header('Location: /service/show');
                 exit();
             } else {
                 echo "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";

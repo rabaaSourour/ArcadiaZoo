@@ -24,7 +24,7 @@ class ContactController {
         $contact = new Contact($title, $description, $email);
         if ($contact->validate()) {
             $mailer = new Mailer();
-            $sendStatus = $mailer->sendContactEmail($contact); // Appel à la méthode sendEmail de Mailer
+            $sendStatus = $mailer->sendContactEmail($contact);
 
             if ($sendStatus) {
                 echo "<div id='message' class='text-center text-success pt-3'>Votre demande a bien été envoyée.</div>";

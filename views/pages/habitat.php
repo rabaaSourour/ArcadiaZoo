@@ -13,10 +13,10 @@
                     <p class="card-text"><?= nl2br(htmlspecialchars($habitat['description'])) ?></p>
                 </div>
                 <div>
-                    <?php //if ($isAdmin): ?>
+                    <?php if ($role === 'admin'): ?>
                         <button class="btn btn-warning" onclick="window.location.href='/habitat/update?id=<?= $habitat['id'] ?>'">Modifier</button>
                         <button class="btn btn-danger" onclick="deleteHabitat(<?= $habitat['id'] ?>)">Supprimer</button>
-                    <?php //endif; ?>
+                    <?php endif; ?>
                 </div>
                 <button onclick="toggleAnimals(<?= $habitat['id'] ?>)" class="btn btn-secondary mb-3">Afficher les animaux</button>
 
@@ -33,10 +33,10 @@
                                     <p class="card-text"><?= nl2br(htmlspecialchars($animal['breed'])) ?></p>
                                 </div>
                                 <div>
-                                    <?php //if ($isAdmin): ?>
+                                    <?php if ($role === 'admin'): ?>
                                         <button class="btn btn-warning" onclick="window.location.href='/animal/update?id=<?= $animal['id'] ?>'">Modifier</button>
                                         <button class="btn btn-danger" onclick="deleteAnimal(<?= $animal['id'] ?>)">Supprimer</button>
-                                    <?php //endif; ?>
+                                    <?php endif; ?>
                                 </div>
                                 <button onclick="toggleReports(<?= $animal['id'] ?>)" class="btn btn-secondary mb-3">Afficher les détails de l'animal</button>
                                 
@@ -52,10 +52,10 @@
                                                     <p class="card-text"><strong>Détails :</strong> <?= nl2br(htmlspecialchars($report['details'])) ?></p>
                                                 </div>
                                                 <div>
-                                                    <?php //if ($isAdmin): ?>
+                                                    <?php if ($role === 'admin'): ?>
                                                         <button class="btn btn-warning" onclick="window.location.href='/report/update?id=<?= $report['id'] ?>'">Modifier</button>
                                                         <button class="btn btn-danger" onclick="deleteReport(<?= $report['id'] ?>)">Supprimer</button>
-                                                    <?php //endif; ?>
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                         <?php endif; ?>
@@ -67,9 +67,9 @@
                 </div>
             </div>
         <?php endforeach; ?>
-        <?php //if ($isAdmin): ?>
+        <?php if ($role === 'admin'): ?>
         <button class="btn btn-primary" href="/habitat/new">Ajouter un nouveau habitat</button>
-        <?php //endif; ?>
+        <?php endif; ?>
     </div>
 </section>
 

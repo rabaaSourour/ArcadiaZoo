@@ -24,14 +24,16 @@ class AnimalController
         $animal = $this->animalModel->getAllAnimals();
         $habitats = $this->habitatModel->getAllHabitats();
 
-        $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
+        $role = isset($_SESSION['role']) && $_SESSION['role'] === 'admin'
+        ? $_SESSION['role']
+        : null;
 
         return [
             'page' => 'habitat',
             'variables' => [
                 'animals' => $animal,
                 'habitats' => $habitats,
-                'isAdmin' => $isAdmin,
+                'role' => $role,
             ]
         ];
     }
@@ -40,8 +42,8 @@ class AnimalController
     public function delete($id): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->animalModel->deleteAnimal($id); // Supprimer le animal
-            header('Location: /habitat/show'); // Redirection après la suppression
+            $this->animalModel->deleteAnimal($id);
+            header('Location: /habitat/show');
             exit();
         }
     }
@@ -52,13 +54,11 @@ class AnimalController
         $message = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Valider les données ici
+    
             $name = htmlspecialchars($_POST['name']);
             $breed = htmlspecialchars($_POST['breed']);
             $habitatId = htmlspecialchars($_POST['habitat_id']);
 
-
-            // Gestion de l'upload de l'image
             if (file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])) {
                 FileUploader::upload($_FILES['image']);
                 $imagePath = FileUploader::getUploadedFilePath();
@@ -81,32 +81,30 @@ class AnimalController
     // URI : '/animal/update'
     public function update(): array
     {
-        $id = (int)($_GET['id'] ?? 0); // Récupération de l'ID du animal
+        $id = (int)($_GET['id'] ?? 0);
 
-        $animal = $this->animalModel->getAnimalById($id); // Récupération des données du animal
+        $animal = $this->animalModel->getAnimalById($id);
 
         if (!$animal) {
             echo "animal non trouvé.";
             exit();
         }
 
-        // Traitement du formulaire d'édition
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Récupérer les données du formulaire
+            
             $name = $_POST['name'] ?? '';
             $breed = $_POST['breed'] ?? '';
             $imagePath = null;
 
             if (file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])) {
-                // Upload l'image sur le serveur
                 FileUploader::upload($_FILES['image']);
                 $imagePath = FileUploader::getUploadedFilePath();
             }
 
             if (!empty($name) && !empty($breed)) {
-                $this->animalModel->updateAnimal($id, $name, $breed, $imagePath); // Mise à jour du animal
+                $this->animalModel->updateAnimal($id, $name, $breed, $imagePath);
 
-                header('Location: /habitat/show'); // Redirection après la mise à jour
+                header('Location: /habitat/show');
                 exit();
             } else {
                 echo "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";

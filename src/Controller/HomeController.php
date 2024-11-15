@@ -20,13 +20,18 @@ class HomeController
     public function show() : array
     {
         $getPendingReviews = $this->reviewModel->getApprovedReviews();
-        $horaires = $this->horairesModel->getHoraires();;
+        $horaires = $this->horairesModel->getHoraires();
+
+        $role = isset($_SESSION['role']) && $_SESSION['role'] === 'admin'
+            ? $_SESSION['role']
+            : null;
 
         return [
             'page' => 'home',
             'variables' => [
                 'getPendingReviews' => $getPendingReviews,
                 'horaires' => $horaires,
+                'role' => $role,
             ]
         ];
     }

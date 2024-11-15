@@ -23,13 +23,15 @@ class ReportController
     {
         $report = $this->reportModel->getAllReports();
 
-        $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
+        $role = isset($_SESSION['role']) && $_SESSION['role'] === 'veterinaire'
+            ? $_SESSION['role']
+            : null;
 
         return [
             'page' => 'habitat',
             'variables' => [
                 'reports' => $report,
-                'isAdmin' => $isAdmin,
+                'role' => $role,
             ]
         ];
     }
@@ -38,8 +40,8 @@ class ReportController
     public function delete($id): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->reportModel->deleteReport($id); // Supprimer le report
-            header('Location: /report/show'); // Redirection après la suppression
+            $this->reportModel->deleteReport($id);
+            header('Location: /report/show');
             exit();
         }
     }
@@ -51,7 +53,6 @@ class ReportController
         $animal = $this->animalModel->getAllAnimals();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Valider les données ici
             $status = htmlspecialchars($_POST['status']);
             $food = htmlspecialchars($_POST['food']);
             $foodQuantity = htmlspecialchars($_POST['food_quantity']);
@@ -60,7 +61,7 @@ class ReportController
 
             if (!empty($animal) && !empty($status) && !empty($food) && !empty($foodQuantity) && !empty($details) && $animalId > 0) {
                 $this->reportModel->addReport($status, $food, $foodQuantity, $details, $animalId);
-                header('Location: /report/show'); // Redirection après l'ajout
+                header('Location: /report/show');
                 exit();
             } else {
                 $message = 'Tous les champs doivent être remplis';
@@ -71,7 +72,8 @@ class ReportController
             'page' => 'addReport',
             'variables' => [
                 'message' => $message,
-                'animals' => $animal,           ]
+                'animals' => $animal,           
+                ]
         ];
     }
 
@@ -79,18 +81,16 @@ class ReportController
     // URI : '/report/update'
     public function update(): array
     {
-        $id = (int)($_GET['id'] ?? 0); // Récupération de l'ID du report
+        $id = (int)($_GET['id'] ?? 0);
 
-        $report = $this->reportModel->getReportById($id); // Récupération des données du report
+        $report = $this->reportModel->getReportById($id);
 
         if (!$report) {
             echo "report non trouvé.";
             exit();
         }
-
-        // Traitement du formulaire d'édition
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Récupérer les données du formulaire
             $status = htmlspecialchars($_POST['status'] ?? '');
             $food = htmlspecialchars($_POST['food'] ?? '');
             $foodQuantity = htmlspecialchars($_POST['food_quantity'] ?? '');
@@ -98,9 +98,9 @@ class ReportController
             $animalId = (int) htmlspecialchars($_POST['animals_id'] ?? '');
 
             if ($animalId > 0 && !empty($status) && !empty($food) && !empty($foodQuantity) && !empty($details)) {
-                $this->reportModel->updateReport($id, $status, $food, $foodQuantity, $details, $animalId); // Mise à jour du report
+                $this->reportModel->updateReport($id, $status, $food, $foodQuantity, $details, $animalId);
 
-                header('Location: /report/show'); // Redirection après la mise à jour
+                header('Location: /report/show');
                 exit();
             } else {
                 echo "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";

@@ -15,9 +15,8 @@ class ReportController
     {
         $this->reportModel = new Report($pdo);
         $this->animalModel = new Animal($pdo);
-
     }
-    
+
     // URI : '/habitat/show'
     public function show(): array
     {
@@ -32,6 +31,25 @@ class ReportController
             'variables' => [
                 'reports' => $report,
                 'role' => $role,
+            ]
+        ];
+    }
+
+    public function showAdmin(): array
+    {
+        $report = $this->reportModel->getAllReports();
+        $animal = $this->animalModel->getAllAnimals();
+
+        $role = isset($_SESSION['role']) && $_SESSION['role'] === 'admin'
+            ? $_SESSION['role']
+            : null;
+
+        return [
+            'page' => 'report',
+            'variables' => [
+                'reports' => $report,
+                'role' => $role,
+                'animals' => $animal
             ]
         ];
     }
@@ -72,8 +90,8 @@ class ReportController
             'page' => 'addReport',
             'variables' => [
                 'message' => $message,
-                'animals' => $animal,           
-                ]
+                'animals' => $animal,
+            ]
         ];
     }
 
@@ -89,7 +107,7 @@ class ReportController
             echo "report non trouvé.";
             exit();
         }
-        
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $status = htmlspecialchars($_POST['status'] ?? '');
             $food = htmlspecialchars($_POST['food'] ?? '');
@@ -114,4 +132,5 @@ class ReportController
             ]
         ];
     }
+
 }

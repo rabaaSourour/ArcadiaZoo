@@ -16,10 +16,13 @@ class SigninController
 
     public function login()
     {
-        session_start();
+
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
                 die('Erreur CSRF : jeton invalide.');
             }
 
@@ -35,6 +38,7 @@ class SigninController
                     $_SESSION['role'] = $user['role'];
                     header('Location: /home/show');
                     exit;
+                    unset($_SESSION['csrf_token']);
                 } else {
                     echo 'Email ou mot de passe incorrect';
                     $this->incrementLoginAttempts();

@@ -73,18 +73,29 @@
                     </div>
                 </div>
             </div>
-        <?php endif; ?>
 
-        <!-- Card Consultation de la nourriture -->
-        <div class="col-lg-4 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Consulter la nourriture des animaux</h5>
-                    <p class="card-text">Voir ce que l'animal a pu manger</p>
-                    <a href="/food/show" class="btn btn-dark">Accéder</a>
+            <!-- Card Consultation de la nourriture -->
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Consulter la nourriture des animaux</h5>
+                        <p class="card-text">Voir ce que l'animal a pu manger</p>
+                        <a href="/food/show" class="btn btn-dark">Accéder</a>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <!-- Card Consultation de les rapports -->
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Consulter les rapports</h5>
+                        <p class="card-text">Voir les Comptes rendus vétérinaires</p>
+                        <a href="/report/showAdmin" class="btn btn-dark">Accéder</a>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
 
         <!-- Pour le Vétérinaire seulement -->
         <?php if ($role === 'veterinaire'): ?>

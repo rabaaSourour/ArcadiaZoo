@@ -33,13 +33,13 @@ class ApiController
     }
 
     // URI : '/api/validateReview'
-    public function validateReview() : array 
+    public function validateReview(): array
     {
         // Vérifiez si l'ID est passé en POST pour la validation
         if (isset($_POST['id'])) {
             $id = (int)$_POST['id'];
             $this->reviewModel->approveReview($id);
-            
+
             // Réponse pour indiquer que la validation a été effectuée
             $status = ['status' => 'success', 'message' => 'Un message de succès'];
         } else {
@@ -51,12 +51,12 @@ class ApiController
     }
 
     // URI : '/api/deleteReview'
-    public function deleteReview() : array
+    public function deleteReview(): array
     {
         if (isset($_POST['id'])) {
             $id = (int)$_POST['id'];
             $this->reviewModel->deleteReview($id);
-            
+
             // Réponse pour indiquer que la validation a été effectuée
             $status = ['status' => 'success', 'message' => 'Un message de succès'];
         } else {

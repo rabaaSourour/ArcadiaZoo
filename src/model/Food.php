@@ -14,14 +14,12 @@ class Food
         $this->pdo = $pdo;
     }
 
-    // Récupérer tous les foods
     public function getAllFoods()
     {
         $stmt = $this->pdo->query("SELECT * FROM animal_foods");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Récupérer un food par son ID
     public function getFoodById($id)
     {
         $stmt = $this->pdo->prepare("SELECT * FROM animal_foods WHERE id = :id");
@@ -32,7 +30,6 @@ class Food
         return $food;
     }
 
-    // Mettre à jour un food
     public function updateFood (int $id, string $food, string $quantity)
     {
         try {
@@ -54,32 +51,28 @@ class Food
 
             return $stmt->execute();
         } catch (Exception $e) {
-            // Gérer l'erreur ici
             echo "Erreur lors de la mise à jour du food : " . $e->getMessage();
             return false;
         }
     }
-    // Ajouter un food
+
     public function addFood(string $food, string $quantity, int $animalId)
     {
         try {
             $stmt = $this->pdo->prepare("INSERT INTO animal_foods (food, quantity, animals_id) VALUES (:food, :quantity, :animals_id)");
             return $stmt->execute(['food' => $food, 'quantity' => $quantity, 'animals_id' => $animalId]);
         } catch (Exception $e) {
-            // Gérer l'erreur ici
             echo "Erreur lors de l'ajout du nourriture : " . $e->getMessage();
             return false;
         }
     }
 
-    // Supprimer un food
     public function deleteFood(int $id): bool
     {
         try {
             $stmt = $this->pdo->prepare("DELETE FROM animal_foods WHERE id = :id");
             return $stmt->execute(['id' => $id]);
         } catch (Exception $e) {
-            // Gérer l'erreur ici
             echo "Erreur lors de la suppression du nourriture : " . $e->getMessage();
             return false;
         }

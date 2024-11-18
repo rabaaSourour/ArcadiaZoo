@@ -5,17 +5,21 @@ namespace App\Controller;
 use App\Model\Animal;
 use App\Model\Habitat;
 use App\Services\FileUploader;
+use App\Services\MongoDBService;
+
 use PDO;
 
 class AnimalController
 {
     private $animalModel;
     private Habitat $habitatModel;
+    private $mongoDBService;
 
-    public function __construct(PDO $pdo)
+    public function __construct(PDO $pdo, MongoDbService $mongoDBService)
     {
         $this->animalModel = new Animal($pdo);
         $this->habitatModel = new Habitat($pdo);
+        $this->mongoDBService = $mongoDBService;
     }
 
     // URI : '/animal/show'
@@ -25,8 +29,8 @@ class AnimalController
         $habitats = $this->habitatModel->getAllHabitats();
 
         $role = isset($_SESSION['role']) && $_SESSION['role'] === 'admin'
-        ? $_SESSION['role']
-        : null;
+            ? $_SESSION['role']
+            : null;
 
         return [
             'page' => 'habitat',
@@ -43,18 +47,19 @@ class AnimalController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->animalModel->deleteAnimal($id);
+            $this->mongoDBService->synchronize();
             header('Location: /habitat/show');
             exit();
         }
     }
 
     // URI : '/animal/new'
-    public function new() : array
+    public function new(): array
     {
         $message = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+
             $name = htmlspecialchars($_POST['name']);
             $breed = htmlspecialchars($_POST['breed']);
             $habitatId = htmlspecialchars($_POST['habitat_id']);
@@ -69,6 +74,7 @@ class AnimalController
             }
         }
         $habitats = $this->habitatModel->getAllHabitats();
+        $this->mongoDBService->synchronize();
         return [
             'page' => 'addAnimal',
             'variables' => [
@@ -91,7 +97,7 @@ class AnimalController
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
+
             $name = $_POST['name'] ?? '';
             $breed = $_POST['breed'] ?? '';
             $imagePath = null;

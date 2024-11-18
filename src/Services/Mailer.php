@@ -15,7 +15,6 @@ class Mailer
         $this->mail = new PHPMailer(true);
 
         try {
-            // Configurations du serveur SMTP
             $this->mail->isSMTP();
             $this->mail->Host = 'smtp.gmail.com';
             $this->mail->SMTPAuth = true;
@@ -23,13 +22,12 @@ class Mailer
             $this->mail->Password = 'nybo ddwa nwoi pqad';
             $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $this->mail->Port = 587;
-            $this->mail->isHTML(true); // Configuration par défaut en HTML
+            $this->mail->isHTML(true);
         } catch (Exception $e) {
             error_log("Erreur de configuration du serveur SMTP : " . $e->getMessage());
         }
     }
 
-    // Méthode pour envoyer un email de contact
     public function sendContactEmail(Contact $contact)
     {
         try {
@@ -47,7 +45,6 @@ class Mailer
         }
     }
 
-    // Méthode pour envoyer un email de création de compte utilisateur
     public function sendUserCreationEmail(string $userEmail, string $userRole)
     {
         try {
@@ -56,10 +53,10 @@ class Mailer
 
             $this->mail->Subject = "Bienvenue dans l'équipe de Zoo Arcadia!";
             $this->mail->Body = "<p>Bonjour,</p>
-                                 <p>Votre compte de <strong>{$userRole}</strong> a été créé avec succès.</p>
-                                 <p>Votre nom d'utilisateur est : {$userEmail}</p>
-                                 <p>Pour obtenir votre mot de passe, veuillez contacter l'administrateur.</p>
-                                 <p>Cordialement, <br>L'équipe de Zoo Arcadia</p>";
+                                <p>Votre compte de <strong>{$userRole}</strong> a été créé avec succès.</p>
+                                <p>Votre nom d'utilisateur est : {$userEmail}</p>
+                                <p>Pour obtenir votre mot de passe, veuillez contacter l'administrateur.</p>
+                                <p>Cordialement, <br>L'équipe de Zoo Arcadia</p>";
 
             $this->mail->send();
             return true;

@@ -7,7 +7,6 @@ class Dashboard
     private int $id;
     private string $role;
 
-    // Constructeur pour initialiser les propriétés de l'utilisateur
     public function __construct(int $id, string $role)
     {
         $this->id = $id;
@@ -28,7 +27,6 @@ class Dashboard
         return isset($_SESSION['role']) && $_SESSION['role'] === 'employe';
     }
 
-    // Méthode pour obtenir le rôle de l'utilisateur
     public function getRole(): string
     {
         return $this->role;

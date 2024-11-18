@@ -6,6 +6,7 @@
         "files": ["src/functions.php"]
     },
     "require": {
-        "phpmailer/phpmailer": "^6.9"
+        "phpmailer/phpmailer": "^6.9",
+        "mongodb/mongodb": "^1.19"
     }
 }

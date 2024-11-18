@@ -24,7 +24,6 @@ class Horaires
         $stmt = $this->pdo->prepare('UPDATE openinghours SET openingTime = ?, closingTime = ? WHERE id = ?');
         $stmt->execute([$openingTime, $closingTime, $id]);
     
-        // Vérifier si la requête a bien fonctionné
         if ($stmt->rowCount() > 0) {
             echo "Mise à jour réussie.";
         } else {

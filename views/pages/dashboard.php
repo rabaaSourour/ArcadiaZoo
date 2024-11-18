@@ -69,7 +69,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Consultations des Animaux :</h5>
                         <p class="card-text">Voir les animaux les plus consultés.</p>
-                        <a href="#" class="btn btn-dark">Accéder</a>
+                        <a href="/animalConsultation/show" class="btn btn-dark">Accéder</a>
                     </div>
                 </div>
             </div>

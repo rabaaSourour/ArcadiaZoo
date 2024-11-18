@@ -28,7 +28,7 @@
                                 <div>
                                     <img src="<?= htmlspecialchars($animal['image']) ?>" class="card-img rounded p-4" alt="Image de l'animal">
                                 </div>
-                                <div class="card-body habitat">
+                                <div class="card animal-card">
                                     <h5 class="card-title"><?= htmlspecialchars($animal['name']) ?></h5>
                                     <p class="card-text"><?= nl2br(htmlspecialchars($animal['breed'])) ?></p>
                                 </div>

@@ -19,13 +19,31 @@ function deleteAnimal(id) {
 
 
 function toggleAnimals(habitatId) {
-    // Récupère l'élément de la liste d'animaux correspondant à habitatId
     const selectedAnimalList = document.getElementById(`animals-${habitatId}`);
-    
-    // Alterne l'affichage pour la liste sélectionnée
+
     if (selectedAnimalList.style.display === "none" || selectedAnimalList.style.display === "") {
         selectedAnimalList.style.display = "block";
     } else {
         selectedAnimalList.style.display = "none";
     }
 }
+
+document.querySelectorAll('.animal-card').forEach(card => {
+    card.addEventListener('click', () => {
+        const animalName = card.dataset.animalName;
+
+        fetch('/animalConsultation/increment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: animalName })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message);
+        })
+        .catch(error => console.error('Erreur:', error));
+    });
+});
+

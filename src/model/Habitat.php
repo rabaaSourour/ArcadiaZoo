@@ -14,15 +14,12 @@ class Habitat
         $this->pdo = $pdo;
     }
 
-    
-    // Récupérer tous les habitats
     public function getAllHabitats()
     {
         $stmt = $this->pdo->query("SELECT * FROM habitats");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Récupérer un habitat par son ID
     public function getHabitatById($id)
     {
         $stmt = $this->pdo->prepare("SELECT * FROM habitats WHERE id = :id");
@@ -33,7 +30,6 @@ class Habitat
         return $habitat;
     }
 
-    // Mettre à jour un habitat
     public function updateHabitat($id, $name, $description, ?string $imagePath = null)
     {
         try {
@@ -60,12 +56,11 @@ class Habitat
             
             return $stmt->execute();
         } catch (Exception $e) {
-            // Gérer l'erreur ici
             echo "Erreur lors de la mise à jour du habitat : " . $e->getMessage();
             return false;
         }
     }
-    // Ajouter un habitat
+
     public function addHabitat(string $name, string $description, string $imagePath)
     {
         try {
@@ -74,20 +69,17 @@ class Habitat
             $lastHabitatId = $this->pdo->lastInsertId();
             return $lastHabitatId;
         } catch (Exception $e) {
-            // Gérer l'erreur ici
             echo "Erreur lors de l'ajout du habitat : " . $e->getMessage();
             return false;
         }
     }
 
-    // Supprimer un habitat
     public function deleteHabitat($id)
     {
         try {
             $stmt = $this->pdo->prepare("DELETE FROM habitats WHERE id = :id");
             return $stmt->execute(['id' => $id]);
         } catch (Exception $e) {
-            // Gérer l'erreur ici
             echo "Erreur lors de la suppression de l'habitat : " . $e->getMessage();
             return false;
         }

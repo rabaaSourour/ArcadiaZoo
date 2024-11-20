@@ -202,75 +202,7 @@ VALUES
         'Charline',
         'Incroyable expérience, à ne pas manquer !',
         '0'
-    );
-
-INSERT INTO
-    reviews (pseudo, review, isValid)
-VALUES
-    (
-        'Diana',
-        'L’endroit est propre et bien entretenu.',
-        '1'
-    );
-
--- Insertion de raport veterinaire 
-INSERT INTO
-    `veterinary_reports` (
-        `status`,
-        `food`,
-        `food_quantity`,
-        `details`,
-        `last_check`,
-        `animals_id`,
-        `users_id`
-    )
-VALUES
-    (
-        'En bonne santé générale, léger surpoids observé',
-        'viande de boeuf, poisson, supplément en taurine.',
-        '4kg par jour.',
-        'Léger surplus de poids, recommandé d\'augmenter l\'activité physique et ajuster la ration alimentaire. Pas de blessures ou signes de maladie. Examen sanguin : Paramètres normaux, fonction rénale et hépatique en bon état.',
-        '2024-06-15',
-        1,
-        2
-    );
-
-INSERT INTO
-    `veterinary_reports` (
-        `status`,
-        `food`,
-        `food_quantity`,
-        `details`,
-        `last_check`,
-        `animals_id`,
-        `users_id`
-    )
-VALUES
-    (
-        'En bonne santé générale, comportement alerte et actif',
-        'fruits variés (bananes, pommes, oranges), légumes (carottes, poivrons), supplément en calcium',
-        '500g par jour.',
-        'Aucune blessure apparente, membres en bonne condition. Bien hydraté, pas de signe de stress ou d\'anxiété apparents.',
-        '2024-06-15',
-        2,
-        2
-    );
-
-INSERT INTO
-    `veterinary_reports` (
-        `status`,
-        `food`,
-        `food_quantity`,
-        `details`,
-        `last_check`,
-        `animals_id`,
-        `users_id`
-    )
-VALUES
-    (
-        'En bonne santé générale, plumage vif et intact.',
-        'fruits variés (papaye, mangue, banane), insectes (grillons, vers de farine), granulés spécialisés pour oiseaux',
-        '200g par jour.',
+    );_
         'Excellente condition physique générale, recommandé de maintenir la diversité alimentaire pour assurer l\'apport nutritionnel complet. Bonne musculature, pas de signes de blessures ou d\'infections.',
         '2024-06-15',
         3,

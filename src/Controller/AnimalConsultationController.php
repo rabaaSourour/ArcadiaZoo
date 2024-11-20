@@ -16,8 +16,12 @@ class AnimalConsultationController
     public function increment($name): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->consultationModel->incrementConsultation($name);
-            echo json_encode(['message' => "Consultation ajoutée pour $name."]);
+            $data = json_decode(file_get_contents('php://input'), true);
+            if (isset($data['name']) && is_string($data['name'])) {
+                $name = $data['name'];
+                $this->consultationModel->incrementConsultation($name);
+                echo json_encode(['message' => "Consultation ajoutée pour $name."]);
+            }
         }
     }
 

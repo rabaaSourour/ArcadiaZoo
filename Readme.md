@@ -1,7 +1,9 @@
 # ZooArcadia
+
 Zoo Arcadia est une application de gestion de zoo développée en PHP. Elle permet de gérer les animaux, les habitats, les services, les utilisateurs, les horaires d'ouverture, les avis, et plus encore.
 
 # Table des matières
+
  . Description
  .Technologies utilisées
  .Installation
@@ -12,7 +14,6 @@ Zoo Arcadia est une application de gestion de zoo développée en PHP. Elle perm
 
 # Description :
 ArcadiaZoo est une application web interactive conçue pour gérer efficacement un zoo. Elle combine plusieurs technologies modernes pour fournir :
-
 Une expérience utilisateur fluide.
 Une gestion optimisée des habitats, des animaux, des avis visiteurs, des services proposés, et des rapports vétérinaires.
 Des interactions dynamiques via API pour des tâches rapides comme la gestion des animaux ou la suppression des avis.
@@ -20,19 +21,21 @@ L'application offre des interfaces pour les administrateurs, les employés et le
 
 # Technologies utilisées
 ## Front-end :
-HTML5/CSS3 : Structure et style des pages.
-Bootstrap 5 : Framework CSS pour une interface utilisateur réactive.
-JavaScript Vanilla : Interactions dynamiques sur les pages (ex. : chargement dynamique des animaux).
+
+ . HTML5/CSS3 : Structure et style des pages.
+ . Bootstrap 5 : Framework CSS pour une interface utilisateur réactive.
+ . JavaScript Vanilla : Interactions dynamiques sur les pages.
+ 
 ## back-end :
-PHP Vanilla : Gestion des requêtes et logique serveur.
-PHP Mailer : Gestion des emails pour le formulaire de contact et la création de comptes.
-API REST : Communication entre le client et le serveur pour des actions rapides (ex. : suppression, consultation).
+ . PHP Vanilla : Gestion des requêtes et logique serveur.
+ . PHP Mailer : Gestion des emails pour le formulaire de contact et la création de comptes.
+ . API REST : Communication entre le client et le serveur pour des actions rapides (ex. : suppression, consultation).
 Base de données
-MySQL : Base de données relationnelles pour les habitats, les animaux et les utilisateurs.
-MongoDB : Stockage le nombre de consultation par animal (NoSQL).
-Outils supplémentaires
-Composer : Gestionnaire de dépendances PHP.
-Docker : Conteneurisation du projet pour une installation simplifiée.
+ . MySQL : Base de données relationnelles pour les habitats, les animaux et les utilisateurs.
+ . MongoDB : Stockage le nombre de consultation par animal (NoSQL).
+ . Composer : Gestionnaire de dépendances PHP.
+ . Docker : Conteneurisation du projet pour une installation simplifiée.
+
 # Installation
 Prérequis
 PHP 8.2
@@ -41,6 +44,7 @@ MongoDB
 Composer
 Docker
 npm
+
 # Étapes
 Clonez le projet :
 
@@ -102,7 +106,6 @@ Vétérinaire
 Ajouter des rapports sur la santé des animaux.
 
 ## Contributions
-Forkez le projet.
 Créez une branche pour vos modifications :
 
 git checkout -b feature/nom-de-la-fonctionnalite

@@ -1,7 +1,5 @@
-// Select the database to use.
 use('Arcadia');
 
-// Insert a few documents into the sales collection.
 db.getCollection('animalConsultation').insertMany([
     { animal_name: "Panthera onca", consultations: 10 },
     { animal_name: "Alouatta", consultations: 5 },

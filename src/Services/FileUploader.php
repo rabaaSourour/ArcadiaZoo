@@ -11,7 +11,7 @@ class FileUploader
     {
         $targetDir = __DIR__ . '/../../public/asset/uploaded_images/';
         $imagePath = $targetDir . basename($file['name']);
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        $allowedTypes = ['image/jpeg', 'image/jpg', 'image/gif'];
         if (in_array($file['type'], $allowedTypes)) {
             if (!move_uploaded_file($file['tmp_name'], $imagePath)) {
                 echo "Erreur lors du téléchargement de l'image.";

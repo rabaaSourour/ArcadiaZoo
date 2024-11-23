@@ -33,7 +33,7 @@ VALUES
     (
         'Jungle',
         'La jungle, une forêt tropicale dense et luxuriante, abrite une biodiversité exceptionnelle et joue un rôle vital dans la régulation climatique et la préservation de la biodiversité. Cependant, elle est confrontée à des menaces telles que la déforestation et le changement climatique. La conservation de cet habitat crucial est essentielle pour maintenir l\'équilibre écologique de la planète.',
-        '/public/asset/images/Jungle.png'
+        '/public/asset/images/Jungle.jpg'
     );
 
 INSERT INTO
@@ -42,7 +42,7 @@ VALUES
     (
         'Savane',
         'La savane est un lieu qui recrée l\'écosystème de la savane de manière durable pour abriter et exposer une diversité d\'animaux. Elle met l\'accent sur la conservation, l\'éducation et la recherche, tout en favorisant une observation respectueuse des animaux.',
-        '/public/asset/images/savane.png'
+        '/public/asset/images/savane.jpg'
     );
 
 INSERT INTO
@@ -51,7 +51,7 @@ VALUES
     (
         'Marais',
         'Le Marais est un habitat écologique typique des zones humides, caractérisé par une grande diversité biologique. Il comprend des marécages, des étangs, des tourbières et des zones de végétation dense. Ces écosystèmes fournissent un habitat vital pour de nombreuses espèces de plantes et d\'animaux. Le Marais agit également comme un important réservoir de biodiversité et contribue à la régulation du cycle de l\'eau et à la filtration des polluants. Sa préservation est essentielle pour maintenir l\'équilibre écologique et protéger la vie sauvage.',
-        '/public/asset/images/Marais.png'
+        '/public/asset/images/Marais.jpg'
     );
 
 -- Insertion des animaux
@@ -61,73 +61,73 @@ VALUES
     (
         'Panthera onca',
         'Le plus grand félin des Amériques, le jaguar est un prédateur solitaire puissant. Il est reconnaissable à son pelage tacheté.',
-        '/public/asset/images/jaguar.png',
+        '/public/asset/images/jaguar.jpg',
         1
     ),
     (
         'Alouatta',
         'Connu pour ses cris puissants qui peuvent être entendus à plusieurs kilomètres, ces singes vivent en groupes sociaux.',
-        '/public/asset/images/singe.png',
+        '/public/asset/images/singe.jpg',
         1
     ),
     (
         'Ramphastos',
         'Reconnaissable à son grand bec coloré, le toucan est un oiseau sociable qui vit en petits groupes.',
-        '/public/asset/images/toucan.png',
+        '/public/asset/images/toucan.jpg',
         1
     ),
     (
         'Bradypus',
         'Cet animal lent passe la plupart de son temps accroché aux branches des arbres, où il se nourrit et dort.',
-        '/public/asset/images/paresseux.png',
+        '/public/asset/images/paresseux.jpg',
         1
     ),
     (
         'Panthera leo',
         'Le roi de la savane, le lion est un grand félin social qui vit en groupes appelés hardes.',
-        '/public/asset/images/lion.png',
+        '/public/asset/images/lion.jpg',
         2
     ),
     (
         'Loxodonta',
         'Le plus grand animal terrestre, les éléphants sont connus pour leur intelligence, leur mémoire exceptionnelle et leurs structures sociales complexes.',
-        '/public/asset/images/elephant.png',
+        '/public/asset/images/elephant.jpg',
         2
     ),
     (
         'Acinonyx jubatus',
         'Le mammifère terrestre le plus rapide, capable d\'atteindre des vitesses allant jusqu\'à 100 km/h en courtes rafales.',
-        '/public/asset/images/guepard.png',
+        '/public/asset/images/guepard.jpg',
         2
     ),
     (
         'Equus quagga',
         'Connu pour ses rayures distinctives, chaque zèbre a un motif unique. Ils vivent en groupes et migrent sur de longues distances pour trouver de l\'eau et des pâturages.',
-        '/public/asset/images/zebre.png',
+        '/public/asset/images/zebre.jpg',
         2
     ),
     (
         'Alligator mississippiensis',
         'Reptile imposant, l\'alligator est un prédateur apex des marais d\'Amérique du Nord.',
-        '/public/asset/images/alligator.png',
+        '/public/asset/images/alligator.jpg',
         3
     ),
     (
         'Ardea herodias',
         'Grand oiseau échassier, le héron bleu est connu pour sa silhouette élancée et son vol majestueux.',
-        '/public/asset/images/heron.png',
+        '/public/asset/images/heron.jpg',
         3
     ),
     (
         'Apalone spinifera',
         'Une tortue d\'eau douce avec une carapace souple et un long cou, adaptée à la vie aquatique.',
-        '/public/asset/images/tortue.png',
+        '/public/asset/images/tortue.jpg',
         3
     ),
     (
         'Lithobates catesbeianus',
         'Une des plus grandes grenouilles d\'Amérique du Nord, connue pour son croassement puissant.',
-        '/public/asset/images/grenouille.png',
+        '/public/asset/images/grenouille.jpg',
         3
     );
 
@@ -139,25 +139,25 @@ VALUES
         'Le Jardin des Épices',
         'Le Jardin des Épices est un havre de paix et de saveurs au cœur de la ville. Le décor luxuriant et les parfums d\'épices transportent immédiatement les convives en Inde. Le menu propose une variété de plats traditionnels riches en épices et en saveurs, allant du poulet Tikka Masala aux biryanis parfumés. Chaque plat est soigneusement préparé pour offrir une expérience culinaire authentique et mémorable.',
         'restaurant',
-        '/public/asset/images/spices.png'
+        '/public/asset/images/spices.jpg'
     ),
     (
         'Jardin de Sakura',
         'Sakura Garden offre une véritable évasion dans le raffinement et la sérénité du Japon. Le décor épuré et élégant invite à la détente, tandis que le menu propose une variété de sushis, sashimis et autres spécialités japonaises préparées avec soin par des chefs expérimentés. Le restaurant met un point d\'honneur à utiliser des ingrédients de première qualité pour une expérience culinaire inoubliable.',
         'restaurant',
-        '/public/asset/images/sushi.png'
+        '/public/asset/images/sushi.jpg'
     ),
     (
         'Le Jardin Gourmand',
         'Le Jardin Gourmand est un havre de paix pour les amateurs de cuisine végétarienne. Ce restaurant élégant et accueillant offre une expérience culinaire raffinée, mettant en valeur les saveurs naturelles des légumes frais et des produits de saison. Le menu est une célébration de la diversité végétale, proposant des plats créatifs et savoureux qui raviront les papilles les plus exigeantes avec des ingrédients biologiques et locaux pour créer des plats innovants. Le décor du restaurant, inspiré par la nature, avec des plantes verdoyantes et une ambiance lumineuse et aérée.',
         'restaurant',
-        '/public/asset/images/vegetarien.png'
+        '/public/asset/images/vegetarien.jpg'
     ),
     (
         'Savanaa Snacks',
         'Savanna Snacks est un restaurant de fast food unique en son genre. Inspiré par les vastes plaines africaines, ce restaurant offre une expérience culinaire rapide tout en respectant des pratiques durables et respectueuses de l\'environnement. Les visiteurs peuvent déguster des repas préparés avec des ingrédients locaux et biologiques. Le menu propose une variété de plats savoureux et faits maison. Savanna Snacks s\'engage à minimiser son empreinte écologique en utilisant des emballages compostables et en promouvant le recyclage.',
         'restaurant',
-        '/public/asset/images/burguer.png'
+        '/public/asset/images/burguer.jpg'
     );
 
 INSERT INTO
@@ -173,7 +173,7 @@ VALUES
         'Visite du zoo en train',
         'Embarquez pour une aventure écologique inoubliable au cœur de la nature sauvage ! Notre Safari Écologique en Train vous invite à découvrir les merveilles de notre zoo d\'une manière respectueuse de l\'environnement. Laissez-vous transporter à travers des paysages spectaculaires tout en contribuant à la préservation de notre planète.',
         'visite',
-        '/public/asset/images/train.png'
+        '/public/asset/images/train.jpg'
     );
 
 -- Insertion des avis

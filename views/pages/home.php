@@ -43,7 +43,7 @@
                     <!-- Premiére habitat : Jungle -->
                     <div class="col-md-4">
                         <div class="card text-bg-primary mb-3">
-                            <img src="/public/asset/images/Jungle.png" class="card-im-top p-4" alt="Image du junagle">
+                            <img src="/public/asset/images/Jungle.jpg" class="card-im-top p-4" alt="Image du junagle">
                             <div class="card-body text-bg-primary">
                                 <h5 class="card-title text-dark">Jungle</h5>
                                 <p class="card-text text-clear">Entrez dans la jungle luxuriante d'Arcadia, un sanctuaire verdoyant et
@@ -65,7 +65,7 @@
                     <!-- Deuxiéme habitat : Savane-->
                     <div class="col-md-4">
                         <div class="card text-bg-primary mb-3">
-                            <img src="/public/asset/images/Savane.png" class="card-im-top p-4" alt="Image du savane">
+                            <img src="/public/asset/images/Savane.jpg" class="card-im-top p-4" alt="Image du savane">
                             <div class="card-body text-bg-primary">
                                 <h5 class="card-title text-dark">Savane</h5>
                                 <p class="card-text text-clear">Plongez au cœur de la vaste savane d'Arcadia, un espace ouvert et
@@ -86,7 +86,7 @@
                     <!--Trousiéme habitat : Marias-->
                     <div class="col-md-4">
                         <div class="card text-bg-primary mb-3">
-                            <img src="/public/asset/images/marais.png" class="card-im-top p-4" alt="Image du marais">
+                            <img src="/public/asset/images/marais.jpg" class="card-im-top p-4" alt="Image du marais">
                             <div class="card-body text-bg-primary">
                                 <h5 class="card-title text-dark">Marais</h5>
                                 <p class="card-text text-clear">Découvrez l'écosystème fascinant des marais d'Arcadia,
@@ -121,7 +121,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/public/asset/images/jaguar.png" class="card-im-top p-4" alt="image de jaguar">
+                                <img src="/public/asset/images/jaguar.jpg" class="card-im-top p-4" alt="image de jaguar">
                                 <div class="card-body ">
                                     <h5 class="card-title text-dark">Panthera onca</h5>
                                     <p class="card-text text-clear">Le plus grand félin des Amériques, le jaguar est un prédateur solitaire
@@ -135,7 +135,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/public/asset/images/singe.png" class="card-im-top p-4" alt="image du singe">
+                                <img src="/public/asset/images/singe.jpg" class="card-im-top p-4" alt="image du singe">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Alouatta</h5>
                                     <p class="card-text text-clear"> Connu pour ses cris puissants qui peuvent être entendus à plusieurs
@@ -148,7 +148,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/public/asset/images/toucan.png" class="card-im-top p-4" alt="image de toucan">
+                                <img src="/public/asset/images/toucan.jpg" class="card-im-top p-4" alt="image de toucan">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Ramphastos</h5>
                                     <p class="card-text text-clear">Reconnaissable à son grand bec coloré, le toucan est un oiseau sociable
@@ -161,7 +161,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/public/asset/images/paresseux.png" class="card-im-top p-4" alt="image de paresseux">
+                                <img src="/public/asset/images/paresseux.jpg" class="card-im-top p-4" alt="image de paresseux">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Bradypus</h5>
                                     <p class="card-text text-clear">Cet animal lent passe la plupart de son temps accroché aux branches des
@@ -185,7 +185,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/public/asset/images/lion.png" class="card-im-top p-4" alt="image d'un lion">
+                                <img src="/public/asset/images/lion.jpg" class="card-im-top p-4" alt="image d'un lion">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Panthera leo</h5>
                                     <p class="card-text text-clear">le roi de la savane le lion est un grand félin social qui vit en groupes
@@ -198,7 +198,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/public/asset/images/elephant.png" class="card-im-top p-4" alt="image d'un élégant">
+                                <img src="/public/asset/images/elephant.jpg" class="card-im-top p-4" alt="image d'un élégant">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Loxodonta</h5>
                                     <p class="card-text text-clear">Le plus grand animal terrestre, les éléphants sont connus pour leur
@@ -211,7 +211,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/public/asset/images/guepard.png" class="card-im-top p-4" alt="image d'un guepard">
+                                <img src="/public/asset/images/guepard.jpg" class="card-im-top p-4" alt="image d'un guepard">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Acinonyx jubatus</h5>
                                     <p class="card-text text-clear">Le mammifère terrestre le plus rapide, capable d'atteindre des vitesses
@@ -224,7 +224,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/public/asset/images/zebre.png" class="card-im-top p-4" alt="image du zébre">
+                                <img src="/public/asset/images/zebre.jpg" class="card-im-top p-4" alt="image du zébre">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Equus quagga</h5>
                                     <p class="card-text text-clear"> Connu pour ses rayures distinctives, chaque zèbre a un motif unique.
@@ -247,7 +247,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/public/asset/images/alligator.png" class="card-im-top p-4" alt="image d'un alligator">
+                                <img src="/public/asset/images/alligator.jpg" class="card-im-top p-4" alt="image d'un alligator">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Alligator mississippiensis</h5>
                                     <p class="card-text text-clear"> Reptile imposant, l'alligator est un prédateur apex des marais
@@ -260,7 +260,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary mb-3">
-                                <img src="/public/asset/images/heron.png" class="card-im-top p-4" alt="image d'un heron bleu">
+                                <img src="/public/asset/images/heron.jpg" class="card-im-top p-4" alt="image d'un heron bleu">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Ardea herodias</h5>
                                     <p class="card-text text-clear"> Grand oiseau échassier, le héron bleu est connu pour sa silhouette
@@ -273,7 +273,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/public/asset/images/tortue.png" class="card-im-top p-4" alt="image de tortue">
+                                <img src="/public/asset/images/tortue.jpg" class="card-im-top p-4" alt="image de tortue">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Apalone spinifera</h5>
                                     <p class="card-text text-clear">Une tortue d'eau douce avec une carapace souple et un long cou, adaptée
@@ -286,7 +286,7 @@
 
                         <div class="col-md-3">
                             <div class="card text-bg-primary">
-                                <img src="/public/asset/images/grenouille.png" class="card-im-top p-4" alt="image d'une grenouille">
+                                <img src="/public/asset/images/grenouille.jpg" class="card-im-top p-4" alt="image d'une grenouille">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">Lithobates catesbeianus</h5>
                                     <p class="card-text text-clear"> Une des plus grandes grenouilles d'Amérique du Nord, connue pour son

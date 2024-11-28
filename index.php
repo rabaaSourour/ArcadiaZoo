@@ -16,13 +16,13 @@ if($controller !== null && method_exists($controller, $method)) {
     $data = $controller->{$method}();
 }
 
-$page = __DIR__ . "/views/pages/404.php";
+$page = __DIR__ . "/Views/pages/404.php";
 if(isset($data)) {
-    $file = __DIR__ . "/views/pages/{$data['page']}.php";
+    $file = __DIR__ . "/Views/pages/{$data['page']}.php";
     if(file_exists($file)) {
         $page = $file;
         extract($data['variables']);
     }
 }
 
-require_once 'views/base_view.php';
+require_once 'Views/base_view.php';

@@ -16,11 +16,11 @@ class DbConnection
             return self::$pdo;
         }
 
-        $config = require 'C:/xampp/htdocs/ArcadiaZoo/Config.php';
+        $config = require 'C:/xampp/htdocs/ArcadiaZoo/src/Config.php';
 
         try {
-            $dsn = 'mysql:host=' . $config['DB_HOST'] . ';dbname=' . $config['DB_NAME'] . ';port=' . $config['DB_PORT'];
-            self::$pdo = new PDO($dsn, $config['DB_USER'], $config['DB_PASSWORD']);
+                $dsn = 'mysql:host=' . $config['host'] . ';dbname=' . $config['name'] . ';port=' . $config['port'];
+                self::$pdo = new PDO($dsn, $config['user'], $config['password']);
             self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             die('Connection failed: ' . $e->getMessage());

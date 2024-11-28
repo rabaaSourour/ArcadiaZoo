@@ -1,6 +1,5 @@
 
 /vendor/
 node_modules
-Config.php
 .env
 vhosts.conf

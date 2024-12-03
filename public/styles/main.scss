@@ -1,15 +1,16 @@
-@import url("/node_modules/bootstrap-icons/font/bootstrap-icons.css");
-@import 'custom';
-
-html{
+html {
     position: relative;
     min-height: 100%;
     padding: 0 25px;
+    font-family: var(--font-family-serif);
 }
-main{
+
+main {
     margin-bottom: 250px;
 }
+
 footer.footer {
+    background-color: ;
     padding: 15px;
     position: absolute;
     width: 100%;
@@ -17,136 +18,77 @@ footer.footer {
     font-size: 16px;
 }
 
-p{
-    font-family: $font-family-serif ;
+p {
     font-size: 18px;
 }
-.ratio{
-    margin: 50px 0 100px;
-}
 
-.card_img_top{
-    max-width: 200px;
-    border-radius: 50%;
-    margin: 15px auto 0;
-    box-shadow: 0 8px 20px -4px $secondary;
-    width: 100px;
-    height: 100px;
-}
-
-.card{
-    background-color: #588157;
+/* Styles des cartes */
+.card {
+    background-color: var(--primary-color);
     margin: 0 20px;
-    padding: 0 10px;
+    padding: 10px;
     border-radius: 20px;
     border: 0;
-}
-
-.card-img-top{
-    max-width: 50px;
-    max-height: 50px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-    transform: scale(1.05); 
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px var(--card-hover-shadow);
 }
 
-
-.loader {
-    border: 16px solid #f3f3f3;
-    border-top: 16px solid #588157;
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-.hidden {
-    display: none;
-}
-.container {
-    background-color: #A3B18A;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.form-container {
-    margin-bottom: 20px;
-}
-
-.form-group {
-    margin-bottom: 10px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-}
-
-button {
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #A3B18A;
-}
-
-.animal-card {
-    background-color:#A3B18A ;
-    border: 1px solid #A3B18A;
-    padding: 15px;
-    margin-bottom: 20px;
-    cursor: pointer;
-}
-
-.hidden {
-    display: none;
-}
-.animal-details {
-    padding: 10px;
-    background-color: #A3B18A;
-}
-.card-title{
+.card-title {
     color: #1F451A;
 }
+
 .card-text {
     color: #EBDDB1;
 }
 
-#content {
-    .container {
-    padding: 20px;
-    margin-bottom: 30px;
-    border-radius: 15px;
-    background-color: #A3B18A;
-    &.rounded {
-        border: 1px solid;
-    }
-    }
-}
-.animals-section {
-    padding: 15px, 10px;
+/* Image de la carte */
+.card-img-top,
+.card_img_top {
+    border-radius: 50%;
+    box-shadow: 0 8px 20px -4px var(--secondary);
 }
 
-.hide {
-display: none;
+.card-img-top {
+    max-width: 50px;
+    max-height: 50px;
 }
 
+.card_img_top {
+    max-width: 200px;
+    margin: 15px auto 0;
+    width: 100px;
+    height: 100px;
+}
+
+/* Conteneur et animations pour les habitats et animaux */
+.container {
+    display: flex;
+    flex-direction: row;
+    transition: all 0.3s ease-in-out;
+}
+
+.habitat-card {
+    flex-basis: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.habitat-card.active {
+    flex-basis: 45%;
+    margin-right: 20px; /* Ajoute un espace entre habitat et animaux */
+}
+
+.animal-list {
+    display: none;
+    flex-basis: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.animal-list.show {
+    display: block;
+    opacity: 1;
+}

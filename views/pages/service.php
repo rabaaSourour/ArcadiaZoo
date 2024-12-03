@@ -1,18 +1,3 @@
-<?php
-include_once __DIR__ . '/../base_view.php';
-require_once __DIR__ . '/../../vendor/autoload.php';
-
-
-use App\Model\Service;
-use App\Database\DbConnection;
-
-// Récupérez la connexion à la base de données
-$pdo = DbConnection::getPdo();
-$service = new Service($pdo);
-$services = $service->getAllServices();
-$isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
-?>
-
 <section>
     <!-- Section Restauration -->
     <div class=" p-4">
@@ -27,18 +12,15 @@ $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
                             <img src="<?= htmlspecialchars($service['image']) ?>" class="card-img rounded p-4 " alt="image du service">
 
                             <div class="card-body">
-                                <h5 class="card-title text-dark"><?= htmlspecialchars($service['name']) ?></h5>
+                                <h5 class="card-title"><?= htmlspecialchars($service['name']) ?></h5>
                                 <p class="card-text"><?= htmlspecialchars($service['description']) ?></p>
 
-                                <?php if ($isAdmin): ?>
-                                    <button class="btn btn-warning" onclick="window.location.href='/pages/editServiceForm.php?id=<?= $service['id'] ?>'">Modifier</button>
+                    <?php if ($role === 'admin'): ?>
+                                    <button class="btn btn-warning" onclick="window.location.href='/service/update?id=<?= $service['id'] ?>'">Modifier</button>
                                     <button class="btn btn-danger" onclick="deleteService(<?= $service['id'] ?>)">Supprimer</button>
                                 <?php endif; ?>
                             </div>
                         </div>
-                        <button class="btn btn-warning" onclick="window.location.href='/pages/editServiceForm.php?id=<?= $service['id'] ?>'">
-                            Modifier
-                        </button>
 
                     </div>
                 <?php endif; ?>
@@ -65,9 +47,9 @@ $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h5 class="card-title text-dark"><?= htmlspecialchars($service['name']) ?></h5>
+                                            <h5 class="card-title"><?= htmlspecialchars($service['name']) ?></h5>
                                             <p class="card-text"><?= htmlspecialchars($service['description']) ?></p>
-                                            <?php if ($isAdmin): ?>
+                                            <?php if ($role === 'admin'): ?>
                                                 <button class="btn btn-warning" onclick="window.location.href='/pages/editServiceForm.php?id=<?= $service['id'] ?>'">Modifier</button>
                                                 <button class="btn btn-danger" onclick="deleteService(<?= $service['id'] ?>)">Supprimer</button>
                                             <?php endif; ?>
@@ -76,9 +58,9 @@ $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
                                 <?php else: ?>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h5 class="card-title text-dark"><?= htmlspecialchars($service['name']) ?></h5>
+                                            <h5 class="card-title"><?= htmlspecialchars($service['name']) ?></h5>
                                             <p class="card-text"><?= htmlspecialchars($service['description']) ?></p>
-                                            <?php if ($isAdmin): ?>
+                                            <?php if (in_array($role, ['admin', 'employe'])): ?>
                                                 <button class="btn btn-warning" onclick="window.location.href='/pages/editServiceForm.php?id=<?= $service['id'] ?>'">Modifier</button>
                                                 <button class="btn btn-danger" onclick="deleteService(<?= $service['id'] ?>)">Supprimer</button>
                                             <?php endif; ?>
@@ -90,12 +72,8 @@ $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
                                 <?php endif; ?>
                             </div>
                         </div>
-                        <button class="btn btn-warning" onclick="window.location.href='/pages/editServiceForm.php?id=<?= $service['id'] ?>'">
-                            Modifier
-                        </button>
 
                     </div>
-
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>

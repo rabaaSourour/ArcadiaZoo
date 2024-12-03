@@ -5,10 +5,10 @@ $(document).ready(function() {
     
         var reviewId = $(this).data('review-id');
         var reviewDiv = $(this).closest('.review');
-    
+
      // Vérifie si l'ID est correct
     
-        $.post('/src/Admin/validateReview.php', { id: reviewId }, function(response) {
+        $.post('/api/validateReview', { id: reviewId }, function(response) {
             console.log(response); // Vérifie la réponse du serveur
             if (response.status === 'success') {
                 $('#message').text(response.message).show();
@@ -38,7 +38,7 @@ $(document).ready(function() {
     
         // Vérifie si l'ID est correct
     
-        $.post('/src/Admin/deleteReview.php', { id: reviewId }, function(response) {
+        $.post('/api/deleteReview', { id: reviewId }, function(response) {
             console.log(response); // Vérifie la réponse du serveur
             if (response.status === 'success') {
                 $('#message').text(response.message).show();

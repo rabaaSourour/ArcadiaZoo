@@ -1,46 +1,49 @@
 <?php
-include_once __DIR__ . '/../base_view.php';
-require_once __DIR__ . '/../../vendor/autoload.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 ?>
 <div class="container text-bg-secondary rounded mt-5">
-    <form>
+    <form action="" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
         <div class="mb-3 pt-3">
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" id="role" name="role" required>
                 <option selected>Connectez-vous en tant que</option>
-                <option value="1">Administrateur</option>
-                <option value="2">Vétérinaire</option>
-                <option value="3">Employé</option>
+                <option value="admin">Admin</option>
+                <option value="veterinaire">Vétérinaire</option>
+                <option value="employe">Employé(e)</option>
             </select>
-            <div class="invalid-feedback" id="role">
+            <div class="invalid-feedback">
                 Veuillez sélectionner un rôle.
             </div>
         </div>
 
         <div class="mb-3">
-            <label for="EmailInput" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="test@mail.fr" name="Email">
-            <div class="invalid-feedback" id="emailFeedback">
+            <label for="email" class="form-label">Email :</label>
+            <input type="email" class="form-control" id="email" placeholder="test@mail.fr" name="email" required>
+            <div class="invalid-feedback">
                 Veuillez entrer une adresse email valide.
             </div>
         </div>
 
         <div class="mb-3">
-            <label for="PasswordInput" class="form-label">Mot de passe</label>
-            <input type="password" class="form-control" id="password">
-            <div class="invalid-feedback" id="passwordFeedback">
+            <label for="password" class="form-label">Mot de passe :</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+            <div class="invalid-feedback">
                 Veuillez entrer votre mot de passe.
             </div>
-
-
         </div>
 
         <div class="text-center">
-            <button type="button" class="btn btn-primary mt-3 mb-3" id="btn-validation-connexion">Connexion</button>
+            <button type="submit" class="btn btn-primary mt-3 mb-3" id="btn-validation-connexion">Connexion</button>
         </div>
         <div id="error-message" style="display: none; color: red;"></div>
     </form>
 
     <div class="text-center pb-3">
-        <a href="/ArcadiaZoo/views/Pages/myAccount.php">Mot de passe oublié ? Changer le mot de passe par ici !</a>
+        <a href="/user/update">Mot de passe oublié ? Changer le mot de passe par ici !</a>
     </div>
 </div>

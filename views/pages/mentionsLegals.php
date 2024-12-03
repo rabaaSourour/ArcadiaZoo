@@ -1,7 +1,3 @@
-<?php
-include_once __DIR__ . '/../base_view.php';
-require_once __DIR__ . '/../../vendor/autoload.php';
-?>
 <div class="container rounded mt-3">
 
     <h1 class="text-center text-bg-primary rounded m-3 p-2">Mentions légales</h1>

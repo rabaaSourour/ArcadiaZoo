@@ -4,39 +4,56 @@ namespace App\Controller;
 
 use App\Model\Review;
 use App\Database\DbConnection;
+use PDO;
 
 class ReviewController
 {
     private $reviewModel;
 
-    public function __construct(Review $reviewModel)
+    public function __construct(PDO $pdo)
     {
-        $db = DbConnection::getPdo();
-        $this->reviewModel = $reviewModel;
+        $this->reviewModel = new Review($pdo);
     }
 
-    public function addReview()
+    public function show(): array
+    {
+        return [
+            'page' => 'review',
+            'variables' => []
+        ];
+    }
+
+    public function addReview(): array
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pseudo = $_POST['pseudo'];
             $review = $_POST['review'];
 
             if (!empty($pseudo) && !empty($review)) {
-                // Protéger les données avant l'insertion
                 $pseudo = DbConnection::protectDbData($pseudo);
                 $review = DbConnection::protectDbData($review);
 
-                // Appeler la méthode du modèle pour créer l'avis
-                $this->reviewModel->createReview($pseudo, $review);
+                $this->reviewModel->new($pseudo, $review);
 
-                // Redirection après ajout de l'avis
-                header('Location: /pages/home');
+                header('Location: /home/view');
                 exit();
             } else {
-                // Afficher un message d'erreur si les champs sont vides
                 echo "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";
             }
         }
+        session_start();
+
+        if (!isset($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                die('Erreur CSRF : jeton invalide.');
+            }
+        }
+
+
+        return $this->show();
     }
 
 
@@ -45,8 +62,21 @@ class ReviewController
         return $this->reviewModel->getApprovedReviews();
     }
 
-    public function getPendingReviews()
+    public function pendingReviews(): array
     {
+        $pendingReviews = $this->reviewModel->getPendingReviews();
+
+        $role = isset($_SESSION['role']) && $_SESSION['role'] === 'employe'
+            ? $_SESSION['role']
+            : null;
+
+        return [
+            'page' => 'isValidateReview',
+            'variables' => [
+                'pendingReviews' => $pendingReviews,
+                'role' => $role
+            ]
+        ];
         return $this->reviewModel->getPendingReviews();
     }
 

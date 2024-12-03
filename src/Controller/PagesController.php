@@ -2,9 +2,17 @@
 
 namespace App\Controller;
 
+use PDO;
+
 class PagesController
 {
-    public function view(string $page)
+    public function __construct(PDO $pdo){
+        if(session_status()=== PHP_SESSION_NONE){
+            session_start();
+        }
+    }
+    
+    public function view(string $page) 
     {
         $file = __DIR__ . "/../../views/pages/{$page}.php";
         if (file_exists($file)) {

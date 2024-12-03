@@ -1,28 +1,3 @@
-<?php
-include_once __DIR__ . '/../base_view.php';
-require_once __DIR__ . '/../../vendor/autoload.php';
-require_once 'C:/xampp/htdocs/ArcadiaZoo/src/Database/DbConnection.php';
-
-use App\Model\Horaires;
-use App\Controller\HorairesController;
-use App\Controller\ReviewController;
-use App\Model\Review;
-use App\Database\DbConnection;
-
-// Obtenez une instance de PDO
-$pdo = DbConnection::getPdo();
-
-// Créez une instance du modèle Review en lui passant l'instance de PDO
-$reviewModel = new Review($pdo);
-
-// Créez une instance du contrôleur ReviewController en lui passant le modèle Review
-$reviewController = new ReviewController($reviewModel);
-
-// Récupération des avis approuvés pour les afficher sur la page d'accueil
-
-$getPendingReviews = $reviewController->getValidReviews();
-
-?>
 <!-- video presentation du zoo -->
 <div class="ratio rounded ratio-16x9">
     <video class="embed-responsive-item" autoplay muted loop preload="auto">
@@ -412,29 +387,23 @@ $getPendingReviews = $reviewController->getValidReviews();
 </section>
 
 <article>
-    <div class="container text-center rounded p-4 mt-3 ">
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <!-- localisation -->
-            <div class="col text-bg-secondary rounded p-3">
+    <div class="container text-center rounded p-4 mt-3">
+        <div class="row g-4">
+            <!-- Localisation -->
+            <div class="col-12 col-md-6 text-bg-secondary rounded p-3 me-md-3">
                 <p class="text-bg-primary text-center rounded p-3">Où sommes-nous !</p>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2668.7174835636697!2d-2.179163103210465!3d48.019167799999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480edffaf7884ad9%3A0xf218bf672b3dfd0!2sLa%20for%C3%AAt%20de%20Broc%C3%A9liande!5e0!3m2!1sfr!2sfr!4v1718791084054!5m2!1sfr!2sfr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2668.7174835636697!2d-2.179163103210465!3d48.019167799999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480edffaf7884ad9%3A0xf218bf672b3dfd0!2sLa%20for%C3%AAt%20de%20Broc%C3%A9liande!5e0!3m2!1sfr!2sfr!4v1718791084054!5m2!1sfr!2sfr" 
+                        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
-            <!-- les horaires d'overture -->
-            <div class=" col text-bg-secondary justify-content-end rounded p-3">
-                <p class="text-bg-primary text-center rounded p-3">Horaires d'ouverture </p>
-                <div class="container mt-5">
+
+            <!-- Horaires d'ouverture -->
+            <div class="col-12 col-md-6 text-bg-secondary rounded p-3">
+                <p class="text-bg-primary text-center rounded p-3">Horaires d'ouverture</p>
+                <div class="container mt-3">
                     <div class="row">
                         <div class="col-md-12">
-                            <?php
-                            // Récupérer la connexion PDO
-                            $pdo = DbConnection::getPdo();
-
-                            $horairesModel = new Horaires($pdo);
-                            $horairesController = new HorairesController($horairesModel);
-                            $horaires = $horairesController->showHoraires();
-                            ?>
-                            <table>
+                            <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>Jour</th>
@@ -455,64 +424,64 @@ $getPendingReviews = $reviewController->getValidReviews();
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-
 </article>
+
+
 
 
 
 
 <article>
-    <!--commentaire-->
+    <!-- Commentaire -->
     <div class="container text-bg-secondary rounded mt-5">
-    <h3 class="text-center pt-3 mb-3">Voici quelques avis sur le ZOO</h3>
-    <div id="carouselExampleCaptions" class="carousel slide">
-        <div class="carousel-inner">
-        <?php
-if (!empty($getPendingReviews)) {
-    // Diviser les avis en groupes de 3 pour chaque slide
-    $chunkedReviews = array_chunk($getPendingReviews, 3);
-    foreach ($chunkedReviews as $index => $reviewsChunk): ?>
-        <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-            <div class="row">
-                <?php foreach ($reviewsChunk as $review): ?>
-                    <div class="col-md-4 mb-5">
-                        <div class="card text-bg-primary text-center">
-                            <div class="card-body">
-                                <h4 class="card-title"><?= htmlspecialchars($review['pseudo'].' :') ?></h4>
-                                <p class="card-text"><?= htmlspecialchars($review['review']) ?></p>
+        <h3 class="text-center pt-3 mb-3">Voici quelques avis sur le ZOO</h3>
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <?php
+                if (!empty($getPendingReviews)) {
+                    $chunkedReviews = array_chunk($getPendingReviews, 3);
+                    foreach ($chunkedReviews as $index => $reviewsChunk): ?>
+                        <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                            <div class="row">
+                                <?php foreach ($reviewsChunk as $review): ?>
+                                    <div class="col-md-4 mb-5">
+                                        <div class="card text-bg-primary text-center">
+                                            <div class="card-body">
+                                                <h4 class="card-title"><?= htmlspecialchars($review['pseudo'] . ' :') ?></h4>
+                                                <p class="card-text"><?= htmlspecialchars($review['review']) ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
+                    <?php endforeach;
+                } else { ?>
+                    <div class="alert alert-info text-center">
+                        Aucun avis pour le moment. Soyez le premier à laisser votre avis !
                     </div>
-                <?php endforeach; ?>
+                <?php } ?>
             </div>
+
+            <!-- Navigation du carrousel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-    <?php endforeach;
-} else { ?>
-    <div class="alert alert-info text-center">
-        Aucun avis pour le moment. Soyez le premier à laisser votre avis !
+
+        <!-- Bouton pour ajouter un nouvel avis -->
+        <div class="text-center mt-4">
+            <a href="/review/addReview" class="btn btn-primary">Ajouter votre avis</a>
+        </div>
     </div>
-<?php } ?>
-
-        <!-- Navigation du carrousel -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-
-    <!-- Bouton pour ajouter un nouvel avis -->
-    <div class="text-center mt-4">
-        <a href="/views/pages/reviews.php" class="btn btn-primary">Ajouter votre avis</a>
-    </div>
-</div>
-
-
 </article>
+
+

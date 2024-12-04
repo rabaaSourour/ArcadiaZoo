@@ -23,16 +23,16 @@
         </div>
         <div class="mb-3">
             <label for="food" class="form-label">Nourriture</label>
-            <textarea class="form-control" id="food" name="food" rows="4" required></textarea>
+            <textarea type="text" class="form-control" id="food" name="food" rows="4" required></textarea>
         </div>
         <div class="mb-3">
             <label for="food_quantity" class="form-label">Quantité de la nourriture</label>
-            <textarea class="form-control" id="food_quantity" name="food_quantity" rows="4" required></textarea>
+            <textarea type="text" class="form-control" id="food_quantity" name="food_quantity" rows="4" required></textarea>
             
         </div>
         <div class="mb-3">
             <label for="details" class="form-label">Détails</label>
-            <textarea class="form-control" id="details" name="details" rows="4" required></textarea>
+            <textarea type="text" class="form-control" id="details" name="details" rows="4" required></textarea>
         </div>
         <div class="text-center">
             <button type="submit" class="btn btn-primary">Ajouter le rapport</button>

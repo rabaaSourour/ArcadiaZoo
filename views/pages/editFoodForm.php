@@ -7,7 +7,7 @@
             <input type="hidden" name="id" value="<?php echo htmlspecialchars($food['id']); ?>">
             <div class="form-group mb-3">
                 <label for="food" class="form-label fw-bold">Nourriture :</label>
-                <textarea class="form-control" name="food" id="food" rows="2" required><?php echo htmlspecialchars($food['food']); ?></textarea>
+                <textarea type="text" class="form-control" name="food" id="food" rows="2" required><?php echo htmlspecialchars($food['food']); ?></textarea>
             </div>
             <div class="form-group mb-3">
                 <label for="quantity" class="form-label fw-bold">Quantité de la nourriture :</label>

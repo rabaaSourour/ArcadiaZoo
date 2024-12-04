@@ -8,16 +8,17 @@
         </div>
         <div class="mb-3">
             <label for="commentText" class="form-label">Commentaire</label>
-            <textarea name="review" class="form-control" id="commentText" rows="3" required></textarea>
+            <textarea type="text" name="review" class="form-control" id="commentText" rows="3" required></textarea>
         </div>
         <div class="text-center pb-3">
             <button type="submit" class="btn btn-primary">Envoyer</button>
         </div>
     </form>
+
     <?php
-    // Afficher un message de succès si un avis a été soumis
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<div class='alert alert-success'>Merci pour votre avis, il sera examiné avant publication.</div>";
     }
     ?>
+    
 </div>

@@ -12,7 +12,7 @@
         </div>
         <div class="mb-3">
             <label for="habitatDescription" class="form-label">Description</label>
-            <textarea class="form-control" id="habitatDescription" name="description" rows="4" required></textarea>
+            <textarea type="text" class="form-control" id="habitatDescription" name="description" rows="4" required></textarea>
         </div>
         <div class="mb-3">
             <label for="habitatImage" class="form-label">Image du habitat</label>

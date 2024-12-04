@@ -12,7 +12,7 @@
         </div>
         <div class="mb-3">
             <label for="serviceDescription" class="form-label">Description</label>
-            <textarea class="form-control" id="serviceDescription" name="description" rows="4" required></textarea>
+            <textarea type="text" class="form-control" id="serviceDescription" name="description" rows="4" required></textarea>
         </div>
         <div class="mb-3">
             <label for="serviceCategory" class="form-label">Catégorie</label>

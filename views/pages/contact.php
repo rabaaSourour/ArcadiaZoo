@@ -13,7 +13,7 @@
 
         <div class="form-group mb-3">
         <label for="description">Description :</label>
-        <textarea id="description" name="description" rows="3" style="height: 300px;"></textarea>
+        <textarea type="text" id="description" name="description" rows="3" style="height: 300px;"></textarea>
         </div>
 
         <div class="text-center pb-3">

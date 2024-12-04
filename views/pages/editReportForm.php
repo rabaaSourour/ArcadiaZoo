@@ -11,7 +11,7 @@
             </div>
             <div class="form-group mb-3">
                 <label for="food" class="form-label fw-bold">Nourriture :</label>
-                <textarea class="form-control" name="food" id="food" rows="2" required><?php echo htmlspecialchars($report['food']); ?></textarea>
+                <textarea type="text" class="form-control" name="food" id="food" rows="2" required><?php echo htmlspecialchars($report['food']); ?></textarea>
             </div>
             <div class="form-group mb-3">
                 <label for="food_quantity" class="form-label fw-bold">Quantité de la nourriture :</label>
@@ -19,7 +19,7 @@
             </div>
             <div class="form-group mb-4">
                 <label for="details" class="form-label fw-bold">Détails :</label>
-                <textarea class="form-control" name="details" id="details" rows="3" required><?php echo htmlspecialchars($report['details']); ?></textarea>
+                <textarea type="text" class="form-control" name="details" id="details" rows="3" required><?php echo htmlspecialchars($report['details']); ?></textarea>
             </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-primary btn-lg">Enregistrer les modifications</button>

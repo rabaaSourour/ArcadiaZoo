@@ -12,7 +12,7 @@
         </div>
         <div class="mb-3">
             <label for="animalBreed" class="form-label">Race</label>
-            <textarea class="form-control" id="animalBreed" name="breed" rows="4" required></textarea>
+            <textarea type="text" class="form-control" id="animalBreed" name="breed" rows="4" required></textarea>
         </div>
         <div class="mb-3">
             <label for="animalHabitat_id" class="form-label">Habitat</label>

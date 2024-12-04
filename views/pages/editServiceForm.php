@@ -10,7 +10,7 @@
             </div>
             <div class="form-group mb-3">
                 <label for="description" class="form-label fw-bold">Description :</label>
-                <textarea class="form-control" name="description" id="description" rows="4" required><?php echo htmlspecialchars($service['description']); ?></textarea>
+                <textarea type="text" class="form-control" name="description" id="description" rows="4" required><?php echo htmlspecialchars($service['description']); ?></textarea>
             </div>
             <div class="form-group mb-3">
                 <label for="image" class="form-label fw-bold">Image actuelle :</label>

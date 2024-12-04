@@ -18,11 +18,11 @@
 </select>
         <div class="mb-3">
             <label for="food" class="form-label">Nourriture</label>
-            <textarea class="form-control" id="food" name="food" rows="4" required></textarea>
+            <textarea type="text" class="form-control" id="food" name="food" rows="4" required></textarea>
         </div>
         <div class="mb-3">
             <label for="quantity" class="form-label">Quantité de la nourriture</label>
-            <textarea class="form-control" id="quantity" name="quantity" rows="4" required></textarea>
+            <textarea type="text" class="form-control" id="quantity" name="quantity" rows="4" required></textarea>
             
         </div>
         <div class="text-center">

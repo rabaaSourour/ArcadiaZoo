@@ -10,7 +10,7 @@
             </div>
             <div class="form-group mb-3">
                 <label for="breed" class="form-label fw-bold">Race :</label>
-                <textarea class="form-control" name="breed" id="breed" rows="2" required><?php echo htmlspecialchars($animal['breed']); ?></textarea>
+                <textarea type="text" class="form-control" name="breed" id="breed" rows="2" required><?php echo htmlspecialchars($animal['breed']); ?></textarea>
             </div>
             <div class="form-group mb-3">
                 <label for="image" class="form-label fw-bold">Image actuelle :</label>

@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Model\AnimalConsultation;
-use App\Model\BSONDocument;
 
 class AnimalConsultationController
 {
@@ -24,14 +23,13 @@ class AnimalConsultationController
                     $this->consultationModel->incrementConsultation($animalId, $views);
                 }
                 header('Content-Type: application/json');
-                echo json_encode(['success' => "Consultations des animaux incrémentées."]);
             } 
         }
     }
 
     public function show(): array
     {
-        $consultation = $this->consultationModel->getAllConsultations();
+        $consultation = $this->consultationModel->getAnimalsWithViews();
 
         return [
             'page' => 'animalConsultation',

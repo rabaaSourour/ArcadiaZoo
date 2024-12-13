@@ -10,7 +10,7 @@
         <tbody>
             <?php foreach ($consultations as $consultation): ?>
                 <tr>
-                    <td><?= htmlspecialchars($consultation['animal_name']) ?></td>
+                    <td><?= htmlspecialchars($consultation['name']) ?></td>
                     <td><?= htmlspecialchars($consultation['consultations']) ?></td>
                 </tr>
             <?php endforeach; ?>

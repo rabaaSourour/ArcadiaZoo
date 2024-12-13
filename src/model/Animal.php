@@ -14,9 +14,14 @@ class Animal
         $this->pdo = $pdo;
     }
 
-    public function getAllAnimals()
+    public function getAllAnimals(array $fields = [])
     {
-        $stmt = $this->pdo->query("SELECT * FROM animals");
+        $sql = "SELECT ";
+        $sql .= (empty($fields)) ? '*' : implode(', ', $fields);
+        $sql .= " FROM animals";
+
+        $stmt = $this->pdo->query($sql);
+        
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 

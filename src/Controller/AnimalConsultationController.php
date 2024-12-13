@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\AnimalConsultation;
+use App\Model\BSONDocument;
 
 class AnimalConsultationController
 {
@@ -13,15 +14,18 @@ class AnimalConsultationController
         $this->consultationModel = new AnimalConsultation();
     }
 
-    public function increment($name): void
+    public function increment(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = json_decode(file_get_contents('php://input'), true);
-            if (isset($data['name']) && is_string($data['name'])) {
-                $name = $data['name'];
-                $this->consultationModel->incrementConsultation($name);
-                echo json_encode(['message' => "Consultation ajoutée pour $name."]);
-            }
+
+            if ($data) {
+                foreach ($data as $animalId => $views) {
+                    $this->consultationModel->incrementConsultation($animalId, $views);
+                }
+                header('Content-Type: application/json');
+                echo json_encode(['success' => "Consultations des animaux incrémentées."]);
+            } 
         }
     }
 

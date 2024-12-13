@@ -129,11 +129,13 @@ class ApiController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = json_decode(file_get_contents('php://input'), true);
-            if (isset($data['name'])) {
-                $this->consultationModel->incrementConsultation($data['name']);
-                header('Content-Type: application/json');
-                echo json_encode(['success' => "Nombre de consultations d'animaux incrémenté."]);
+
+            logToFile($data);
+
+            foreach ($data as $animalId => $views) {
+                $this->consultationModel->incrementConsultation($animalId, $views);
             }
         }
     }
+
 }

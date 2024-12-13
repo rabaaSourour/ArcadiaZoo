@@ -2,6 +2,7 @@
 
 namespace App\Database;
 
+use App\Model\AnimalConsultation;
 use MongoDB\Client;
 
 class MongoDbConnection
@@ -11,16 +12,18 @@ class MongoDbConnection
 
     public function __construct()
     {
+        $config = require 'C:/xampp/htdocs/ArcadiaZoo/Config.php';
+
         try {
-            $this->client = new Client("mongodb://localhost:27017");
-            $this->database = $this->client->Arcadia;
+            $this->client = new Client($config['URI']);
+            $this->database = $this->client->selectDatabase('Arcadia');
         } catch (\Exception $e) {
             die("Erreur de connexion à MongoDB : " . $e->getMessage());
         }
     }
 
-    public function getCollection(string $collectionName)
+    public function getCollection()
     {
-        return $this->database->$collectionName;
+        return $this->database->selectCollection("animalConsultation");
     }
 }

@@ -16,6 +16,7 @@ function deleteAnimal(id) {
             .catch(error => console.error('Erreur:', error));
     }
 }
+
 function toggleAnimals(habitatId) {
     const selectedAnimalList = document.getElementById(`animals-${habitatId}`);
     if (selectedAnimalList.style.display === "none" || selectedAnimalList.style.display === "") {
@@ -25,20 +26,21 @@ function toggleAnimals(habitatId) {
     }
 }
 
-document.querySelectorAll('.animal-card').forEach(card => {
+const ANIMAL_VIEWS = {};
+
+document.querySelectorAll('.col.animal-list').forEach((card) => {
     card.addEventListener('click', () => {
-        const animalName = card.dataset.animalName;
-        fetch('/api/animalConsultationIncrement', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ name: animalName })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data.message);
-        })
-        .catch(error => console.error('Erreur:', error));
+        const animalId = card.dataset.animalId;
+        if (!ANIMAL_VIEWS[animalId]) {
+            ANIMAL_VIEWS[animalId] = 0;
+        }
+        ANIMAL_VIEWS[animalId] += 1;
+        console.log(ANIMAL_VIEWS);
     });
+});
+
+document.addEventListener("visibilitychange", function() {
+    if (document.visibilityState === "hidden") {
+        navigator.sendBeacon(location.origin + '/api/animalConsultationIncrement', JSON.stringify(ANIMAL_VIEWS));
+    }
 });

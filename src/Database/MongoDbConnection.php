@@ -2,7 +2,6 @@
 
 namespace App\Database;
 
-use App\Model\AnimalConsultation;
 use MongoDB\Client;
 
 class MongoDbConnection

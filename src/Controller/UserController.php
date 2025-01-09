@@ -83,10 +83,10 @@ class UserController
         $id = (int)($_GET['id'] ?? 0);
         $user = $this->userModel->getUserById($id);
 
-        if (!$user) {
-            echo "Utilisateur non trouvé.";
-            exit();
-        }
+        // if (!$user) {
+        //     echo "Utilisateur non trouvé.";
+        //     exit();
+        // }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userId = $_POST['id'] ?? null;

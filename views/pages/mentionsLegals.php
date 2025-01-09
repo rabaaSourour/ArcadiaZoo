@@ -1,6 +1,6 @@
 <div class="container rounded mt-3">
 
-    <h1 class="text-center text-bg-primary rounded m-3 p-2">Mentions légales</h1>
+    <h1 class="text-center rounded m-3 p-2">Mentions légales</h1>
 
     <h3 class="text-bg-secondary rounded m-3 p-2">Informations légales :</h3>
     <ul class="text-dark">

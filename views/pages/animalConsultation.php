@@ -1,17 +1,17 @@
-<div class="container rounded mt-5">
+<div class="container rounded p-5">
     <h2 class="text-center mb-4">Consultations des Animaux</h2>
     <table id="consultation-table" class="table table-striped table-bordered">
-        <thead class="thead-dark">
+        <thead class="thead-dark pb-5">
             <tr>
-                <th>Nom de l'Animal :</th>
-                <th>Nombre de Consultations :</th>
+                <th class="text-primary">Nom de l'Animal :</th>
+                <th class="text-primary">Nombre de Consultations :</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($consultations as $consultation): ?>
                 <tr>
-                    <td><?= htmlspecialchars($consultation['name']) ?></td>
-                    <td><?= htmlspecialchars($consultation['consultations']) ?></td>
+                    <td class="text-secondary"><?= htmlspecialchars($consultation['name']) ?></td>
+                    <td class="text-secondary"><?= htmlspecialchars($consultation['consultations']) ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

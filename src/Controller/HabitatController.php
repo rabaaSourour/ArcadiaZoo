@@ -93,8 +93,8 @@ class HabitatController
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $name = $_POST['name'] ?? '';
-            $description = $_POST['description'] ?? '';
+            $name = htmlspecialchars ($_POST['name'] ?? '');
+            $description = htmlspecialchars ($_POST['description'] ?? '');
             $imagePath = null;
 
             if (file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])) {

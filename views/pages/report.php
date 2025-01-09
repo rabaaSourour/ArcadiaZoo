@@ -1,5 +1,5 @@
-<div class="container rounded mt-4 p-4 shadow-lg">
-    <h1 class="text-center bg-primary py-2 rounded">Comptes rendus vétérinaires</h1>
+<div class="container rounded p-4">
+    <h1 class="text-center py-2 rounded">Comptes rendus vétérinaires</h1>
 
     <div class="mb-3">
         <label for="animal-filter" class="form-label">Filtrer par animal :</label>

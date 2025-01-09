@@ -1,7 +1,18 @@
-<div class="container text-bg-secondary rounded mt-4">
+<div class="container pt-4">
     <div class="row">
         <!-- Pour l'Admin seulement -->
         <?php if ($role === 'admin'): ?>
+
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">Gestion des Animaux :</h5>
+                        <p class="card-text">Ajouter un nouvel animal au zoo.</p>
+                        <a href="/animal/new" class="btn btn-dark">Accéder</a>
+                    </div>
+                </div>
+            </div>
+
             <!-- Card Animaux -->
             <div class="col-lg-4 mb-4">
                 <div class="card">
@@ -99,6 +110,17 @@
 
         <!-- Pour le Vétérinaire seulement -->
         <?php if ($role === 'veterinaire'): ?>
+
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">Gestion des Animaux :</h5>
+                        <p class="card-text">Ajouter un nouvel animal au zoo.</p>
+                        <a href="/animal/new" class="btn btn-dark">Accéder</a>
+                    </div>
+                </div>
+            </div>
+
             <!-- Card Consultations et Comptes Rendus -->
             <div class="col-lg-4 mb-4">
                 <div class="card">
@@ -135,6 +157,17 @@
 
         <!-- Pour l'Employé seulement -->
         <?php if ($role === 'employe'): ?>
+
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">Gestion des Animaux :</h5>
+                        <p class="card-text">Ajouter un nouvel animal au zoo.</p>
+                        <a href="/animal/new" class="btn btn-dark">Accéder</a>
+                    </div>
+                </div>
+            </div>
+
             <!-- Card Validation des Avis -->
             <div class="col-lg-4 mb-4">
                 <div class="card">

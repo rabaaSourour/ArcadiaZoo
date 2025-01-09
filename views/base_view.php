@@ -16,20 +16,17 @@
 
 
 <body>
-
-    <header>
-        <!-- début du navbar-->
-
-        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+<header>
+<nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand"><img width="100px" src="/public/asset/images/logo.jpg"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="/home/show">Zoo Arcadia</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item p-4">
-                            <a class="nav-link active" aria-current="pages" href="/home/show">Acceuil</a>
+                            <a class="nav-link" href="/home/show">Accueil</a>
                         </li>
                         <li class="nav-item p-4">
                             <a class="nav-link" href="/habitat/show">Habitats</a>
@@ -40,33 +37,44 @@
                         <li class="nav-item p-4">
                             <a class="nav-link" href="/service/show">Services</a>
                         </li>
+                        <?php if (isset($_SESSION['user_id'])): ?>
                         <li class="nav-item p-4">
-                            <?php if (isset($_SESSION['user_id'])): ?>
-                                <a class="nav-link" href="/Dashboard/show">Dashboard</a>
-                            <?php endif; ?>
+                            <a class="nav-link" href="/Dashboard/show">Dashboard</a>
                         </li>
-                        <li class="nav-item ms-auto p-2">
-                            <?php if (!isset($_SESSION['user_id'])): ?>
-                                <a class="nav-link" href="/signin/login">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
-                                        <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
-                                        <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
-                                    </svg>
-                                </a>
-                            <?php endif; ?>
+                        <li class="nav-item p-4">
+                            <a class="nav-link" href="/signin/logout">Déconnexion</a>
                         </li>
-                        <li class="nav-item">
-                            <?php if (isset($_SESSION['user_id'])): ?>
-                                <a class="nav-link" href="/signin/logout">
-                                    Déconnection
-                                </a>
-                            <?php endif; ?>
+                        <?php else: ?>
+                        <li class="nav-item p-4">
+                            <a class="nav-link" href="/signin/login">Se connecter</a>
+                        </li>
+                        <?php endif; ?>
+                        <li class="nav-item p-4">
+                        <div class="toggle-container mt-4">
+                <input type="checkbox" id="toggleVideo" />
+                <label for="toggleVideo" class="toggle"></label>
+            </div>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <!--fin du navbar-->
+
+    <!-- Background Section -->
+<div class="hero">
+    <!-- Toggle Switch -->
+    <video id="videoPlayer" autoplay muted loop>
+        <source src="/public/asset/images/présentation zoo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="overlay">
+        <div class="text-center">
+            <h1 class="display-3 fw-bold">Bienvenue à Zoo Arcadia</h1>
+            <p class="text-white-50 lead">Explorez un monde magique où les animaux et la nature s'unissent.</p>
+        </div>
+    </div>
+</div>
+
 
     </header>
     <!-- partie main de la page-->
@@ -76,7 +84,7 @@
 
     <!-- debut de footer-->
 
-    <footer class="bg-dark text-clear text-center footer">
+    <footer class="text-clear text-center footer">
         <div class="row">
             <div class="col-md-4">
                 <h3>Suivez-nous!</h3>
@@ -100,8 +108,9 @@
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js "></script>
-    <script src="/ArcadiaZoo/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>

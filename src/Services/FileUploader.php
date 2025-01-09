@@ -25,9 +25,6 @@ class FileUploader
         self::$uploadedFilePath = '/public/asset/uploaded_images/' . basename($file['name']);
     }
 
-    /**
-     * Retoure le chemin du fichier uploadé sur le serveur
-     */
     public static function getUploadedFilePath() : string
     {
         return self::$uploadedFilePath;

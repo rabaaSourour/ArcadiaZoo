@@ -1,7 +1,7 @@
-<section class="container rounded mt-4"> 
+<section class="container rounded p-4"> 
     <!-- Les habitats -->
     <div class="container rounded">
-        <h1 class="text-center bg-primary rounded pt-3 pb-3">Les animaux ont mangé quoi aujourd'hui !</h1>
+        <h1 class="text-center pt-3 pb-3">Les animaux ont mangé quoi aujourd'hui !</h1>
 
         <?php foreach ($foods as $food): ?>
             <div class="card rounded my-3">

@@ -35,7 +35,6 @@ document.querySelectorAll('.col.animal-list').forEach((card) => {
             ANIMAL_VIEWS[animalId] = 0;
         }
         ANIMAL_VIEWS[animalId] += 1;
-        console.log(ANIMAL_VIEWS);
     });
 });
 
@@ -44,3 +43,5 @@ document.addEventListener("visibilitychange", function() {
         navigator.sendBeacon(location.origin + '/api/animalConsultationIncrement', JSON.stringify(ANIMAL_VIEWS));
     }
 });
+
+

@@ -1,0 +1,12 @@
+// Custom.scss
+// Option A: Include all of Bootstrap
+
+$primary: #2E593D;
+$secondary: #324C40;
+$clear: #ebddb1;
+$dark : #28402A;
+$font-family-sans-serif: "Montserrat", sans-serif !default;
+$font-family-serif: 'Georgia', serif !default;
+
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";

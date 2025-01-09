@@ -1,0 +1,304 @@
+@import "custom";
+
+/* Global styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Navbar styling */
+.navbar {
+    position: fixed; 
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand {
+    color: #ebddb1;
+    font-weight: bold;
+    font-size: 3rem;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.navbar-brand:hover {
+    color: #ebddb1;
+    transform: scale(1.1);
+}
+
+.navbar .nav-link {
+    color: #ebddb1;
+    transition: background-color 0.3s, color 0.3s;
+    position: relative;
+    padding: 10px 15px;
+}
+
+.navbar .nav-link:hover {
+    color: #ebddb1;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+/* Hero section */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Overlay styles */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    z-index: 2;
+}
+
+.overlay h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: #e1d2bb;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.overlay p {
+    font-size: 1.2rem;
+    color: #cccccc;
+}
+
+/* Toggle switch styles */
+.toggle-container {
+    margin-top: 20px;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 10;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+.toggle {
+    width: 50px;
+    height: 25px;
+    background-color: #1a1a1a;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 0 10px #588157, 0 0 5px #588157;
+}
+
+.toggle::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2.5px;
+    left: 2.5px;
+    transition: 0.3s;
+}
+
+input[type="checkbox"]:checked + .toggle {
+    background-color: #588157;
+}
+
+input[type="checkbox"]:checked + .toggle::before {
+    transform: translateX(25px);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .overlay h1 {
+        font-size: 2.5rem;
+    }
+
+    .overlay p {
+        font-size: 1rem;
+    }
+}
+
+main {
+    margin-bottom: auto;
+    background-color: #D5D1C6;
+}
+
+footer.footer {
+    background-color: #28402A;
+    padding: 20px;
+    width: 100%;
+    bottom: 0;
+    font-size: 16px;
+    align-items: center;
+}
+
+h1 {
+    padding: 20px 0 10px;
+    color:#ebddb1;
+}
+
+p {
+    font-size: 24px;
+    color: #324C40;
+}
+
+.btn {
+    color: #FBFDF2;
+    background-color: #2E593D;
+
+}
+/* Styles des cartes */
+.card {
+    background-color: #688C6A;
+    margin: 0 20px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 400px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px var(--card-hover-shadow);
+}
+
+.card-title {
+    color: #28402A;
+}
+
+.card-text {
+    color: #ebddb1;
+}
+
+.card-service {
+    background-color: var(--primary-color);
+    margin: 0 20px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-height: 350px;
+    overflow: hidden;
+}
+
+.card-service:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px var(--card-hover-shadow);
+}
+
+/* Image de la carte */
+.img-habitat {
+    border-radius: 50%;
+    width: 500px;
+
+}
+
+// .card-img-animal {
+//     border-radius: 100%;
+//     border: 1rem solid;
+//     border-color: #5a3b15;
+// }
+
+.card_img_top {
+    max-width: 200px;
+    margin: 15px auto 0;
+    width: 100px;
+    height: 100px;
+}
+
+.habitats-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.habitat-card {
+    transition: all 0.5s ease-in-out;
+    transform-origin: center;
+}
+
+.habitat-card.active {
+    flex: 1 1 100%;
+    margin-bottom: 20px;
+    order: -1;
+}
+
+.animals-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    overflow: hidden;
+    opacity: 0;
+    max-height: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.animals-container.active {
+    opacity: 1;
+    max-height: 1000px;
+    margin-top: 20px;
+}
+
+.popup-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.popup-content h3 {
+    margin-top: 0;
+}
+
+

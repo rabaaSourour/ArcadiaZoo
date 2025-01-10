@@ -37,7 +37,7 @@
                 <?php if ($service['category'] === 'visite'): ?>
                     <div class="col-12 mb-3">
                         <div class="card-service">
-                            <div class="row g-0">
+                            <div class="row g-3">
                                 <?php if ($index % 2 === 0): ?>
                                     <div class="col-md-4">
                                         <img src="<?= htmlspecialchars($service['image']) ?>" class="card-img-top rounded" alt="image du service">
@@ -64,7 +64,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <img src="<?= htmlspecialchars($service['image']) ?>" class="card-img rounded" alt="image du service">
+                                        <img src="<?= htmlspecialchars($service['image']) ?>" class="card-img-top rounded" alt="image du service">
                                     </div>
                                 <?php endif; ?>
                             </div>

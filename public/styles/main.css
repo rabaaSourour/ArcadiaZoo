@@ -12063,6 +12063,11 @@ body, html {
   right: 30px;
   z-index: 10;
 }
+@media (max-width: 991.98px) {
+  .toggle-container {
+    right: 72px;
+  }
+}
 
 input[type=checkbox] {
   display: none;
@@ -12161,7 +12166,7 @@ p {
 }
 
 .card-service {
-  background-color: var(--primary-color);
+  background-color: #2E593D;
   margin: 0 20px;
   padding: 10px;
   border-radius: 20px;
@@ -12174,6 +12179,14 @@ p {
 .card-service:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px var(--card-hover-shadow);
+}
+
+.card-img-top {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16/9;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 /* Image de la carte */
@@ -12222,38 +12235,70 @@ p {
   margin-top: 20px;
 }
 
-.popup-container {
+/* Styles pour le dialog */
+dialog {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transform: translate(-50%, -50%);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  max-width: 90%;
+  width: 600px;
   z-index: 1000;
 }
 
-.popup-content {
-  background: #fff;
-  border-radius: 8px;
-  padding: 20px;
-  width: 90%;
-  max-width: 500px;
-  position: relative;
+/* Assombrissement de l'arrière-plan */
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.close-popup {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
+/* Contenu principal */
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Bouton de fermeture */
+.close-btn {
+  align-self: flex-end;
+  padding: 8px 12px;
   border: none;
-  font-size: 20px;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.popup-content h3, .popup-content .h3 {
-  margin-top: 0;
+/* Informations sur l'animal */
+.animal-info {
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.animal-info p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+/* Animations */
+dialog[open] {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
 }/*# sourceMappingURL=main.css.map */

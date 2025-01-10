@@ -12,7 +12,7 @@
                         <div class="row g-0">
                             <?php if ($index % 2 === 0): ?>
                                 <div class="col-md-6">
-                                    <img src="<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid rounded" alt="Image de l'habitat">
+                                    <img src="<?= htmlspecialchars($habitat['image']) ?>" class="card-img-top rounded" alt="Image de l'habitat">
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card-body">
@@ -62,28 +62,6 @@
                                                 <button data-action="show-details" class="btn btn-secondary mb-3">Afficher les détails de l'animal</button>
 
                                             </div>
-
-                                            <!-- Rapports vétérinaires -->
-                                            <div id="report-<?= $animal['id'] ?>" class="report-list" style="display: none;">
-                                                <?php foreach ($reports as $report): ?>
-                                                    <?php if ($report['animals_id'] === $animal['id']): ?>
-                                                        <div class="card rounded my-3">
-                                                            <div class="card-body">
-                                                                <p class="card-text"><strong>Statut :</strong> <?= htmlspecialchars($report['status']) ?></p>
-                                                                <p class="card-text"><strong>Nourriture :</strong> <?= nl2br(htmlspecialchars($report['food'])) ?></p>
-                                                                <p class="card-text"><strong>Quantité de nourriture :</strong> <?= nl2br(htmlspecialchars($report['food_quantity'])) ?></p>
-                                                                <p class="card-text"><strong>Détails :</strong> <?= nl2br(htmlspecialchars($report['details'])) ?></p>
-                                                            </div>
-                                                            <div>
-                                                                <?php if ($role === 'admin'): ?>
-                                                                    <button class="btn btn-warning" onclick="window.location.href='/report/update?id=<?= $report['id'] ?>'">Modifier</button>
-                                                                    <button class="btn btn-danger" onclick="deleteReport(<?= $report['id'] ?>)">Supprimer</button>
-                                                                <?php endif; ?>
-                                                            </div>
-                                                        </div>
-                                                    <?php endif; ?>
-                                                <?php endforeach; ?>
-                                            </div>
                                         </div>
                                     </div>
                                 <?php endif; ?>
@@ -102,14 +80,7 @@
     </div>
 </section>
 
-<div id="animal-popup" class="popup-container" style="display: none;">
-    <div class="popup-content">
-        <button class="close-popup" onclick="closeAnimalPopup()">×</button>
-        <div id="popup-details"></div>
-    </div>
-</div>
-
-<dialog id="dialog-show-details">
+<dialog id="dialog-show-details" class="animal-dialog">
     <div class="dialog-content">
         <button class="close-btn btn btn-primary">Fermer</button>
     </div>
@@ -117,14 +88,15 @@
 
 <template id="template-animal-details">
     <div class="animal-info">
-        <p class="animal-name"></p>
-        <p class="report-details"></p>
-        <p class="report-status"></p>
-        <p class="report-food"></p>
-        <p class="report-quantity"></p>
-        <p class="report-last-check"></p>
+        <p class="animal-name"><strong>Nom de l'animal : </strong></p>
+        <p class="report-details"><strong>Détails : </strong></p>
+        <p class="report-status"><strong>Statut : </strong></p>
+        <p class="report-food"><strong>Nourriture : </strong></p>
+        <p class="report-quantity"><strong>Quantité de nourriture : </strong></p>
+        <p class="report-last-check"><strong>Dernière visite : </strong></p>
     </div>
 </template>
+
 
 <!-- Scripts -->
 <script src="/public/js/habitat.js"></script>

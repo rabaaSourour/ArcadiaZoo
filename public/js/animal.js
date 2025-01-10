@@ -40,8 +40,6 @@ async function showAnimalDetails() {
             const animalCard = modalBtn.parentElement.parentElement.parentElement;
             const animalId = animalCard.getAttribute('data-animal-id');
 
-            console.log(animalId);
-            
             fetchAnimalDetails(animalId).then((data) => {
                 fillDialogTemplate(dialog, data.animal, data.report);
             });
@@ -72,12 +70,18 @@ async function fetchAnimalDetails(animalId) {
 function fillDialogTemplate(dialog, animal, report) {
     const template = document.querySelector('#template-animal-details').content.cloneNode(true);
 
-    template.querySelector('.animal-name').textContent = animal.name;
-    template.querySelector('.report-details').textContent = report.details;
-    template.querySelector('.report-status').textContent = report.status;
-    template.querySelector('.report-food').textContent = report.food;
-    template.querySelector('.report-quantity').textContent = report.food_quantity;
-    template.querySelector('.report-last-check').textContent = report.last_check;
+    const rows = [
+        ['.animal-name', animal.name],
+        ['.report-details', report.details],
+        ['.report-status', report.status],
+        ['.report-food', report.food],
+        ['.report-quantity', report.food_quantity],
+        ['.report-last-check', report.last_check],
+    ];
+
+    rows.forEach((row) => {
+        fillTemplateRow(template, row[0], row[1]);
+    });
 
     const animalInfo = dialog.querySelector('.animal-info');
     if(animalInfo instanceof HTMLElement) {
@@ -85,6 +89,15 @@ function fillDialogTemplate(dialog, animal, report) {
     }
 
     dialog.querySelector('.dialog-content').appendChild(template);
+}
+
+function fillTemplateRow(template, rowSelector, value) {
+    if(value === undefined || value === null) {
+        value = 'Inconnu(e)';
+    }
+    
+    const text = document.createTextNode(value);
+    template.querySelector(rowSelector).appendChild(text);
 }
 
 showAnimalDetails();

@@ -1,31 +1,3 @@
--- Insertion des utilisateurs
-INSERT INTO
-    users (email, password, role)
-VALUES
-    (
-        'jose.zooarcadia@gmail.com',
-        '**********',
-        'admin'
-    );
-
-INSERT INTO
-    users (email, password, role)
-VALUES
-    (
-        'vetetinaire.zooarcadia@hotmail.com',
-        '*********',
-        'veterinaire'
-    );
-
-INSERT INTO
-    users (email, password, role)
-VALUES
-    (
-        'employe.zooarcadia@hotmail.com',
-        '*********',
-        'employe'
-    );
-
 -- Insertion des habitats
 INSERT INTO
     habitats (name, description, image)
@@ -34,20 +6,12 @@ VALUES
         'Jungle',
         'La jungle, une forêt tropicale dense et luxuriante, abrite une biodiversité exceptionnelle et joue un rôle vital dans la régulation climatique et la préservation de la biodiversité. Cependant, elle est confrontée à des menaces telles que la déforestation et le changement climatique. La conservation de cet habitat crucial est essentielle pour maintenir l\'équilibre écologique de la planète.',
         '/public/asset/images/Jungle.jpg'
-    );
-
-INSERT INTO
-    habitats (name, description, image)
-VALUES
+    ),
     (
         'Savane',
         'La savane est un lieu qui recrée l\'écosystème de la savane de manière durable pour abriter et exposer une diversité d\'animaux. Elle met l\'accent sur la conservation, l\'éducation et la recherche, tout en favorisant une observation respectueuse des animaux.',
         '/public/asset/images/savane.jpg'
-    );
-
-INSERT INTO
-    habitats (name, description, image)
-VALUES
+    ),
     (
         'Marais',
         'Le Marais est un habitat écologique typique des zones humides, caractérisé par une grande diversité biologique. Il comprend des marécages, des étangs, des tourbières et des zones de végétation dense. Ces écosystèmes fournissent un habitat vital pour de nombreuses espèces de plantes et d\'animaux. Le Marais agit également comme un important réservoir de biodiversité et contribue à la régulation du cycle de l\'eau et à la filtration des polluants. Sa préservation est essentielle pour maintenir l\'équilibre écologique et protéger la vie sauvage.',
@@ -184,20 +148,12 @@ VALUES
         'alice',
         'Super endroit pour une sortie en famille!',
         '1'
-    );
-
-INSERT INTO
-    reviews (pseudo, review, isValid)
-VALUES
+    ),
     (
         'Bob',
         'Les animaux sont très bien soignés et le personnel.',
         '1'
-    );
-
-INSERT INTO
-    reviews (pseudo, review, isValid)
-VALUES
+    ),
     (
         'Charline',
         'Incroyable expérience, à ne pas manquer !',
@@ -228,19 +184,7 @@ VALUES
         '2024-06-15',
         4,
         2
-    );
-
-INSERT INTO
-    `veterinary_reports` (
-        `status`,
-        `food`,
-        `food_quantity`,
-        `details`,
-        `last_check`,
-        `animals_id`,
-        `users_id`
-    )
-VALUES
+    ),
     (
         'En bonne santé générale, léger vieillissement observé.',
         'Viande de bœuf, poulet, lapin, supplément en taurine',
@@ -249,19 +193,7 @@ VALUES
         '2024-06-15',
         5,
         2
-    );
-
-INSERT INTO
-    `veterinary_reports` (
-        `status`,
-        `food`,
-        `food_quantity`,
-        `details`,
-        `last_check`,
-        `animals_id`,
-        `users_id`
-    )
-VALUES
+    ),
     (
         'Bon. Aucune maladie grave signalée.',
         'Herbe, feuilles, écorce, fruits, et parfois des racines',
@@ -270,19 +202,7 @@ VALUES
         '2024-06-15',
         6,
         2
-    );
-
-INSERT INTO
-    `veterinary_reports` (
-        `status`,
-        `food`,
-        `food_quantity`,
-        `details`,
-        `last_check`,
-        `animals_id`,
-        `users_id`
-    )
-VALUES
+    ),
     (
         'Bon. Aucune blessure majeure ou maladie détectée.',
         'Principalement viande fraîche de proies comme les gazelles, les antilopes.',
@@ -291,19 +211,7 @@ VALUES
         '2024-06-15',
         7,
         2
-    );
-
-INSERT INTO
-    `veterinary_reports` (
-        `status`,
-        `food`,
-        `food_quantity`,
-        `details`,
-        `last_check`,
-        `animals_id`,
-        `users_id`
-    )
-VALUES
+    ),
     (
         'Bon. Aucune blessure grave ou maladie rapportée.',
         'Herbes, feuilles, écorce et parfois des fruits et des racines.',
@@ -312,19 +220,7 @@ VALUES
         '2024-06-15',
         8,
         2
-    );
-
-INSERT INTO
-    `veterinary_reports` (
-        `status`,
-        `food`,
-        `food_quantity`,
-        `details`,
-        `last_check`,
-        `animals_id`,
-        `users_id`
-    )
-VALUES
+    ),
     (
         'Bon. Aucun signe d\'infection, de blessure ou de déshydratation.',
         'Poissons, oiseaux, mammifères aquatiques et parfois des petits mammifères terrestres.',
@@ -333,19 +229,7 @@ VALUES
         '2024-06-15',
         9,
         2
-    );
-
-INSERT INTO
-    `veterinary_reports` (
-        `status`,
-        `food`,
-        `food_quantity`,
-        `details`,
-        `last_check`,
-        `animals_id`,
-        `users_id`
-    )
-VALUES
+    ),
     (
         'Bon. Aucune blessure ou signe d\'infection détecté.',
         'poissons, insectes aquatiques',
@@ -354,19 +238,7 @@ VALUES
         '2024-06-15',
         10,
         2
-    );
-
-INSERT INTO
-    `veterinary_reports` (
-        `status`,
-        `food`,
-        `food_quantity`,
-        `details`,
-        `last_check`,
-        `animals_id`,
-        `users_id`
-    )
-VALUES
+    ),
     (
         'Bon. Pas de signes de blessures ou d\'infections. Plumes en bon état.',
         'Poissons, amphibiens, petits mammifères et insectes.',
@@ -375,19 +247,7 @@ VALUES
         '2024-06-15',
         11,
         2
-    );
-
-INSERT INTO
-    `veterinary_reports` (
-        `status`,
-        `food`,
-        `food_quantity`,
-        `details`,
-        `last_check`,
-        `animals_id`,
-        `users_id`
-    )
-VALUES
+    ),
     (
         'Bon. Pas de signes d\'infection ou de blessures. La peau est saine sans anomalies.',
         'Herbes, feuilles, écorce et parfois des racines.',
@@ -419,34 +279,10 @@ VALUES
 INSERT INTO
     openinghours (day, openingTime, closingTime)
 VALUES
-    ('Lundi', '09:00:00', '18:00:00');
-
-INSERT INTO
-    openinghours (day, openingTime, closingTime)
-VALUES
-    ('Mardi', '09:00:00', '18:00:00');
-
-INSERT INTO
-    openinghours (day, openingTime, closingTime)
-VALUES
-    ('Mercredi', '09:00:00', '18:00:00');
-
-INSERT INTO
-    openinghours (day, openingTime, closingTime)
-VALUES
-    ('Jeudi', '09:00:00', '18:00:00');
-
-INSERT INTO
-    openinghours (day, openingTime, closingTime)
-VALUES
-    ('Vendredi', '09:00:00', '18:00:00');
-
-INSERT INTO
-    openinghours (day, oopeningTime, closingTime)
-VALUES
-    ('Samedi', '09:00:00', '20:00:00');
-
-INSERT INTO
-    openinghours (day, openingTime, closingTime)
-VALUES
+    ('Lundi', '09:00:00', '18:00:00'),
+    ('Mardi', '09:00:00', '18:00:00'),
+    ('Mercredi', '09:00:00', '18:00:00'),
+    ('Jeudi', '09:00:00', '18:00:00'),
+    ('Vendredi', '09:00:00', '18:00:00'),
+    ('Samedi', '09:00:00', '20:00:00'),
     ('Dimanche', '09:00:00', '20:00:00');

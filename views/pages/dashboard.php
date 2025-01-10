@@ -69,7 +69,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Gestion des Horaires :</h5>
                         <p class="card-text">Configurer les horaires du zoo.</p>
-                        <a href="/OpeningHours/show" class="btn btn-dark">Accéder</a>
+                        <a href="/horaires/show" class="btn btn-dark">Accéder</a>
                     </div>
                 </div>
             </div>

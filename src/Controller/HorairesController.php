@@ -3,15 +3,15 @@
 namespace App\Controller;
 
 use App\Model\Horaires;
-
+use PDO;
 
 class HorairesController
 {
     private Horaires $horairesModel;
 
-    public function __construct(Horaires $horairesModel)
+    public function __construct(PDO $pdo)
     {
-        $this->horairesModel = $horairesModel;
+        $this->horairesModel = new Horaires($pdo);
     }
 
     public function viewOpeningHours(): array
@@ -26,9 +26,14 @@ class HorairesController
         ];
     }
 
-    public function showHoraires(): array
+    public function show(): array
     {
-        return $this->horairesModel->getHoraires();
+        return [
+            'page' => 'OpeningHours',
+            'variables' => [
+                'horaires' => $this->horairesModel->getHoraires(),
+            ]
+        ];
     }
 
     public function updateHoraires(array $data): array

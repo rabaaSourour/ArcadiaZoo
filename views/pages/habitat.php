@@ -3,30 +3,18 @@
         <!-- Titre principal -->
         <h1 class="text-center">Découvrez nos différents habitats !</h1>
 
-        <div class="row align-items-cente g-4 rounded">
+        <div class="row align-items-center g-4 rounded">
             <?php $index = 0; ?>
             <?php foreach ($habitats as $habitat): ?>
                 <div class="col-12 habitats-list">
                     <!-- Carte de l'habitat -->
-                    <div class="card mb-3">
+                    <div class="card mb-3 mw-100">
                         <div class="row g-0">
-                        <?php if ($index % 2 === 0): ?>
-                            <div class="col-md-4">
-                                <img src="<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid" alt="Image de l'habitat">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?= htmlspecialchars($habitat['name']) ?></h5>
-                                    <p class="card-text"><?= nl2br(htmlspecialchars($habitat['description'])) ?></p>
-                                    <?php if ($role === 'admin'): ?>
-                                        <button class="btn btn-warning" onclick="window.location.href='/habitat/update?id=<?= $habitat['id'] ?>'">Modifier</button>
-                                        <button class="btn btn-danger" onclick="deleteHabitat(<?= $habitat['id'] ?>)">Supprimer</button>
-                                    <?php endif; ?>
-                                    <button onclick="toggleAnimals(<?= $habitat['id'] ?>)" class="btn btn-secondary mb-3">Afficher les animaux</button>
+                            <?php if ($index % 2 === 0): ?>
+                                <div class="col-md-6">
+                                    <img src="<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid rounded" alt="Image de l'habitat">
                                 </div>
-                            </div>
-                            <?php else: ?>
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <div class="card-body">
                                         <h5 class="card-title"><?= htmlspecialchars($habitat['name']) ?></h5>
                                         <p class="card-text"><?= nl2br(htmlspecialchars($habitat['description'])) ?></p>
@@ -37,8 +25,20 @@
                                         <button onclick="toggleAnimals(<?= $habitat['id'] ?>)" class="btn btn-secondary mb-3">Afficher les animaux</button>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <img src="<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid" alt="Image de l'habitat">
+                            <?php else: ?>
+                                <div class="col-md-6">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?= htmlspecialchars($habitat['name']) ?></h5>
+                                        <p class="card-text"><?= nl2br(htmlspecialchars($habitat['description'])) ?></p>
+                                        <?php if ($role === 'admin'): ?>
+                                            <button class="btn btn-warning" onclick="window.location.href='/habitat/update?id=<?= $habitat['id'] ?>'">Modifier</button>
+                                            <button class="btn btn-danger" onclick="deleteHabitat(<?= $habitat['id'] ?>)">Supprimer</button>
+                                        <?php endif; ?>
+                                        <button onclick="toggleAnimals(<?= $habitat['id'] ?>)" class="btn btn-secondary mb-3">Afficher les animaux</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid rounded" alt="Image de l'habitat">
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -59,7 +59,8 @@
                                                     <button class="btn btn-warning" onclick="window.location.href='/animal/update?id=<?= $animal['id'] ?>'">Modifier</button>
                                                     <button class="btn btn-danger" onclick="deleteAnimal(<?= $animal['id'] ?>)">Supprimer</button>
                                                 <?php endif; ?>
-                                                <button onclick="toggleReports(<?= $animal['id'] ?>)" class="btn btn-secondary mb-3">Afficher les détails de l'animal</button>
+                                                <button data-action="show-details" class="btn btn-secondary mb-3">Afficher les détails de l'animal</button>
+
                                             </div>
 
                                             <!-- Rapports vétérinaires -->
@@ -100,6 +101,30 @@
         <?php endif; ?>
     </div>
 </section>
+
+<div id="animal-popup" class="popup-container" style="display: none;">
+    <div class="popup-content">
+        <button class="close-popup" onclick="closeAnimalPopup()">×</button>
+        <div id="popup-details"></div>
+    </div>
+</div>
+
+<dialog id="dialog-show-details">
+    <div class="dialog-content">
+        <button class="close-btn btn btn-primary">Fermer</button>
+    </div>
+</dialog>
+
+<template id="template-animal-details">
+    <div class="animal-info">
+        <p class="animal-name"></p>
+        <p class="report-details"></p>
+        <p class="report-status"></p>
+        <p class="report-food"></p>
+        <p class="report-quantity"></p>
+        <p class="report-last-check"></p>
+    </div>
+</template>
 
 <!-- Scripts -->
 <script src="/public/js/habitat.js"></script>

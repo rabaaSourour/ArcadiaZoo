@@ -80,4 +80,17 @@ class Report
             return false;
         }
     }
+
+    public function getByAnimalId(int $id) : array
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM veterinary_reports WHERE animals_id = :animals_id");
+            $stmt->execute(['animals_id' => $id]);
+
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            echo "Erreur lors de la suppression du report : " . $e->getMessage();
+            return false;
+        }
+    }
 }

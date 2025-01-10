@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Model\Animal;
 use App\Model\Habitat;
 use App\Services\FileUploader;
-use App\Services\MongoDBService;
 
 use PDO;
 
@@ -13,13 +12,11 @@ class AnimalController
 {
     private $animalModel;
     private Habitat $habitatModel;
-    private $mongoDBService;
 
-    public function __construct(PDO $pdo, MongoDbService $mongoDBService)
+    public function __construct(PDO $pdo)
     {
         $this->animalModel = new Animal($pdo);
         $this->habitatModel = new Habitat($pdo);
-        $this->mongoDBService = $mongoDBService;
     }
 
     // URI : '/animal/show'
@@ -47,7 +44,6 @@ class AnimalController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->animalModel->deleteAnimal($id);
-            $this->mongoDBService->synchronize();
             header('Location: /habitat/show');
             exit();
         }
@@ -74,7 +70,6 @@ class AnimalController
             }
         }
         $habitats = $this->habitatModel->getAllHabitats();
-        $this->mongoDBService->synchronize();
         return [
             'page' => 'addAnimal',
             'variables' => [

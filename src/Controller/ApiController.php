@@ -11,6 +11,7 @@ use App\Model\Food;
 use App\Model\User;
 use App\Model\AnimalConsultation;
 use PDO;
+use Throwable;
 
 class ApiController
 {
@@ -138,4 +139,38 @@ class ApiController
         }
     }
 
+    public function animalDetails() : void
+    {       
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            try {
+                $param = 'animalId';
+                if(!isset($_GET[$param])) {
+                    $data = ['success' => false, 'error' => 'Parameter ' . $param . ' is not set'];
+                }
+    
+                if(empty($_GET[$param])) {
+                    $data = ['success' => false, 'error' => 'Parameter ' . $param . ' is empty'];
+                }
+    
+                $animalId = $_GET['animalId'] ?? null;
+                
+                if(!is_numeric($animalId)) {
+                    $data = ['success' => false, 'error' => 'Parameter "animalId" with value ' . $animalId . ' is not numeric'];
+                } else {
+                    $animalId = (int) $animalId;
+                    $animal = $this->animalModel->getAnimalById($animalId);
+                    $report = $this->reportModel->getByAnimalId($animalId);
+                    
+                    $data = ['success' => true, 'animal' => $animal, 'report' => $report];
+                }
+
+                echo json_encode($data);
+                die;
+            } catch(Throwable $e) {
+                echo json_encode(['success' => false, 'error' => 'Une erreur inconnue est survenue']);
+                logToFile($e->getMessage());
+                die;
+            }
+        }
+    }
 }

@@ -79,7 +79,7 @@
 
             <!-- les différent services du ZOO-->
             <div class="tab-pane fade" id="services" role="tabpanel" aria-labelledby="services-tab">
-                <div class="container rounded p-4 mb-3">
+                <div class="container p-4 mb-3">
                     <p class="text-center pb-3">la découverte de la nature s'accompagne de confort et de commodités pour une
                         expérience inoubliable,
                         Notre parc propose plusieurs services pour enrichir votre visite et vous permettre de profiter pleinement de

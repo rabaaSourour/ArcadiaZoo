@@ -17,11 +17,16 @@ if($controller !== null && method_exists($controller, $method)) {
 }
 
 $page = __DIR__ . "/Views/pages/404.php";
+
+if($router->getPath() === '/error/server-error') {
+    $page = __DIR__ . '/Views/pages/500.php';
+}
+
 if(isset($data)) {
     $file = __DIR__ . "/Views/pages/{$data['page']}.php";
     if(file_exists($file)) {
         $page = $file;
-        extract($data['variables']);
+        extract($data['variables'] ?? []);
     }
 }
 

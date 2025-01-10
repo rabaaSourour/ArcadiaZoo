@@ -14,8 +14,13 @@ if (!isset($_SESSION['csrf_token'])) {
                     <h1>Connexion</h1>
                 </div>
                 <div class="col-lg-12 login-form">
+                    <div class="errors">
+                        <?php foreach($errors as $error) : ?>
+                            <p class="color-danger"><?= $error ?></p>
+                        <?php endforeach ?>
+                    </div>
                     <form action="" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
                         <div class="mb-3">
                             <label for="role" class="form-label">Connectez-vous en tant que :</label>
                             <select class="form-select" id="role" name="role" required>

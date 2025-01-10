@@ -13,7 +13,7 @@ class Signin
         $this->pdo = $pdo;
     }
 
-    public function login($email, $role): array
+    public function login($email, $role): ?array
     {
         $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email AND role = :role");
         $stmt->bindValue(':email', $email);

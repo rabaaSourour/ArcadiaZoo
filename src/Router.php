@@ -8,6 +8,7 @@ class Router
 {
     private ?object $controller = null;
     private ?string $method = null;
+    private string $path;
 
     public function __construct(private string $requestMethod, string $uri)
     {
@@ -20,9 +21,9 @@ class Router
             $uri = '/home/show';
         }
 
-        $path = parse_url($uri, PHP_URL_PATH);
+        $this->path = parse_url($uri, PHP_URL_PATH);
 
-        $uriExplode = explode('/', $path);
+        $uriExplode = explode('/', $this->path);
         $controllerAlias = $uriExplode[1];
         $method = $uriExplode[2];
 
@@ -34,6 +35,11 @@ class Router
             $this->controller = new $controllerName($pdo);
             $this->method = $method;
         }
+    }
+
+    public function getPath() : string
+    {
+        return $this->path;
     }
 
     public function getController() : ?object

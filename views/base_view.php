@@ -95,7 +95,7 @@
                 </p>
             </div>
             <div class="col-md-4">
-                <h3><a href="/mentionsLegals/show">Mentions légals</a></h3>
+                <h3><a href="/home/mentionsLegals">Mentions légals</a></h3>
 
             </div>
             <div class="col-md-4 ">

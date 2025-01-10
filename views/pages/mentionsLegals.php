@@ -1,4 +1,4 @@
-<div class="container rounded mt-3">
+<div class="container rounded pt-3">
 
     <h1 class="text-center rounded m-3 p-2">Mentions légales</h1>
 
@@ -54,7 +54,7 @@
         Zoo Arcadia ne peut être tenu responsable du contenu de ces sites externes ni de leur politique de confidentialité.
     </p>
 
-    <h3 class="text-bg-secondary rounded m-3 p-2">Contact :</h3>
+    <h3 class="text-bg-secondary rounded p-2">Contact :</h3>
 
     <p class="text-dark">Pour toute question ou demande d'information concernant le site www.zooarcadia.com,
         vous pouvez nous contacter à l'adresse suivante : zoo.arcadia1960@gmail.com.

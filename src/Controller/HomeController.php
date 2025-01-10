@@ -45,4 +45,12 @@ class HomeController
             ]
         ];
     }
+
+    public function mentionsLegals() : array
+    {
+        return [
+            'page' => 'mentionsLegals',
+            'variables' => [],
+        ];
+    }
 }

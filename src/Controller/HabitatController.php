@@ -47,6 +47,10 @@ class HabitatController
     public function delete($id): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                header('Location: /error/server-error');
+                die;
+            }
             $this->habitatModel->deleteHabitat($id);
             header('Location: /habitat/show');
             exit();
@@ -59,6 +63,10 @@ class HabitatController
         $message = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                header('Location: /error/server-error');
+                die;
+            }
             $name = htmlspecialchars($_POST['name']);
             $description = htmlspecialchars($_POST['description']);
 
@@ -93,6 +101,10 @@ class HabitatController
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                header('Location: /error/server-error');
+                die;
+            }
             $name = htmlspecialchars ($_POST['name'] ?? '');
             $description = htmlspecialchars ($_POST['description'] ?? '');
             $imagePath = null;

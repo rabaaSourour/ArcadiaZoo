@@ -35,7 +35,7 @@ class ReviewController
 
                 $this->reviewModel->new($pseudo, $review);
 
-                header('Location: /home/view');
+                header('Location: /home/show');
                 exit();
             } else {
                 echo "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";
@@ -47,7 +47,8 @@ class ReviewController
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-                die('Erreur CSRF : jeton invalide.');
+                header('Location: /error/server-error');
+                die;
             }
         }
 

@@ -42,6 +42,10 @@ class FoodController
     public function delete($id): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                header('Location: /error/server-error');
+                die;
+            }
             $this->foodModel->deleteFood($id);
             header('Location: /food/show');
             exit();
@@ -55,7 +59,10 @@ class FoodController
         $animal = $this->animalModel->getAllAnimals();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Valider les données ici
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                header('Location: /error/server-error');
+                die;
+            }
             $food = htmlspecialchars($_POST['food']);
             $quantity = htmlspecialchars($_POST['quantity']);
             $animalId = (int) htmlspecialchars($_POST['animals_id']);
@@ -92,6 +99,10 @@ class FoodController
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                header('Location: /error/server-error');
+                die;
+            }
             $food = htmlspecialchars($_POST['food'] ?? '');
             $quantity = htmlspecialchars($_POST['quantity'] ?? '');
             $animalId = (int) htmlspecialchars($_POST['animals_id'] ?? '');

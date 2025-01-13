@@ -1,25 +1,24 @@
-<div class="container rounded pt-3">
+<div class="container rounded p-3">
 
-    <h1 class="text-center rounded m-3 p-2">Mentions légales</h1>
+    <h2 class="text-secondary text-center m-3 p-2">Mentions légales</h2>
 
     <h3 class="text-bg-secondary rounded m-3 p-2">Informations légales :</h3>
     <ul class="text-dark">
-        <li>Nom de l'entreprise : Zoo Arcadia</li>
-        <li>Adresse : la forêt de Brocéliande, bretagne</li>
-        <li>Téléphone : [06........]</li>
-        <li>Email : zoo.arcadia1960@gmail.com</li>
-        <li>Directeur de la publication : José</li>
-        <li>SIRET : [numéro SIRET]</li>
-        <li>Code APE : [code APE]</li>
-    </ul>
-
+    <li>Nom de l'entreprise : Projet éducatif - Zoo Arcadia</li>
+    <li>Adresse : Ce projet n'a pas d'adresse physique</li>
+    <li>Téléphone : Non applicable</li>
+    <li>Email : zoo.arcadia1960@gmail.com</li>
+    <li>Directeur de la publication : José Dupont (nom fictif pour le projet)</li>
+    <li>SIRET : Non applicable (projet non commercial)</li>
+    <li>Code APE : Non applicable (projet éducatif)</li>
+</ul>
 
     <h3 class="text-bg-secondary rounded m-3 p-2">Hébergeur :</h3>
 
     <ul class="text-dark">
-        <li>Nom de l'hébergeur : [Nom de l'hébergeur]</li>
-        <li>Adresse de l'hébergeur : [Adresse de l'hébergeur]</li>
-        <li>Téléphone de l'hébergeur : [Numéro de téléphone de l'hébergeur]</li>
+        <li>Nom de l'hébergeur : Alwaysdata</li>
+        <li>Adresse de l'hébergeur : 91 rue du Faubourg Saint-Honoré, 75008 Paris, France</li>
+        <li>Téléphone de l'hébergeur : +33 1 84 16 23 40</li>
     </ul>
 
     <h3 class="text-bg-secondary rounded m-3 p-2">Propriété intellectuelle :</h3>
@@ -44,17 +43,7 @@
         Vous pouvez exercer ces droits en nous contactant à l'adresse suivante : jose.zooarcadia@gmail.com.
     </p>
 
-    <h3 class="text-bg-secondary rounded m-3 p-2">Cookies :</h3>
-
-    Le site www.zooarcadia.com peut utiliser des cookies pour améliorer l'expérience utilisateur, analyser le trafic du site et fournir des fonctionnalités de médias sociaux. Vous pouvez configurer votre navigateur pour refuser les cookies.
-
-    <h3 class="text-bg-secondary rounded m-3 p-2">Liens externes :</h3>
-
-    <p class="text-dark">Le site www.zooarcadia.com peut contenir des liens vers d'autres sites web.
-        Zoo Arcadia ne peut être tenu responsable du contenu de ces sites externes ni de leur politique de confidentialité.
-    </p>
-
-    <h3 class="text-bg-secondary rounded p-2">Contact :</h3>
+    <h3 class="text-bg-secondary rounded m-3 p-2">Contact :</h3>
 
     <p class="text-dark">Pour toute question ou demande d'information concernant le site www.zooarcadia.com,
         vous pouvez nous contacter à l'adresse suivante : zoo.arcadia1960@gmail.com.

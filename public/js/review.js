@@ -1,15 +1,12 @@
 $(document).ready(function() {
-    // Pour la validation des avis
     $('.validate-btn').click(function(event) {
         event.preventDefault();
     
         var reviewId = $(this).data('review-id');
         var reviewDiv = $(this).closest('.review');
-
-     // Vérifie si l'ID est correct
     
         $.post('/api/validateReview', { id: reviewId }, function(response) {
-            console.log(response); // Vérifie la réponse du serveur
+            console.log(response);
             if (response.status === 'success') {
                 $('#message').text(response.message).show();
                 reviewDiv.remove();
@@ -36,10 +33,8 @@ $(document).ready(function() {
         var reviewId = $(this).data('review-id');
         var reviewDiv = $(this).closest('.review');
     
-        // Vérifie si l'ID est correct
-    
         $.post('/api/deleteReview', { id: reviewId }, function(response) {
-            console.log(response); // Vérifie la réponse du serveur
+            console.log(response); 
             if (response.status === 'success') {
                 $('#message').text(response.message).show();
                 reviewDiv.remove();

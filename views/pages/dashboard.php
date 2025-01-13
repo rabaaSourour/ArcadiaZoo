@@ -1,216 +1,225 @@
 <div class="container pt-4">
+    <h2 class="text-center text-secondary p-3">Votre dashboard</h2>
     <div class="row">
+
         <!-- Pour l'Admin seulement -->
         <?php if ($role === 'admin'): ?>
 
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title text-dark">Gestion des Animaux :</h5>
-                        <p class="card-text">Ajouter un nouvel animal au zoo.</p>
-                        <a href="/animal/new" class="btn btn-dark">Accéder</a>
-                    </div>
-                </div>
+            <div class="col-lg-12 mb-4">
+                <h3 class="text-primary"><i class="fas fa-cogs"></i> Gestion du compte</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Changer votre mot de passe</strong>
+                        <a href="/user/update" class="btn btn-sm"><i class="fas fa-key"></i> Accéder</a>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Card Animaux -->
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title text-dark">Gestion des Animaux :</h5>
-                        <p class="card-text">Ajouter un nouvel animal au zoo.</p>
-                        <a href="/animal/new" class="btn btn-dark">Accéder</a>
-                        <p class="card-text">Modifier ou supprimer un animal au zoo.</p>
-                        <a href="/animal/show" class="btn btn-dark">Accéder</a>
-                    </div>
-                </div>
+            <div class="col-lg-12 mb-4">
+                <h3 class="text-primary"><i class="fas fa-users"></i> Gestion des comptes utilisateurs</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Voir tous les utilisateurs</strong>
+                        <a href="/user/show" class="btn btn-sm"><i class="fas fa-eye"></i> Accéder</a>
+                    </li>
+                    <li>
+                        <strong>Ajouter un nouvel utilisateur</strong>
+                        <a href="/user/new" class="btn btn-sm"><i class="fas fa-user-plus"></i> Accéder</a>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Card Habitats -->
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Gestion des Habitats :</h5>
-                        <p class="card-text">Ajouter un nouvel habitat au zoo.</p>
-                        <a href="/habitat/new" class="btn btn-dark">Accéder</a>
-                        <p class="card-text">Modifier ou supprimer un habitat au zoo.</p>
-                        <a href="/habitat/show" class="btn btn-dark">Accéder</a>
-                    </div>
-                </div>
+            <div class="col-lg-12 mb-4">
+                <h3 class="text-primary"><i class="fas fa-paw"></i> Gestion des animaux</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Ajouter un nouvel animal au zoo</strong>
+                        <a href="/animal/new" class="btn btn-sm"><i class="fas fa-plus-circle"></i> Accéder</a>
+                    </li>
+                    <li>
+                        <strong>Modifier ou supprimer un animal</strong>
+                        <a href="/animal/show" class="btn btn-sm"><i class="fas fa-edit"></i> Accéder</a>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Card Utilisateurs -->
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title text-dark">Gestion des Utilisateurs :</h5>
-                        <p class="card-text">Créer un nouvel utilisateur.</p>
-                        <a href="/user/new" class="btn btn-dark">Accéder</a>
-                    </div>
-                </div>
+            <div class="col-lg-12 mb-4">
+                <h3 class="text-primary"><i class="fas fa-home"></i> Gestion des habitats</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Ajouter un nouvel habitat</strong>
+                        <a href="/habitat/new" class="btn btn-sm"><i class="fas fa-plus-square"></i> Accéder</a>
+                    </li>
+                    <li>
+                        <strong>Modifier ou supprimer un habitat</strong>
+                        <a href="/habitat/show" class="btn btn-sm"><i class="fas fa-edit"></i> Accéder</a>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Card Services -->
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Gestion des Services :</h5>
-                        <p class="card-text">Ajouter un nouveau service au zoo.</p>
-                        <a href="/service/new" class="btn btn-dark">Accéder</a>
-                        <p class="card-text">Modifier ou supprimer un service.</p>
-                        <a href="/service/show" class="btn btn-dark">Accéder</a>
-                    </div>
-                </div>
+            <div class="col-lg-12 mb-4">
+                <h3 class="text-primary"><i class="fas fa-cogs"></i> Gestion des services</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Ajouter un nouveau service</strong>
+                        <a href="/service/new" class="btn btn-sm"><i class="fas fa-plus-circle"></i> Accéder</a>
+                    </li>
+                    <li>
+                        <strong>Modifier ou supprimer un service</strong>
+                        <a href="/service/show" class="btn btn-sm"><i class="fas fa-edit"></i> Accéder</a>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Card Horaires -->
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Gestion des Horaires :</h5>
-                        <p class="card-text">Configurer les horaires du zoo.</p>
-                        <a href="/horaires/show" class="btn btn-dark">Accéder</a>
-                    </div>
-                </div>
+            <div class="col-lg-12 mb-4">
+                <h3 class="text-primary"><i class="fas fa-clock"></i> Gestion des horaires</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Configurer les horaires du zoo</strong>
+                        <a href="/horaires/show" class="btn btn-sm"><i class="fas fa-calendar-alt"></i> Accéder</a>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Card Consultations des Animaux -->
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Consultations des Animaux :</h5>
-                        <p class="card-text">Voir les animaux les plus consultés.</p>
-                        <a href="/animalConsultation/show" class="btn btn-dark">Accéder</a>
-                    </div>
-                </div>
+            <div class="col-lg-12 mb-4">
+                <h3 class="text-primary"><i class="fas fa-search"></i> Consultation des animaux</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Voir les animaux les plus consultés</strong>
+                        <a href="/animalConsultation/show" class="btn btn-sm"><i class="fas fa-eye"></i> Accéder</a>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Card Consultation de la nourriture -->
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Consulter la nourriture des animaux</h5>
-                        <p class="card-text">Voir ce que l'animal a pu manger</p>
-                        <a href="/food/show" class="btn btn-dark">Accéder</a>
-                    </div>
-                </div>
+            <div class="col-lg-12 mb-4">
+                <h3 class="text-primary"><i class="fas fa-utensils"></i> Consultation de la nourriture des animaux</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Voir ce que l'animal a mangé</strong>
+                        <a href="/food/show" class="btn btn-sm"><i class="fas fa-apple-alt"></i> Accéder</a>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Card Consultation de les rapports -->
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Consulter les rapports</h5>
-                        <p class="card-text">Voir les Comptes rendus vétérinaires</p>
-                        <a href="/report/showAdmin" class="btn btn-dark">Accéder</a>
-                    </div>
-                </div>
+            <div class="col-lg-12 mb-4">
+                <h3 class="text-primary"><i class="fas fa-notes-medical"></i> Consultation des rapports</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Voir les comptes rendus vétérinaires</strong>
+                        <a href="/report/showAdmin" class="btn btn-sm"><i class="fas fa-stethoscope"></i> Accéder</a>
+                    </li>
+                </ul>
             </div>
+
         <?php endif; ?>
 
         <!-- Pour le Vétérinaire seulement -->
         <?php if ($role === 'veterinaire'): ?>
 
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title text-dark">Gestion des Animaux :</h5>
-                        <p class="card-text">Ajouter un nouvel animal au zoo.</p>
-                        <a href="/animal/new" class="btn btn-dark">Accéder</a>
-                    </div>
-                </div>
+            <div class="col-lg-12 mb-4">
+                <h3 class="text-primary"><i class="fas fa-user-md"></i> Gestion du compte</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Changer votre mot de passe</strong>
+                        <a href="/user/update" class="btn btn-sm"><i class="fas fa-key"></i> Accéder</a>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Card Consultations et Comptes Rendus -->
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Ajouter un rapport</h5>
-                        <p class="card-text">Remplir les comptes rendus par animaux</p>
-                        <a href="/report/new" class="btn btn-dark">Accéder</a>
-                    </div>
-                </div>
+            <div class="col-lg-12 mb-4">
+                <h3 class="text-primary"><i class="fas fa-file-medical"></i> Ajouter un rapport</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Remplir les comptes rendus par animaux</strong>
+                        <a href="/report/new" class="btn btn-sm"><i class="fas fa-pencil-alt"></i> Accéder</a>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Card Consultation de la nourriture -->
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Consulter la nourriture des animaux</h5>
-                        <p class="card-text">Voir ce que l'animal a pu manger</p>
-                        <a href="/food/show" class="btn btn-dark">Accéder</a>
-                    </div>
-                </div>
+            <div class="col-lg-12 mb-4">
+                <h3 class="text-primary"><i class="fas fa-notes-medical"></i> Consultation des rapports</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Voir les comptes rendus vétérinaires</strong>
+                        <a href="/report/showAdmin" class="btn btn-sm"><i class="fas fa-stethoscope"></i> Accéder</a>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Card pour Commentaire sur les habitats -->
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Laisser un commentaire sur les habitats</h5>
-                        <p class="card-text">Donner un avis sur l'état de l'habitat.</p>
-                        <a href="/habitat/show" class="btn btn-dark">Accéder</a>
-                    </div>
-                </div>
+            <div class="col-lg-12 mb-4">
+                <h3 class="text-primary"><i class="fas fa-utensils"></i> Consulter la nourriture des animaux</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Voir ce que l'animal a mangé</strong>
+                        <a href="/food/show" class="btn btn-sm"><i class="fas fa-apple-alt"></i> Accéder</a>
+                    </li>
+                </ul>
             </div>
+
         <?php endif; ?>
 
         <!-- Pour l'Employé seulement -->
         <?php if ($role === 'employe'): ?>
 
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title text-dark">Gestion des Animaux :</h5>
-                        <p class="card-text">Ajouter un nouvel animal au zoo.</p>
-                        <a href="/animal/new" class="btn btn-dark">Accéder</a>
-                    </div>
-                </div>
+            <div class="col-lg-12 mb-4">
+                <h3 class="text-primary"><i class="fas fa-cogs"></i> Gestion du compte</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Changer votre mot de passe</strong>
+                        <a href="/user/update" class="btn btn-sm"><i class="fas fa-key"></i> Accéder</a>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Card Validation des Avis -->
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Gestion des Avis :</h5>
-                        <p class="card-text">Valider les nouveaux avis.</p>
-                        <a href="/review/pendingReviews" class="btn btn-dark">Accéder</a>
-                    </div>
-                </div>
+            <div class="col-lg-12 mb-4">
+                <h3 class="text-primary"><i class="fas fa-comment-dots"></i> Gestion des avis</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Valider les nouveaux avis</strong>
+                        <a href="/review/pendingReviews" class="btn btn-sm"><i class="fas fa-check-circle"></i> Accéder</a>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Card Gestion de la nourriture pour les animaux -->
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Gestion de la nourriture</h5>
-                        <p class="card-text">Nourrir les animaux</p>
-                        <a href="/food/new" class="btn btn-dark">Accéder</a>
-                    </div>
-                </div>
+            <div class="col-lg-12 mb-4">
+                <h3 class="text-primary"><i class="fas fa-cogs"></i> Gestion des services</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Ajouter un nouveau service</strong>
+                        <a href="/service/new" class="btn btn-sm"><i class="fas fa-plus-circle"></i> Accéder</a>
+                    </li>
+                    <li>
+                        <strong>Modifier ou supprimer un service</strong>
+                        <a href="/service/show" class="btn btn-sm"><i class="fas fa-edit"></i> Accéder</a>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Card Services -->
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Gestion des Services :</h5>
-                        <p class="card-text">Modifier ou supprimer un service.</p>
-                        <a href="/service/show" class="btn btn-dark">Accéder</a>
-                    </div>
-                </div>
+            <div class="col-lg-12 mb-4">
+                <h3 class="text-primary"><i class="fas fa-clock"></i> Gestion des horaires</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Configurer les horaires du zoo</strong>
+                        <a href="/horaires/show" class="btn btn-sm"><i class="fas fa-calendar-alt"></i> Accéder</a>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Card Gestion des Horaires -->
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Gestion des Horaires :</h5>
-                        <p class="card-text">Gérer les horaires d'ouverture.</p>
-                        <a href="/OpeningHours/show" class="btn btn-dark">Accéder</a>
-                    </div>
-                </div>
+            <div class="col-lg-12 mb-4">
+                <h3 class="text-primary"><i class="fas fa-utensils"></i> Consultation de la nourriture des animaux</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Voir ce que l'animal a mangé</strong>
+                        <a href="/food/show" class="btn btn-sm"><i class="fas fa-apple-alt"></i> Accéder</a>
+                    </li>
+                    <li>
+                        <strong>Nourrir les animaux</strong>
+                        <a href="/food/new" class="btn btn-sm"><i class="fas fa-apple-alt"></i> Accéder</a>
+                    </li>
+                </ul>
             </div>
+
         <?php endif; ?>
+
     </div>
 </div>

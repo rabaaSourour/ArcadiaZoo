@@ -1,5 +1,5 @@
 <div class="container rounded p-5">
-    <h2 class="text-center mb-4">Consultations des Animaux</h2>
+    <h2 class="text-center text-secondary mb-4">Consultations des Animaux</h2>
     <table id="consultation-table" class="table table-striped table-bordered">
         <thead class="thead-dark pb-5">
             <tr>

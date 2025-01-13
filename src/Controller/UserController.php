@@ -38,6 +38,10 @@ class UserController
     public function delete($id): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                    header('Location: /error/server-error');
+                    die;
+                }
             $this->userModel->deleteUser($id);
             header('Location: /user/show');
             exit();
@@ -50,6 +54,10 @@ class UserController
         $message = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                header('Location: /error/server-error');
+                die;
+            }
             $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
             $passWord = $_POST['password'];
             $role = htmlspecialchars($_POST['role']);
@@ -89,6 +97,10 @@ class UserController
         // }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                header('Location: /error/server-error');
+                die;
+            }
             $userId = $_POST['id'] ?? null;
             $email = $_POST['email'] ?? null;
             $oldPassword = $_POST['OldPassword'] ?? null;

@@ -10,9 +10,6 @@ toggle.addEventListener('change', () => {
     }
 });
 
-
-
-
 // Fonction pour activer/désactiver l'édition
 function editSection(id) {
     const section = document.getElementById(id);

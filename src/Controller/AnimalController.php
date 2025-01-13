@@ -43,6 +43,10 @@ class AnimalController
     public function delete($id): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                header('Location: /error/server-error');
+                die;
+            }
             $this->animalModel->deleteAnimal($id);
             header('Location: /habitat/show');
             exit();
@@ -55,7 +59,10 @@ class AnimalController
         $message = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                header('Location: /error/server-error');
+                die;
+            }
             $name = htmlspecialchars($_POST['name']);
             $breed = htmlspecialchars($_POST['breed']);
             $habitatId = htmlspecialchars($_POST['habitat_id']);
@@ -92,7 +99,10 @@ class AnimalController
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                header('Location: /error/server-error');
+                die;
+            }
             $name = $_POST['name'] ?? '';
             $breed = $_POST['breed'] ?? '';
             $imagePath = null;

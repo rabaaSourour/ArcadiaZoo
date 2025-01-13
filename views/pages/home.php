@@ -40,7 +40,7 @@
                     <?php foreach ($habitats as $habitat): ?>
                         <div class="col-md-4">
                             <div class="card mb-3">
-                                <img src="<?= htmlspecialchars($habitat['image']) ?>" class="card-img-habitat" alt="Image de l'habitat">
+                                <img src="<?= htmlspecialchars($habitat['image']) ?>" class="card-img-habitat rounded" alt="Image de l'habitat">
                                 <div class="card-body">
                                     <h5 class="card-title text-center"><?= htmlspecialchars($habitat['name']) ?></h5>
                                 </div>
@@ -63,7 +63,7 @@
                             <div class="col-md-3 pb-3">
                                 <div class="card
                                 ">
-                                    <img src="<?= htmlspecialchars($animal['image']) ?>" class="card-img-animal" alt="Image de l'animal">
+                                    <img src="<?= htmlspecialchars($animal['image']) ?>" class="card-img-animal rounded" alt="Image de l'animal">
                                     <div class="card-body ">
                                         <h5 class="card-title text-center"><?= htmlspecialchars($animal['name']) ?></h5>
                                     </div>
@@ -87,9 +87,9 @@
 
                 
                             <!-- Service N°1 Restauration -->
-                            <div class="rounded mb-3 p-4" id="service1">
-                                <h3 class="text-dark" <?php echo ($role === 'admin') ? 'contenteditable="true"' : ''; ?>>Services de Restauration</h3>
-                                <ul class="text-clear" <?php echo ($role === 'admin') ? 'contenteditable="true"' : ''; ?>>
+                            <div class="mb-3 p-4" id="service1">
+                                <h3 class="text-dark text-center" <?php echo ($role === 'admin') ? 'contenteditable="true"' : ''; ?>>Services de Restauration</h3>
+                                <ul <?php echo ($role === 'admin') ? 'contenteditable="true"' : ''; ?>>
                                     <li>
                                         <strong>Cafétérias et Snacks</strong>: Offrant une variété de plats rapides, des sandwiches aux salades fraîches, idéales pour une pause déjeuner ou un goûter.
                                     </li>
@@ -108,7 +108,7 @@
 
                             <!-- Service N°2 Visites Guidées -->
                             <div class="rounded mb-3 p-4" id="service2">
-                                <h3 class="text-dark" <?php echo ($role === 'admin') ? 'contenteditable="true"' : ''; ?>>Visites Guidées des Habitats</h3>
+                                <h3 class="text-dark text-center" <?php echo ($role === 'admin') ? 'contenteditable="true"' : ''; ?>>Visites Guidées des Habitats</h3>
                                 
                                 <p <?php echo ($role === 'admin') ? 'contenteditable="true"' : ''; ?>>Découvrez les merveilles de la savane, de la jungle et des marais avec nos visites guidées gratuites. Nos guides experts vous accompagneront à travers chaque habitat, vous offrant des explications détaillées sur les animaux et les écosystèmes que vous observez. Ces visites éducatives sont conçues pour enrichir votre expérience et sensibiliser à l'importance de la conservation.</p>
                                 <ul <?php echo ($role === 'admin') ? 'contenteditable="true"' : ''; ?>>
@@ -125,7 +125,7 @@
 
                             <!-- Service N°3 Visite en Train -->
                             <div class="rounded mb-3 p-4" id="service3">
-                                <h3 class="text-dark" <?php echo ($role === 'admin') ? 'contenteditable="true"' : ''; ?>>Visite du Zoo en Petit Train</h3>
+                                <h3 class="text-dark text-center" <?php echo ($role === 'admin') ? 'contenteditable="true"' : ''; ?>>Visite du Zoo en Petit Train</h3>
                                 <p <?php echo ($role === 'admin') ? 'contenteditable="true"' : ''; ?>>Pour une exploration confortable et relaxante du parc, montez à bord de notre petit train touristique. Ce service pratique vous permet de découvrir l'ensemble du zoo sans vous fatiguer, avec des arrêts aux principaux points d'intérêt.</p>
                                 <ul <?php echo ($role === 'admin') ? 'contenteditable="true"' : ''; ?>>
                                     <li><strong>Tour Panoramique</strong>: Profitez d'un circuit complet du parc avec des commentaires en direct sur les habitats et les animaux que vous traversez.</li>
@@ -196,7 +196,7 @@
 <article>
     <!-- Commentaire -->
     <div class="p-5">
-        <h3 class="text-center pt-3 mb-3">Voici quelques avis sur le ZOO</h3>
+        <h3 class="text-center text-secondary pt-3 mb-3">Voici quelques avis sur le ZOO</h3>
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <?php

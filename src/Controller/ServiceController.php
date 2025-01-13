@@ -37,6 +37,10 @@ class ServiceController
     public function delete($id): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                header('Location: /error/server-error');
+                die;
+            }
             $this->serviceModel->deleteService($id);
             header('Location: service/show');
             exit();
@@ -49,6 +53,10 @@ class ServiceController
         $message = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                header('Location: /error/server-error');
+                die;
+            }
             $name = htmlspecialchars($_POST['name']);
             $description = htmlspecialchars($_POST['description']);
             $category = htmlspecialchars($_POST['category']);
@@ -84,6 +92,10 @@ class ServiceController
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                header('Location: /error/server-error');
+                die;
+            }
             $name = $_POST['name'] ?? '';
             $description = $_POST['description'] ?? '';
             $imagePath = null;

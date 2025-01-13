@@ -58,6 +58,10 @@ class ReportController
     public function delete($id): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                header('Location: /error/server-error');
+                die;
+            }
             $this->reportModel->deleteReport($id);
             header('Location: /report/show');
             exit();
@@ -71,6 +75,10 @@ class ReportController
         $animal = $this->animalModel->getAllAnimals();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                header('Location: /error/server-error');
+                die;
+            }
             $status = htmlspecialchars($_POST['status']);
             $food = htmlspecialchars($_POST['food']);
             $foodQuantity = htmlspecialchars($_POST['food_quantity']);
@@ -109,6 +117,10 @@ class ReportController
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                header('Location: /error/server-error');
+                die;
+            }
             $status = htmlspecialchars($_POST['status'] ?? '');
             $food = htmlspecialchars($_POST['food'] ?? '');
             $foodQuantity = htmlspecialchars($_POST['food_quantity'] ?? '');

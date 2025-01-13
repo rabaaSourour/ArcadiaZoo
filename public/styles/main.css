@@ -11979,7 +11979,7 @@ body, html {
   top: 0;
   width: 100%;
   z-index: 1000;
-  background-color: transparent;
+  background-color: rgba(24, 52, 25, 0.3882352941);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
@@ -12136,14 +12136,23 @@ p {
   color: #324C40;
 }
 
+a {
+  color: #D5D1C6;
+}
+
 .btn {
-  color: #FBFDF2;
+  color: #D5D1C6;
   background-color: #2E593D;
+}
+
+ul {
+  color: #28402A;
+  font-size: 20px;
 }
 
 /* Styles des cartes */
 .card {
-  background-color: #688C6A;
+  background-color: #2E593D;
   margin: 0 20px;
   padding: 10px;
   border-radius: 20px;
@@ -12152,17 +12161,12 @@ p {
   max-width: 400px;
 }
 
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px var(--card-hover-shadow);
-}
-
 .card-title {
-  color: #28402A;
+  color: #D5D1C6;
 }
 
 .card-text {
-  color: #ebddb1;
+  color: #032105;
 }
 
 .card-service {
@@ -12176,14 +12180,10 @@ p {
   overflow: hidden;
 }
 
-.card-service:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px var(--card-hover-shadow);
-}
-
 .card-img-top {
   width: 100%;
   height: 100%;
+  border-radius: 5px;
   aspect-ratio: 16/9;
   -o-object-fit: cover;
      object-fit: cover;
@@ -12264,6 +12264,8 @@ dialog::backdrop {
 
 /* Bouton de fermeture */
 .close-btn {
+  color: #D5D1C6;
+  background-color: #2E593D;
   align-self: flex-end;
   padding: 8px 12px;
   border: none;
@@ -12301,4 +12303,10 @@ dialog[open] {
     opacity: 1;
     transform: translate(-50%, -50%);
   }
+}
+.nav-tabs {
+  --bs-nav-tabs-border-color: #2E593D;
+  --bs-nav-tabs-link-hover-border-color: #2E593D;
+  --bs-nav-tabs-link-active-bg: #2E593D;
+  --bs-nav-tabs-link-active-border-color: #2E593D;
 }/*# sourceMappingURL=main.css.map */

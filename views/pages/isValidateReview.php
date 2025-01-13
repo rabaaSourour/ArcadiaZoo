@@ -1,35 +1,32 @@
-<section class="d-flex align-items-center">
-    <div class="container">
-        <div class="row justify-content-center m-5">
-            <div class="col-lg-6 col-md-8">
-                <div class="col-lg-12 text-center">
-                    <h2 class="text-center">Avis en attente de validation</h2>
-                </div>
-                <div class="col-lg-12">
-                    <div id="message" style="display:none;"></div> <!-- Ajout du conteneur pour le message -->
+<section class="container py-4">
+    <div class="row text-center">
+        <div class="col-12">
+            <h2 class="text-primary mb-4">Avis en attente de validation</h2>
+        </div>
+    </div>
 
-                    <?php if (!empty($pendingReviews)): ?>
-                        <div id="comments">
-                            <?php foreach ($pendingReviews as $review): ?>
-                                <div class="card review mb-3 pt-3">
-                                    <input type="hidden" class="review-id" value="<?= $review['id'] ?>">
-                                    <h4 class="card-title"><?= htmlspecialchars($review['pseudo'] . ' :') ?></h4>
-                                    <p class="card-text"><?= htmlspecialchars($review['review']) ?></p>
-                                    <button class="btn btn-success validate-btn" data-review-id="<?= $review['id'] ?>">Valider</button>
-                                    <button class="btn btn-danger delete-btn mb-3" data-review-id="<?= $review['id'] ?>">Supprimer</button>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    <?php else: ?>
-                        <div class="alert alert-info text-center">
-                            Aucun nouvel avis en attente de validation.
-                        </div>
-                    <?php endif; ?>
+    <div class="row">
+        <?php if (!empty($pendingReviews)): ?>
+            <?php foreach ($pendingReviews as $review): ?>
+                <!-- Colonne responsive : 12 colonnes en mobile, 4 colonnes en desktop -->
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 p-3">
+                        <input type="hidden" class="review-id" value="<?= $review['id'] ?>">
+                        <h4 class="card-title"><?= htmlspecialchars($review['pseudo'] . ' :') ?></h4>
+                        <p class="card-text"><?= htmlspecialchars($review['review']) ?></p>
+                        <button class="btn btn-success validate-btn" data-review-id="<?= $review['id'] ?>">Valider</button>
+                        <button class="btn btn-danger delete-btn mt-2" data-review-id="<?= $review['id'] ?>">Supprimer</button>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="col-12">
+                <div class="alert alert-info text-center">
+                    Aucun nouvel avis en attente de validation.
                 </div>
             </div>
-        </div>
+        <?php endif; ?>
     </div>
 </section>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/public/js/review.js"></script>

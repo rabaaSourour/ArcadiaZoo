@@ -1,7 +1,7 @@
 <section>
     <div class="container habitat-container pb-5">
         <!-- Titre principal -->
-        <h1 class="text-center">Découvrez nos différents habitats !</h1>
+        <h2 class="text-center text-secondary p-5">Découvrez nos différents habitats !</h2>
 
         <div class="row align-items-center g-4 rounded">
             <?php $index = 0; ?>
@@ -16,25 +16,29 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card-body">
-                                        <h5 class="card-title"><?= htmlspecialchars($habitat['name']) ?></h5>
-                                        <p class="card-text"><?= nl2br(htmlspecialchars($habitat['description'])) ?></p>
+                                        <h5 class="card-title text-center pt-4"><?= htmlspecialchars($habitat['name']) ?></h5>
+                                        <p class="card-text p-3"><?= nl2br(htmlspecialchars($habitat['description'])) ?></p>
                                         <?php if ($role === 'admin'): ?>
                                             <button class="btn btn-warning" onclick="window.location.href='/habitat/update?id=<?= $habitat['id'] ?>'">Modifier</button>
                                             <button class="btn btn-danger" onclick="deleteHabitat(<?= $habitat['id'] ?>)">Supprimer</button>
                                         <?php endif; ?>
-                                        <button onclick="toggleAnimals(<?= $habitat['id'] ?>)" class="btn btn-secondary mb-3">Afficher les animaux</button>
+                                        <div class="text-center mb3">
+                                        <button onclick="toggleAnimals(<?= $habitat['id'] ?>)" class="btn">Afficher les animaux</button>
+                                        </div>
                                     </div>
                                 </div>
                             <?php else: ?>
                                 <div class="col-md-6">
                                     <div class="card-body">
-                                        <h5 class="card-title"><?= htmlspecialchars($habitat['name']) ?></h5>
-                                        <p class="card-text"><?= nl2br(htmlspecialchars($habitat['description'])) ?></p>
+                                        <h5 class="card-title text-center pt-4"><?= htmlspecialchars($habitat['name']) ?></h5>
+                                        <p class="card-text p-3"><?= nl2br(htmlspecialchars($habitat['description'])) ?></p>
                                         <?php if ($role === 'admin'): ?>
                                             <button class="btn btn-warning" onclick="window.location.href='/habitat/update?id=<?= $habitat['id'] ?>'">Modifier</button>
                                             <button class="btn btn-danger" onclick="deleteHabitat(<?= $habitat['id'] ?>)">Supprimer</button>
                                         <?php endif; ?>
-                                        <button onclick="toggleAnimals(<?= $habitat['id'] ?>)" class="btn btn-secondary mb-3">Afficher les animaux</button>
+                                        <div class="text-center mb3">
+                                        <button onclick="toggleAnimals(<?= $habitat['id'] ?>)" class="btn">Afficher les animaux</button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -51,16 +55,17 @@
                                 <?php if ($animal['habitat_id'] === $habitat['id']): ?>
                                     <div class="col animal-list" data-animal-id="<?= htmlspecialchars($animal['id']) ?>">
                                         <div class="card rounded my-3">
-                                            <img src="<?= htmlspecialchars($animal['image']) ?>" class="card-img-animal" alt="Image de l'animal">
+                                            <img src="<?= htmlspecialchars($animal['image']) ?>" class="card-img-animal rounded" alt="Image de l'animal">
                                             <div class="card-body">
-                                                <h5 class="card-title"><?= htmlspecialchars($animal['name']) ?></h5>
-                                                <p class="card-text"><?= nl2br(htmlspecialchars($animal['breed'])) ?></p>
+                                                <h5 class="card-title text-center"><?= htmlspecialchars($animal['name']) ?></h5>
+                                                <p class="card-text p-3"><?= nl2br(htmlspecialchars($animal['breed'])) ?></p>
                                                 <?php if ($role === 'admin'): ?>
                                                     <button class="btn btn-warning" onclick="window.location.href='/animal/update?id=<?= $animal['id'] ?>'">Modifier</button>
                                                     <button class="btn btn-danger" onclick="deleteAnimal(<?= $animal['id'] ?>)">Supprimer</button>
                                                 <?php endif; ?>
-                                                <button data-action="show-details" class="btn btn-secondary mb-3">Afficher les détails de l'animal</button>
-
+                                                <div class="text-center">
+                                                <button data-action="show-details" class="btn mb-3">Afficher les détails de l'animal</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -82,7 +87,7 @@
 
 <dialog id="dialog-show-details" class="animal-dialog">
     <div class="dialog-content">
-        <button class="close-btn btn btn-primary">Fermer</button>
+        <button class="close-btn">Fermer</button>
     </div>
 </dialog>
 

@@ -1,14 +1,31 @@
+function deleteReport(id) {
+    if (confirm('Voulez-vous vraiment supprimer cette rapport ?')) {
+        fetch(`/api/deleteReport?id=${id}`,
+            {
+                method: 'POST',
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('rapport supprimé avec succès.');
+                    location.reload();
+                } else {
+                    alert('Erreur lors de la suppression de rapport.');
+                }
+            })
+            .catch(error => console.error('Erreur:', error));
+    }
+}
+
 document.getElementById('animal-filter').addEventListener('change', function () {
-    const animalId = this.value; // ID de l'animal sélectionné
+    const animalId = this.value; 
     const rows = document.querySelectorAll('#report-table tbody tr');
 
-    // Parcourir toutes les lignes et afficher/cacher selon l'ID de l'animal
     rows.forEach(row => {
         if (!animalId || row.dataset.animalId === animalId) {
-            row.style.display = ''; // Afficher la ligne si l'ID correspond ou si aucun animal n'est sélectionné
+            row.style.display = ''; 
         } else {
-            row.style.display = 'none'; // Masquer la ligne sinon
+            row.style.display = 'none';
         }
     });
 });
-

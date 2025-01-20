@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Exception;
 
 class FileUploader
 {
@@ -14,11 +15,11 @@ class FileUploader
         $allowedTypes = ['image/jpeg', 'image/jpg', 'image/gif'];
         if (in_array($file['type'], $allowedTypes)) {
             if (!move_uploaded_file($file['tmp_name'], $imagePath)) {
-                echo "Erreur lors du téléchargement de l'image.";
+                throw new Exception ("Erreur lors du téléchargement de l'image.");
                 exit();
             }
         } else {
-            echo "Type de fichier non autorisé.";
+            throw new Exception ("Type de fichier non autorisé.");
             exit();
         }
 

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\Service;
 use App\Services\FileUploader;
+use App\Services\CSRFToken;
 use PDO;
 
 class ServiceController
@@ -37,7 +38,7 @@ class ServiceController
     public function delete($id): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
                 header('Location: /error/server-error');
                 die;
             }
@@ -53,7 +54,7 @@ class ServiceController
         $message = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
                 header('Location: /error/server-error');
                 die;
             }
@@ -82,17 +83,19 @@ class ServiceController
     // URI : '/service/update'
     public function update(): array
     {
+        $message = '';
+        
         $id = (int)($_GET['id'] ?? 0);
 
         $service = $this->serviceModel->getServiceById($id);
 
         if (!$service) {
-            echo "Service non trouvé.";
+            $message = "Service non trouvé.";
             exit();
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
                 header('Location: /error/server-error');
                 die;
             }
@@ -111,14 +114,15 @@ class ServiceController
                 header('Location: /service/show');
                 exit();
             } else {
-                echo "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";
+                $message = "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";
             }
         }
 
         return [
             'page' => 'editServiceForm',
             'variables' => [
-                'service' => $service
+                'service' => $service,
+                'message' => $message
             ]
         ];
     }

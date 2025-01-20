@@ -3,6 +3,8 @@
 namespace App\Model;
 
 use PDO;
+use App\Services\FormValidator;
+use Exception;
 
 class Horaires
 {
@@ -19,15 +21,40 @@ class Horaires
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function updateHoraire(string $id, string $openingTime, string $closingTime): void
+    public function updateHoraire(string $id, string $openingTime, string $closingTime): bool
     {
+        if (!FormValidator::isValidId($id)) {
+            throw new Exception('Cannot update horaire: id "' . $id . '" is not valid');
+        }
+    
+        if (!FormValidator::isValidHoraire($openingTime) || !FormValidator::isValidHoraire($closingTime)) {
+            return false;
+        }
+    
         $stmt = $this->pdo->prepare('UPDATE openinghours SET openingTime = ?, closingTime = ? WHERE id = ?');
         $stmt->execute([$openingTime, $closingTime, $id]);
     
-        if ($stmt->rowCount() > 0) {
-            echo "Mise à jour réussie.";
-        } else {
-            echo "Aucune mise à jour effectuée.";
-        }
+        return $stmt->rowCount() > 0;
     }
+    
+    public function updateHoraires(array $horaires): array
+    {
+        $modificationsEffectuees = false;
+    
+        foreach ($horaires as $horaire) {
+            if (isset($horaire['id'], $horaire['openingTime'], $horaire['closingTime'])) {
+                $resultat = $this->updateHoraire($horaire['id'], $horaire['openingTime'], $horaire['closingTime']);
+                if ($resultat) {
+                    $modificationsEffectuees = true;
+                }
+            }
+        }
+    
+        if ($modificationsEffectuees) {
+            return ['success' => true, 'message' => 'Les modifications ont été enregistrées avec succès.'];
+        }
+    
+        return ['success' => false, 'message' => 'Aucune modification n’a été effectuée.'];
+    }
+    
 }

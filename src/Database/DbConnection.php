@@ -29,7 +29,7 @@ class DbConnection
         return self::$pdo;
     }
 
-    public static function protectDbData($value)
+    public static function protectDbData(string $value)
     {
         $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
         $value = strip_tags($value);

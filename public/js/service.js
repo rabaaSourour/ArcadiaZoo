@@ -1,8 +1,13 @@
 function deleteService(id) {
+    const csrfToken = document.getElementById('csrf_token').value;
     if (confirm('Voulez-vous vraiment supprimer ce service ?')) {
         fetch(`/api/deleteService?id=${id}`,
             {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ csrf_token: csrfToken })
             })
             .then(response => response.json())
             .then(data => {

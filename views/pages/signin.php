@@ -1,11 +1,3 @@
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-if (!isset($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
-?>
 <section class="d-flex align-items-center">
     <div class="container">
         <div class="row justify-content-center m-5">
@@ -20,7 +12,7 @@ if (!isset($_SESSION['csrf_token'])) {
                         <?php endforeach ?>
                     </div>
                     <form action="" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(App\Services\CSRFToken::getToken(), ENT_QUOTES, 'UTF-8') ?>">
                         <div class="text-primary mb-3">
                             <label for="role" class="form-label">Connectez-vous en tant que :</label>
                             <select class="form-select text-primary" id="role" name="role" required>

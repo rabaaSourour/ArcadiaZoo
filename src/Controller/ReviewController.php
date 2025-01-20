@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\Review;
 use App\Database\DbConnection;
+use App\Services\CSRFToken;
 use PDO;
 
 class ReviewController
@@ -25,6 +26,8 @@ class ReviewController
 
     public function addReview(): array
     {
+        $message = '';
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pseudo = $_POST['pseudo'];
             $review = $_POST['review'];
@@ -38,20 +41,23 @@ class ReviewController
                 header('Location: /home/show');
                 exit();
             } else {
-                echo "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";
+                $message = "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";
             }
         }
 
-        if (!isset($_SESSION['csrf_token'])) {
-            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-        }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
                 header('Location: /error/server-error');
                 die;
             }
         }
 
+        return [
+            'page' => 'review',
+            'variables' => [
+                'message' => $message
+                ]
+        ];
 
         return $this->show();
     }
@@ -82,11 +88,19 @@ class ReviewController
 
     public function validateReview($id)
     {
+        if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
+            header('Location: /error/server-error');
+            die;
+        }
         $this->reviewModel->approveReview($id);
     }
 
     public function deleteReview($id)
     {
+        if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
+            header('Location: /error/server-error');
+            die;
+        }
         $this->reviewModel->deleteReview($id);
     }
 }

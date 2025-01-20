@@ -1,11 +1,3 @@
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-if (!isset($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
-?>
 <section class="d-flex align-items-center">
     <div class="container">
         <div class="row justify-content-center m-5">
@@ -15,9 +7,9 @@ if (!isset($_SESSION['csrf_token'])) {
                 </div>
                 <div class="col-lg-12">
                     <?php if (isset($food)) : ?>
-
                         <form action="" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
+                            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(App\Services\CSRFToken::getToken(), ENT_QUOTES, 'UTF-8') ?>">
+                            <input type="hidden" name="animals_id" value="<?= htmlspecialchars($food['animals_id']); ?>">
                             <input type="hidden" name="id" value="<?php echo htmlspecialchars($food['id']); ?>">
                             <div class="text-primary mb-3">
                                 <label for="food" class="form-label fw-bold">Nourriture :</label>
@@ -28,7 +20,7 @@ if (!isset($_SESSION['csrf_token'])) {
                                 <label for="quantity" class="form-label fw-bold">Quantité de la nourriture :</label>
                                 <input type="text" class="form-control" name="quantity" id="quantity" value="<?php echo htmlspecialchars($food['quantity']); ?>" required>
                             </div>
-
+                            
                             <div class="text-center p-3">
                                 <button type="submit" class="btn">Enregistrer les modifications</button>
                             </div>
@@ -38,7 +30,7 @@ if (!isset($_SESSION['csrf_token'])) {
                         <div class="alert alert-warning text-center mt-4" role="alert">
                             Aucun rapport trouvé pour modification.
                         </div>
-                        
+
                     <?php endif; ?>
                 </div>
             </div>

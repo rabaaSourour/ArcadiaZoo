@@ -15,6 +15,7 @@
                     </div>
                     <div>
                         <?php if ($role === 'admin'): ?>
+                            <input type="hidden" id="csrf_token" value="<?= htmlspecialchars(App\Services\CSRFToken::getToken(), ENT_QUOTES, 'UTF-8') ?>">
                             <button class="btn btn-warning" onclick="window.location.href='/user/update?id=<?= $user['id'] ?>'">Modifier</button>
                             <button class="btn btn-danger" onclick="deleteUser(<?= $user['id'] ?>)">Supprimer</button>
                         <?php endif; ?>

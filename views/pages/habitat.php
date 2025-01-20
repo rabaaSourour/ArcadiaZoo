@@ -19,6 +19,7 @@
                                         <h5 class="card-title text-center pt-4"><?= htmlspecialchars($habitat['name']) ?></h5>
                                         <p class="card-text p-3"><?= nl2br(htmlspecialchars($habitat['description'])) ?></p>
                                         <?php if ($role === 'admin'): ?>
+                                            <input type="hidden" id="csrf_token" value="<?= htmlspecialchars(App\Services\CSRFToken::getToken(), ENT_QUOTES, 'UTF-8') ?>">
                                             <button class="btn btn-warning" onclick="window.location.href='/habitat/update?id=<?= $habitat['id'] ?>'">Modifier</button>
                                             <button class="btn btn-danger" onclick="deleteHabitat(<?= $habitat['id'] ?>)">Supprimer</button>
                                         <?php endif; ?>
@@ -33,6 +34,7 @@
                                         <h5 class="card-title text-center pt-4"><?= htmlspecialchars($habitat['name']) ?></h5>
                                         <p class="card-text p-3"><?= nl2br(htmlspecialchars($habitat['description'])) ?></p>
                                         <?php if ($role === 'admin'): ?>
+                                            <input type="hidden" id="csrf_token" value="<?= htmlspecialchars(App\Services\CSRFToken::getToken(), ENT_QUOTES, 'UTF-8') ?>">
                                             <button class="btn btn-warning" onclick="window.location.href='/habitat/update?id=<?= $habitat['id'] ?>'">Modifier</button>
                                             <button class="btn btn-danger" onclick="deleteHabitat(<?= $habitat['id'] ?>)">Supprimer</button>
                                         <?php endif; ?>
@@ -60,11 +62,12 @@
                                                 <h5 class="card-title text-center"><?= htmlspecialchars($animal['name']) ?></h5>
                                                 <p class="card-text p-3"><?= nl2br(htmlspecialchars($animal['breed'])) ?></p>
                                                 <?php if ($role === 'admin'): ?>
+                                                    <input type="hidden" id="csrf_token" value="<?= htmlspecialchars(App\Services\CSRFToken::getToken(), ENT_QUOTES, 'UTF-8') ?>">
                                                     <button class="btn btn-warning" onclick="window.location.href='/animal/update?id=<?= $animal['id'] ?>'">Modifier</button>
                                                     <button class="btn btn-danger" onclick="deleteAnimal(<?= $animal['id'] ?>)">Supprimer</button>
                                                 <?php endif; ?>
                                                 <div class="text-center">
-                                                <button data-action="show-details" class="btn mb-3">Afficher les détails de l'animal</button>
+                                                <button data-action="show-details" data-animal-id="<?= $animal['id'] ?>" class="btn mb-3">Afficher les détails de l'animal</button>
                                                 </div>
                                             </div>
                                         </div>

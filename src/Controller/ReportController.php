@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\Report;
 use App\Model\Animal;
+use App\Services\CSRFToken;
 use PDO;
 
 class ReportController
@@ -58,7 +59,7 @@ class ReportController
     public function delete($id): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
                 header('Location: /error/server-error');
                 die;
             }
@@ -75,7 +76,7 @@ class ReportController
         $animal = $this->animalModel->getAllAnimals();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
                 header('Location: /error/server-error');
                 die;
             }
@@ -107,17 +108,18 @@ class ReportController
     // URI : '/report/update'
     public function update(): array
     {
+        $message = '';
         $id = (int)($_GET['id'] ?? 0);
 
         $report = $this->reportModel->getReportById($id);
 
         if (!$report) {
-            echo "report non trouvé.";
+            $message = "report non trouvé.";
             exit();
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
                 header('Location: /error/server-error');
                 die;
             }
@@ -133,14 +135,15 @@ class ReportController
                 header('Location: /report/show');
                 exit();
             } else {
-                echo "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";
+                $message = "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";
             }
         }
 
         return [
             'page' => 'editReportForm',
             'variables' => [
-                'report' => $report
+                'report' => $report,
+                'message' => $message
             ]
         ];
     }

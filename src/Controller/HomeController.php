@@ -6,6 +6,7 @@ use App\Model\Horaires;
 use App\Model\Review;
 use App\Model\Habitat;
 use App\Model\Animal;
+use Exception;
 use PDO;
 
 class HomeController

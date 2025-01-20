@@ -30,14 +30,14 @@ class Food
         return $food;
     }
 
-    public function updateFood (int $id, string $food, string $quantity)
+    public function updateFood (int $id, string $food, string $quantity, int $animalId)
     {
         try {
 
             $fields = [
                 'food = :food',
                 'quantity = :quantity',
-                
+                'animals_id = :animals_id'
             ];
 
             $sql = 'UPDATE animal_foods SET ' . implode(', ', $fields) . ' WHERE id = :id';
@@ -46,13 +46,13 @@ class Food
 
             $stmt->bindParam(':food', $food);
             $stmt->bindParam(':quantity', $quantity);
+            $stmt->bindParam(':animals_id', $animalId);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             
 
             return $stmt->execute();
         } catch (Exception $e) {
-            echo "Erreur lors de la mise à jour du food : " . $e->getMessage();
-            return false;
+            return "Erreur lors de la mise à jour du food : " . $e->getMessage();
         }
     }
 
@@ -62,8 +62,8 @@ class Food
             $stmt = $this->pdo->prepare("INSERT INTO animal_foods (food, quantity, animals_id) VALUES (:food, :quantity, :animals_id)");
             return $stmt->execute(['food' => $food, 'quantity' => $quantity, 'animals_id' => $animalId]);
         } catch (Exception $e) {
-            echo "Erreur lors de l'ajout du nourriture : " . $e->getMessage();
-            return false;
+            return "Erreur lors de l'ajout du nourriture : " . $e->getMessage();
+
         }
     }
 
@@ -73,8 +73,7 @@ class Food
             $stmt = $this->pdo->prepare("DELETE FROM animal_foods WHERE id = :id");
             return $stmt->execute(['id' => $id]);
         } catch (Exception $e) {
-            echo "Erreur lors de la suppression du nourriture : " . $e->getMessage();
-            return false;
+            return "Erreur lors de la suppression du nourriture : " . $e->getMessage();
         }
     }
 }

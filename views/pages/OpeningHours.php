@@ -6,7 +6,12 @@
                     <h2 class="text-secondary p-3">Modifier les horaires d'ouverture</h2>
                 </div>
                 <div class="col-lg-12">
-                    <form method="POST" action="">
+                    <?php if (isset($status)): ?>
+                        <div class="alert <?= $status['success'] ? 'alert-success' : 'alert-danger' ?>" role="alert">
+                            <?= htmlspecialchars($status['message']) ?>
+                        </div>
+                    <?php endif; ?>
+                    <form action="" method="POST" enctype="multipart/form-data">
                         <?php foreach ($horaires as $horaire): ?>
                             <input type="hidden" name="horaires[<?= $horaire['id'] ?>][id]" value="<?= htmlspecialchars($horaire['id']) ?>">
                             <label class="text-secondary">Jour: <?= htmlspecialchars($horaire['day']) ?></label><br>
@@ -17,7 +22,7 @@
                             <hr>
                         <?php endforeach; ?>
                         <div class="text-center p-3">
-                        <button class="btn" type="submit">Modifier</button>
+                            <button class="btn" type="submit">Modifier</button>
                         </div>
                     </form>
                 </div>

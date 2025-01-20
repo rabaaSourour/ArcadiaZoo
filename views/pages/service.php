@@ -14,6 +14,7 @@
                                 <p class="card-text"><?= htmlspecialchars($service['description']) ?></p>
                                 <?php if (in_array($role, ['admin', 'employe'])): ?>
                                     <div class="d-flex justify-content-between">
+                                    <input type="hidden" id="csrf_token" value="<?= htmlspecialchars(App\Services\CSRFToken::getToken(), ENT_QUOTES, 'UTF-8') ?>">
                                         <button class="btn btn-warning" onclick="window.location.href='/service/update?id=<?= $service['id'] ?>'">Modifier</button>
                                         <button class="btn btn-danger" onclick="deleteService(<?= $service['id'] ?>)">Supprimer</button>
                                     </div>
@@ -47,6 +48,7 @@
                                             <h5 class="card-title text-center pt-4"><?= htmlspecialchars($service['name']) ?></h5>
                                             <p class="card-text p-3"><?= htmlspecialchars($service['description']) ?></p>
                                             <?php if (in_array($role, ['admin', 'employe'])): ?>
+                                                <input type="hidden" id="csrf_token" value="<?= htmlspecialchars(App\Services\CSRFToken::getToken(), ENT_QUOTES, 'UTF-8') ?>">
                                                 <button class="btn btn-warning" onclick="window.location.href='/pages/editServiceForm.php?id=<?= $service['id'] ?>'">Modifier</button>
                                                 <button class="btn btn-danger" onclick="deleteService(<?= $service['id'] ?>)">Supprimer</button>
                                             <?php endif; ?>
@@ -58,6 +60,7 @@
                                             <h5 class="card-title text-center pt-4"><?= htmlspecialchars($service['name']) ?></h5>
                                             <p class="card-text p-3"><?= htmlspecialchars($service['description']) ?></p>
                                             <?php if (in_array($role, ['admin', 'employe'])): ?>
+                                                <input type="hidden" id="csrf_token" value="<?= htmlspecialchars(App\Services\CSRFToken::getToken(), ENT_QUOTES, 'UTF-8') ?>">
                                                 <button class="btn btn-warning" onclick="window.location.href='/pages/editServiceForm.php?id=<?= $service['id'] ?>'">Modifier</button>
                                                 <button class="btn btn-danger" onclick="deleteService(<?= $service['id'] ?>)">Supprimer</button>
                                             <?php endif; ?>

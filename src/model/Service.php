@@ -56,8 +56,7 @@ class Service
             
             return $stmt->execute();
         } catch (Exception $e) {
-            echo "Erreur lors de la mise à jour du service : " . $e->getMessage();
-            return false;
+            return "Erreur lors de la mise à jour du service : " . $e->getMessage();
         }
     }
 
@@ -67,8 +66,7 @@ class Service
             $stmt = $this->pdo->prepare("INSERT INTO services (services.name, services.description, services.category, services.image) VALUES (:name, :description, :category, :image)");
             return $stmt->execute(['name' => $name, 'description' => $description, 'category' => $category, 'image' => $imagePath]);
         } catch (Exception $e) {
-            echo "Erreur lors de l'ajout du service : " . $e->getMessage();
-            return false;
+            return "Erreur lors de l'ajout du service : " . $e->getMessage();
         }
     }
 
@@ -78,8 +76,7 @@ class Service
             $stmt = $this->pdo->prepare("DELETE FROM services WHERE id = :id");
             return $stmt->execute(['id' => $id]);
         } catch (Exception $e) {
-            echo "Erreur lors de la suppression du service : " . $e->getMessage();
-            return false;
+            return "Erreur lors de la suppression du service : " . $e->getMessage();
         }
     }
 }

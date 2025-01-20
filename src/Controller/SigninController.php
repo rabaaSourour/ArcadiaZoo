@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\Signin;
 use PDO;
+use App\Services\CSRFToken;
 
 class SigninController
 {
@@ -27,7 +28,7 @@ class SigninController
             if($this->checkLoginAttempts()) {
                 $errors[] = 'Trop de tentatives échouées. Essayez à nouveau plus tard.';
             } else {
-                if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+                if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
                     header('Location: /error/server-error');
                     die;
                 }
@@ -42,11 +43,10 @@ class SigninController
                     if ($user && password_verify($passWord, $user['password'])) {
                         $_SESSION['user_id'] = $user['id'];
                         $_SESSION['role'] = $user['role'];
+                        unset($_SESSION['csrf_token']);
+                        $this->resetLoginAttempts();
                         header('Location: /home/show');
                         exit;
-                        unset($_SESSION['csrf_token']);
-
-                        $this->resetLoginAttempts();
                     } else {
                         $errors[] = 'Email ou mot de passe incorrect';
                     }

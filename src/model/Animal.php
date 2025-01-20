@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Model;
 
 use PDO;
@@ -61,8 +62,7 @@ class Animal
 
             return $stmt->execute();
         } catch (Exception $e) {
-            echo "Erreur lors de la mise à jour du Animal : " . $e->getMessage();
-            return false;
+            return "Erreur lors de la mise à jour du Animal : " . $e->getMessage();
         }
     }
 
@@ -72,8 +72,7 @@ class Animal
             $stmt = $this->pdo->prepare("INSERT INTO animals (animals.name, animals.breed, animals.image, animals.habitat_id) VALUES (:name, :breed,  :image, :habitat_id)");
             return $stmt->execute(['name' => $name, 'breed' => $breed, 'image' => $imagePath, 'habitat_id' => $habitat_id]);
         } catch (Exception $e) {
-            echo "Erreur lors de l'ajout du animal : " . $e->getMessage();
-            return false;
+            return "Erreur lors de l'ajout du animal : " . $e->getMessage();
         }
     }
 
@@ -83,8 +82,7 @@ class Animal
             $stmt = $this->pdo->prepare("DELETE FROM animals WHERE id = :id");
             return $stmt->execute(['id' => $id]);
         } catch (Exception $e) {
-            echo "Erreur lors de la suppression de l'animal : " . $e->getMessage();
-            return false;
+            return"Erreur lors de la suppression de l'animal : " . $e->getMessage();
         }
     }
 

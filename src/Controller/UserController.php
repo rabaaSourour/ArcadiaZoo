@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\User;
 use App\Services\Mailer;
+use App\Services\CSRFToken;
 
 use PDO;
 
@@ -38,10 +39,10 @@ class UserController
     public function delete($id): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-                    header('Location: /error/server-error');
-                    die;
-                }
+            if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
+                header('Location: /error/server-error');
+                die;
+            }
             $this->userModel->deleteUser($id);
             header('Location: /user/show');
             exit();
@@ -54,7 +55,7 @@ class UserController
         $message = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
                 header('Location: /error/server-error');
                 die;
             }
@@ -63,14 +64,18 @@ class UserController
             $role = htmlspecialchars($_POST['role']);
 
             if (!empty($email) && !empty($passWord) && !empty($role)) {
-                $userId = $this->userModel->addUser($email, $passWord, $role);
-                if ($userId) {
-                    $message = 'Utilisateur ajouté avec succès';
-
-                    $mailer = new Mailer();
-                    $mailer->sendUserCreationEmail($email, $role);
+                if (!preg_match('/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[\W_]).{12,}$/', $passWord)) {
+                    $message = 'Le mot de passe doit contenir au moins 12 caractères, dont une majuscule, une minuscule, un chiffre et un caractère spécial.';
                 } else {
-                    $message = 'Erreur lors de l\'ajout de l\'utilisateur.';
+                    $userId = $this->userModel->addUser($email, $passWord, $role);
+                    if ($userId) {
+                        $message = 'Utilisateur ajouté avec succès';
+
+                        $mailer = new Mailer();
+                        $mailer->sendUserCreationEmail($email, $role);
+                    } else {
+                        $message = 'Erreur lors de l\'ajout de l\'utilisateur.';
+                    }
                 }
             } else {
                 $message = 'Tous les champs doivent être remplis';
@@ -88,16 +93,13 @@ class UserController
     // URI : '/user/update'
     public function update(): array
     {
+        $message = '';
+
         $id = (int)($_GET['id'] ?? 0);
         $user = $this->userModel->getUserById($id);
 
-        // if (!$user) {
-        //     echo "Utilisateur non trouvé.";
-        //     exit();
-        // }
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
                 header('Location: /error/server-error');
                 die;
             }
@@ -109,8 +111,10 @@ class UserController
 
             if ($userId) {
                 if (!empty($email) && !empty($oldPassword) && !empty($newPassword)) {
+
                     if (password_verify($oldPassword, $user['password'])) {
-                        if ($newPassword === $confirmPassword && strlen($newPassword) >= 12) {
+
+                        if ($newPassword === $confirmPassword && $this->isValidPassword($newPassword)) {
                             $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
                             $this->userModel->updateUser($userId, $hashedPassword);
@@ -118,24 +122,36 @@ class UserController
                             header('Location: /signin');
                             exit();
                         } else {
-                            echo "Le nouveau mot de passe et la confirmation doivent être identiques et comporter au moins 12 caractères.";
+                            $message = "Le nouveau mot de passe et la confirmation doivent être identiques et comporter au moins 12 caractères.";
                         }
                     } else {
-                        echo "L'ancien mot de passe est incorrect.";
+                        $message = "L'ancien mot de passe est incorrect.";
                     }
                 } else {
-                    echo "Veuillez remplir tous les champs requis.";
+                    $message = "Veuillez remplir tous les champs requis.";
                 }
             } else {
-                echo "Utilisateur non trouvé.";
+                $message = "Utilisateur non trouvé.";
             }
         }
 
         return [
             'page' => 'editUserForm',
             'variables' => [
-                'user' => $user
+                'user' => $user,
+                'message' => $message
             ]
         ];
+    }
+
+    /**
+     * Valide si un mot de passe répond aux critères de sécurité.
+     *
+     * @param string $password
+     * @return bool
+     */
+    private function isValidPassword(string $password): bool
+    {
+        return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/', $password);
     }
 }

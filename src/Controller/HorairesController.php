@@ -26,44 +26,22 @@ class HorairesController
         ];
     }
 
-    public function show(): array
-    {
-        return [
-            'page' => 'OpeningHours',
-            'variables' => [
-                'horaires' => $this->horairesModel->getHoraires(),
-            ]
-        ];
+public function show(): array
+{
+    $status = null;
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['horaires'])) {
+        $status = $this->horairesModel->updateHoraires($_POST['horaires']);
     }
 
-    public function updateHoraires(array $data): array
-    {
-        if (isset($data['id'], $data['openingTime'], $data['closingTime'])) {
-            $this->horairesModel->updateHoraire($data['id'], $data['openingTime'], $data['closingTime']);
-
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                if (isset($_POST['horaires']) && is_array($_POST['horaires'])) {
-                    foreach ($_POST['horaires'] as $data) {
-                        if (isset($data['id'], $data['openingTime'], $data['closingTime'])) {
-                            $this->horairesModel->updateHoraire($data['id'], $data['openingTime'], $data['closingTime']);
-                        }
-                    }
-
-                    header('Location: /home/view');
-                    exit();
-                } else {
-                    echo "Données du formulaire manquantes.";
-                }
-            }
-
-            $horaires = $this->horairesModel->getHoraires();
-
-            return [
-                'page' => 'OpeningHours',
-                'variables' => [
-                    'horaires' => $horaires
-                ]
-            ];
-        }
-    }
+    return [
+        'page' => 'OpeningHours',
+        'variables' => [
+            'horaires' => $this->horairesModel->getHoraires(),
+            'status' => $status
+        ]
+    ];
 }
+
+}
+

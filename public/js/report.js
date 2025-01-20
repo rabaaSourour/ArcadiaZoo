@@ -19,8 +19,8 @@ async function showAnimalDetails() {
     modalBtns.forEach((modalBtn) => {
         modalBtn.addEventListener('click', () => {
             dialog.showModal();
-            const animalCard = modalBtn.parentElement.parentElement.parentElement;
-            const animalId = animalCard.getAttribute('data-animal-id');
+        
+            const animalId = modalBtn.getAttribute('data-animal-id');
 
             fetchAnimalDetails(animalId).then((data) => {
                 fillDialogTemplate(dialog, data.animal, data.report);
@@ -36,6 +36,7 @@ async function fetchAnimalDetails(animalId) {
     const response = await fetch(window.location.origin + '/api/animalDetails?animalId=' + animalId);
     const data = await response.json();
 
+    
     if(data.success === false) {
         throw new Error(data.error);
     }

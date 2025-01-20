@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Model\Animal;
 use App\Model\Habitat;
 use App\Services\FileUploader;
+use App\Services\CSRFToken;
 
 use PDO;
 
@@ -43,7 +44,7 @@ class AnimalController
     public function delete($id): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
                 header('Location: /error/server-error');
                 die;
             }
@@ -59,7 +60,7 @@ class AnimalController
         $message = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
                 header('Location: /error/server-error');
                 die;
             }
@@ -89,22 +90,23 @@ class AnimalController
     // URI : '/animal/update'
     public function update(): array
     {
+        $message = '';
         $id = (int)($_GET['id'] ?? 0);
 
         $animal = $this->animalModel->getAnimalById($id);
 
         if (!$animal) {
-            echo "animal non trouvé.";
+            $message = "animal non trouvé.";
             exit();
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
                 header('Location: /error/server-error');
                 die;
             }
-            $name = $_POST['name'] ?? '';
-            $breed = $_POST['breed'] ?? '';
+            $name = htmlspecialchars($_POST['name'] ?? '');
+            $breed = htmlspecialchars($_POST['breed'] ?? '');
             $imagePath = null;
 
             if (file_exists($_FILES['image']['tmp_name']) || is_uploaded_file($_FILES['image']['tmp_name'])) {
@@ -118,14 +120,15 @@ class AnimalController
                 header('Location: /habitat/show');
                 exit();
             } else {
-                echo "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";
+                $message = "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";
             }
         }
 
         return [
             'page' => 'editAnimalForm',
             'variables' => [
-                'animal' => $animal
+                'animal' => $animal,
+                'message' => $message
             ]
         ];
     }

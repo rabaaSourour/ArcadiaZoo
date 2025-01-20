@@ -15,7 +15,7 @@ class Router
         $this->parseUri($uri);
     }
 
-    private function parseUri(string $uri): void
+    public function parseUri(string $uri): void
     {
         if ('/' === $uri || '' === $uri) {
             $uri = '/home/show';

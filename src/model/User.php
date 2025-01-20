@@ -42,8 +42,7 @@ class User
 
             return $stmt->execute();
         } catch (Exception $e) {
-            echo "Erreur lors de la mise à jour du l'utilisateur : " . $e->getMessage();
-            return false;
+            return "Erreur lors de la mise à jour du l'utilisateur : " . $e->getMessage();
         }
     }
 
@@ -56,8 +55,7 @@ class User
             return $this->pdo->lastInsertId();
             
         } catch (Exception $e) {
-            echo "Erreur lors de l'ajout de l'utilisateur : " . $e->getMessage();
-            return false;
+            return "Erreur lors de l'ajout de l'utilisateur : " . $e->getMessage();
         }
     }
 
@@ -67,8 +65,7 @@ class User
             $stmt = $this->pdo->prepare("DELETE FROM users WHERE id = :id");
             return $stmt->execute(['id' => $id]);
         } catch (Exception $e) {
-            echo "Erreur lors de la suppression de l'utilisateur : " . $e->getMessage();
-            return false;
+            return "Erreur lors de la suppression de l'utilisateur : " . $e->getMessage();
         }
     }
 }

@@ -25,6 +25,7 @@
                         </div>
                         <div>
                             <?php if ($role === 'employe'): ?>
+                                <input type="hidden" id="csrf_token" value="<?= htmlspecialchars(App\Services\CSRFToken::getToken(), ENT_QUOTES, 'UTF-8') ?>">
                                 <button class="btn btn-warning" onclick="window.location.href='/food/update?id=<?= $food['id'] ?>'">Modifier</button>
                                 <button class="btn btn-danger" onclick="deleteFood(<?= $food['id'] ?>)">Supprimer</button>
                             <?php endif; ?>

@@ -56,8 +56,7 @@ class Habitat
             
             return $stmt->execute();
         } catch (Exception $e) {
-            echo "Erreur lors de la mise à jour du habitat : " . $e->getMessage();
-            return false;
+            return "Erreur lors de la mise à jour du habitat : " . $e->getMessage();
         }
     }
 
@@ -69,8 +68,7 @@ class Habitat
             $lastHabitatId = $this->pdo->lastInsertId();
             return $lastHabitatId;
         } catch (Exception $e) {
-            echo "Erreur lors de l'ajout du habitat : " . $e->getMessage();
-            return false;
+            return "Erreur lors de l'ajout du habitat : " . $e->getMessage();
         }
     }
 
@@ -80,8 +78,7 @@ class Habitat
             $stmt = $this->pdo->prepare("DELETE FROM habitats WHERE id = :id");
             return $stmt->execute(['id' => $id]);
         } catch (Exception $e) {
-            echo "Erreur lors de la suppression de l'habitat : " . $e->getMessage();
-            return false;
+            return "Erreur lors de la suppression de l'habitat : " . $e->getMessage();
         }
     }
 }

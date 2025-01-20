@@ -5,15 +5,15 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="reviews row">
         <?php if (!empty($pendingReviews)): ?>
             <?php foreach ($pendingReviews as $review): ?>
-                <!-- Colonne responsive : 12 colonnes en mobile, 4 colonnes en desktop -->
-                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="review col-12 col-md-6 col-lg-4 mb-4">
                     <div class="card h-100 p-3">
                         <input type="hidden" class="review-id" value="<?= $review['id'] ?>">
                         <h4 class="card-title"><?= htmlspecialchars($review['pseudo'] . ' :') ?></h4>
                         <p class="card-text"><?= htmlspecialchars($review['review']) ?></p>
+                        <input type="hidden" id="csrf_token" value="<?= htmlspecialchars(App\Services\CSRFToken::getToken(), ENT_QUOTES, 'UTF-8') ?>">
                         <button class="btn btn-success validate-btn" data-review-id="<?= $review['id'] ?>">Valider</button>
                         <button class="btn btn-danger delete-btn mt-2" data-review-id="<?= $review['id'] ?>">Supprimer</button>
                     </div>

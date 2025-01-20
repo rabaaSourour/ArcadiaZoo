@@ -38,6 +38,7 @@
                         <td class="text-primary"><?= htmlspecialchars($report['last_check']) ?></td>
                         <td class="text-primary"><?= nl2br(htmlspecialchars($report['details'])) ?></td>
                         <td class="text-center">
+                        <input type="hidden" id="csrf_token" value="<?= htmlspecialchars(App\Services\CSRFToken::getToken(), ENT_QUOTES, 'UTF-8') ?>">
                             <button class="btn m-2" onclick="window.location.href='/report/update?id=<?= $report['id'] ?>'">Modifier</button>
                             <button class="btn" onclick="deleteReport(<?= $report['id'] ?>)">Supprimer</button>
                         </td>

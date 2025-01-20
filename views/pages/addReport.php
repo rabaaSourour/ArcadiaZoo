@@ -1,11 +1,3 @@
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-if (!isset($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
-?>
 <section class="d-flex align-items-center">
     <div class="container">
         <div class="row justify-content-center m-5">
@@ -19,7 +11,7 @@ if (!isset($_SESSION['csrf_token'])) {
                     <?php endif; ?>
 
                     <form action="" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(App\Services\CSRFToken::getToken(), ENT_QUOTES, 'UTF-8') ?>">
                         <div class="text-primary mb-3">
                             <label for="animals_id" class="form-label">Animal</label>
                             <select class="form-control text-primary" id="animals_id" name="animals_id" required>

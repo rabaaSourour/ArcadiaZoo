@@ -6,7 +6,7 @@
                     <h2 class="text-secondary p-3">Laissez un avis</h2>
                 </div>
                 <form method="post" action="/review/addReview">
-                    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
+                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(App\Services\CSRFToken::getToken(), ENT_QUOTES, 'UTF-8') ?>">
                     <div class="text-primary mb-3 pt-3">
                         <label for="PseudoInput" class="form-label">Pseudo</label>
                         <input type="text" name="pseudo" class="form-control" id="PseudoInput" required>

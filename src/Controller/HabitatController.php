@@ -6,6 +6,7 @@ use App\Model\Habitat;
 use App\Model\Animal;
 use App\Model\Report;
 use App\Services\FileUploader;
+use App\Services\CSRFToken;
 use PDO;
 
 class HabitatController
@@ -47,7 +48,7 @@ class HabitatController
     public function delete($id): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
                 header('Location: /error/server-error');
                 die;
             }
@@ -63,7 +64,7 @@ class HabitatController
         $message = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
                 header('Location: /error/server-error');
                 die;
             }
@@ -91,17 +92,18 @@ class HabitatController
     // URI : '/habitat/update'
     public function update(): array
     {
+        $message = '';
         $id = (int)($_GET['id'] ?? 0);
 
         $habitat = $this->habitatModel->getHabitatById($id);
 
         if (!$habitat) {
-            echo "habitat non trouvé.";
+            $message = "habitat non trouvé.";
             exit();
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
                 header('Location: /error/server-error');
                 die;
             }
@@ -120,14 +122,15 @@ class HabitatController
                 header('Location: /habitat/show');
                 exit();
             } else {
-                echo "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";
+                $message = "<div class='alert alert-danger'>Tous les champs doivent être remplis.</div>";
             }
         }
 
         return [
             'page' => 'editHabitatForm',
             'variables' => [
-                'habitat' => $habitat
+                'habitat' => $habitat,
+                'message' => $message
             ]
         ];
     }

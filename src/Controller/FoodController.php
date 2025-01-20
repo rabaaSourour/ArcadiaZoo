@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Model\Food;
 use App\Model\Animal;
 use PDO;
+use App\Services\CSRFToken;
 
 class FoodController
 {
@@ -15,9 +16,8 @@ class FoodController
     {
         $this->foodModel = new Food($pdo);
         $this->animalModel = new Animal($pdo);
-
     }
-    
+
     // URI : '/food/show'
     public function show(): array
     {
@@ -32,7 +32,7 @@ class FoodController
             'page' => 'food',
             'variables' => [
                 'foods' => $food,
-                'animals' =>$animal,
+                'animals' => $animal,
                 'role' => $role,
             ]
         ];
@@ -42,7 +42,7 @@ class FoodController
     public function delete($id): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
                 header('Location: /error/server-error');
                 die;
             }
@@ -50,6 +50,8 @@ class FoodController
             header('Location: /food/show');
             exit();
         }
+        header('Location: /error/server-error');
+        exit();
     }
 
     // URI : '/food/new'
@@ -59,7 +61,7 @@ class FoodController
         $animal = $this->animalModel->getAllAnimals();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
                 header('Location: /error/server-error');
                 die;
             }
@@ -89,30 +91,32 @@ class FoodController
     // URI : '/food/update'
     public function update(): array
     {
+        $message = '';
+
         $id = (int)($_GET['id'] ?? 0);
 
         $food = $this->foodModel->getFoodById($id);
         $animal = $this->animalModel->getAllAnimals();
         if (!$food) {
-            echo "Nourriture non trouvé.";
+            $message = "Nourriture non trouvé.";
             exit();
         }
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            if (!CSRFToken::validate($_POST['csrf_token'] ?? '')) {
                 header('Location: /error/server-error');
                 die;
             }
             $food = htmlspecialchars($_POST['food'] ?? '');
             $quantity = htmlspecialchars($_POST['quantity'] ?? '');
             $animalId = (int) htmlspecialchars($_POST['animals_id'] ?? '');
-
-            if ($animalId > 0 && !empty($food) && !empty($quantity) ) {
+            
+            if ($animalId > 0 && !empty($food) && !empty($quantity)) {
                 $this->foodModel->updateFood($id, $food, $quantity, $animalId);
 
+                $message = "Mise à jour réussie.";
                 header('Location: /food/show');
                 exit();
-            } 
+            }
         }
 
         return [
@@ -120,6 +124,7 @@ class FoodController
             'variables' => [
                 'food' => $food,
                 'animals' => $animal,
+                'message' => $message
             ]
         ];
     }

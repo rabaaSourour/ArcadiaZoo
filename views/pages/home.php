@@ -101,6 +101,7 @@
                                     </li>
                                 </ul>
                                 <?php if ($role === 'admin'): ?>
+                                    <input type="hidden" id="csrf_token" value="<?= htmlspecialchars(App\Services\CSRFToken::getToken(), ENT_QUOTES, 'UTF-8') ?>">
                                     <button class="btn btn-warning btn-sm mb-2" onclick="editSection('service1')">Modifier</button>
                                     <button class="btn btn-danger btn-sm mb-2" onclick="deleteSection('service1')">Supprimer</button>
                                 <?php endif; ?>
@@ -118,6 +119,7 @@
                                     <li><strong>Thèmes Spécifiques</strong>: Des visites thématiques sont proposées régulièrement, centrées sur des sujets tels que le comportement animal, les efforts de conservation ou les adaptations écologiques.</li>
                                 </ul>
                                 <?php if ($role === 'admin'): ?>
+                                    <input type="hidden" id="csrf_token" value="<?= htmlspecialchars(App\Services\CSRFToken::getToken(), ENT_QUOTES, 'UTF-8') ?>">
                                     <button class="btn btn-warning btn-sm mb-2" onclick="editSection('service2')">Modifier</button>
                                     <button class="btn btn-danger btn-sm mb-2" onclick="deleteSection('service2')">Supprimer</button>
                                 <?php endif; ?>
